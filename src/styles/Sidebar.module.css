@@ -1,0 +1,78 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container {
+  transition: 300ms;
+  background-color: #faf1e4;
+  height: 100vh;
+  width: 250px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.imageContainer {
+  background-color: #435334;
+  height: 50px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.imageContainer > img {
+  height: 50px;
+}
+.navigation {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+}
+.navigation > button {
+  border: 1px solid rgb(212, 212, 212);
+  background-color: #cedebd;
+  border-radius: 5px;
+  margin-top: 10px;
+  height: 50px;
+  width: 100%;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: 1.2rem;
+  display: flex;
+  align-items: center;
+}
+.navigation > button:hover {
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
+    rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset;
+}
+.navigation > button:active {
+  background-color: #9eb384;
+}
+.btnLogo {
+  margin-left: 20px;
+}
+.btnLabel {
+  margin-left: 10px;
+}
+.minimized {
+  width: 80px;
+  transition: 300ms;
+}
+.centered {
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 300ms;
+}
+.centered > img {
+  margin-left: 0;
+}
+.hidden {
+  display: none;
+}
+.navigation > button > p {
+  color: rgb(95, 95, 95);
+}
