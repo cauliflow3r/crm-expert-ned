@@ -25,7 +25,6 @@ const Sidebar = () => {
         <button className={`${isMinimized ? styles.centered : ""}`}>
           <img
             className={styles.btnLogo}
-            color="white"
             width="30px"
             height="30px"
             src="https://img.icons8.com/material-outlined/96/cloud-database.png"
@@ -49,6 +48,20 @@ const Sidebar = () => {
             className={`${styles.btnLabel} ${isMinimized ? styles.hidden : ""}`}
           >
             Задачник
+          </p>
+        </button>
+        <button className={`${isMinimized ? styles.centered : ""}`}>
+          <img
+            className={styles.btnLogo}
+            width="30px"
+            height="30px"
+            src="https://img.icons8.com/ios/50/internet-browser--v1.png"
+            alt="internet-browser--v1"
+          />
+          <p
+            className={`${styles.btnLabel} ${isMinimized ? styles.hidden : ""}`}
+          >
+            Сайт
           </p>
         </button>
       </div>

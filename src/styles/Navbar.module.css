@@ -1,0 +1,46 @@
+.container {
+  width: 100%;
+  height: 50px;
+  background-color: #9eb384;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.left {
+  margin-left: 20px;
+}
+.right {
+  display: flex;
+  align-items: center;
+}
+
+.profile {
+  margin-right: 30px;
+  height: 35px;
+  width: 50px;
+  border-radius: 10px;
+  border: 1px solid rgb(147, 147, 147);
+}
+.search {
+  margin-right: 30px;
+}
+.searchInp {
+  border-radius: 5px;
+  padding: 10px;
+  border: 2px solid rgb(163, 163, 163);
+  height: 30px;
+  width: 200px;
+  margin-right: 10px;
+}
+.searchBtn {
+  border-radius: 5px;
+  border: 2px solid rgb(163, 163, 163);
+  height: 30px;
+  width: 70px;
+}
+.searchBtn:hover {
+  background-color: #cacaca;
+}
+.searchBtn:active {
+  background-color: #8f8f8f;
+}
