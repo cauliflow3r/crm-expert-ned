@@ -3,6 +3,22 @@ import styles from "../styles/Navbar.module.css";
 import logo from "../assets/fullblack.png";
 
 const Navbar = () => {
+  const firstName = localStorage.getItem("first_name");
+  const lastName = localStorage.getItem("last_name");
+  function getInitials(firstName, lastName) {
+    const firstInitial = firstName ? firstName.charAt(0) : "";
+    const lastInitial = lastName ? lastName.charAt(0) : "";
+
+    return `${firstInitial}${lastInitial}`.toUpperCase();
+  }
+
+  const storedFirstName = localStorage.getItem("first_name") || "";
+  const storedLastName = localStorage.getItem("last_name") || "";
+
+  const initials = getInitials(storedFirstName, storedLastName);
+
+  console.log("Initials:", initials);
+
   return (
     <div className={styles.container}>
       <div className={styles.left}>
@@ -19,7 +35,7 @@ const Navbar = () => {
           />
           <button className={styles.searchBtn}>Поиск</button>
         </div>
-        <button className={styles.profile}>Profile</button>
+        <button className={styles.profile}>{initials}</button>
       </div>
     </div>
   );

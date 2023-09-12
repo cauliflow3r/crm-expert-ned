@@ -3,10 +3,13 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import Homepage from "../pages/Homepage";
 import LoginPage from "../pages/LoginPage";
 
+// ! Private routes - so only authenticated users can access them.
+
 function PrivateRoute({ children }) {
   const accessToken = localStorage.getItem("accessToken");
   // console.log("Access Token:", accessToken);
 
+  // check for accessToken
   return accessToken ? (
     children
   ) : (

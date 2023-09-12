@@ -20,25 +20,24 @@ export const AuthContextProvider = ({ children }) => {
       const { access, refresh } = res.data;
       localStorage.setItem("accessToken", JSON.stringify(access));
       localStorage.setItem("refreshToken", JSON.stringify(refresh));
+      localStorage.setItem("user", JSON.stringify(formData.username));
+      const allUsers = await axios.get(`${API}/user/profile/`);
 
-      // Assuming your API response contains user information
+      // setting currentuser info
+      for (const user of allUsers.data.results) {
+        if (user.username === formData.username) {
+          localStorage.setItem("id", user.id);
+          localStorage.setItem("first_name", user.first_name);
+          localStorage.setItem("last_name", user.last_name);
+          break;
+        }
+      }
+
       navigate("/");
     } catch (error) {
       setErrorMessage("Login failed. Please check your credentials.");
     } finally {
       setLoading(false);
-    }
-    const getUsers = await axios.get(`${API}/user/profile/`);
-    const usersInfo = getUsers.data.results;
-    console.log(usersInfo);
-
-    for (const user of usersInfo) {
-      if (user.username === currentUser) {
-        localStorage.setItem("id", user.id);
-        localStorage.setItem("First_Name", user.first_name);
-        localStorage.setItem("Second_Name", user.last_name);
-        break;
-      }
     }
   };
   const getToken = (type = "accessToken") => {
@@ -59,7 +58,6 @@ export const AuthContextProvider = ({ children }) => {
     handleLogin,
     getToken,
     setToken,
-    setCurrentUser,
   };
 
   return <authContext.Provider value={values}>{children}</authContext.Provider>;
