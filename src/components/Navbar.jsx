@@ -1,8 +1,11 @@
 import React from "react";
 import styles from "../styles/Navbar.module.css";
 import logo from "../assets/fullblack.png";
+import { useUI } from "../provider/UiContextProvider";
 
 const Navbar = () => {
+  const { isOpen } = useUI();
+
   const firstName = localStorage.getItem("first_name");
   const lastName = localStorage.getItem("last_name");
   function getInitials(firstName, lastName) {
@@ -20,7 +23,7 @@ const Navbar = () => {
   console.log("Initials:", initials);
 
   return (
-    <div className={styles.container}>
+    <div className={`${styles.container} ${isOpen ? styles.minimized : ""}`}>
       <div className={styles.left}>
         <img style={{ height: "100px" }} src={logo} alt="" />
       </div>

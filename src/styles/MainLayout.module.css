@@ -1,4 +1,16 @@
 .mainContainer {
-  width: 100%;
-  overflow: hidden;
+  transition: 300ms;
+  margin-left: 80px;
+  margin-top: 50px;
+  height: calc(100vh-50px);
+  width: calc(100% - 80px);
+  overflow-y: auto;
+}
+.open {
+  transition: 300ms;
+  margin-left: 250px;
+  margin-top: 50px;
+  height: calc(100vh-50px);
+  width: calc(100% - 80px);
+  overflow-y: auto;
 }

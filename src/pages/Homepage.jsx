@@ -1,13 +1,10 @@
 import React from "react";
-import Mainlayout from "../layouts/Mainlayout";
-import TaskBoard from "../components/TaskBoard";
+import Database from "../components/Database";
 
 const Homepage = () => {
   return (
     <div>
-      <Mainlayout>
-        <TaskBoard />
-      </Mainlayout>
+      <Database />
     </div>
   );
 };
