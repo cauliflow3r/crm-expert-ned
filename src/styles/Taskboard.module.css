@@ -1,4 +1,21 @@
 .container {
-  background-color: rgb(255, 255, 255);
+  height: calc(100vh - 50px);
+  width: calc(100vw - 80px);
+  background-color: #6b926f;
+  /* background-color: #9eb384; */
+
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  margin: 0 auto;
+}
+.taskboardGrid {
+  background-color: #faf1e4;
+  border-radius: 5px;
+  margin: 20px;
+  display: flex;
+  width: 400px;
+  overflow: auto;
   height: 100%;
 }

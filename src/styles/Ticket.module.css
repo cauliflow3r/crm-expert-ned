@@ -1,0 +1,31 @@
+.ticketContainer {
+  min-height: 100px;
+  min-width: 350px;
+  max-height: 150px;
+  margin: 10px;
+  border: 2px solid black;
+  border-radius: 5px;
+  overflow-y: auto;
+  background-color: #cedebd;
+  padding: 10px;
+}
+.modalTicket {
+  display: none;
+  transition: ease-in-out 300ms;
+}
+.modalTicketOpen {
+  border: 5px solid black;
+  border-radius: 5px;
+  top: 25%;
+  left: 25%;
+  display: flex;
+  position: absolute;
+  margin: 0 auto;
+  width: 50%;
+  height: 50%;
+  background-color: antiquewhite;
+  transition: ease-in-out 300ms;
+}
+.btn {
+  height: 50px;
+}
