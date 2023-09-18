@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext, useEffect, useState } from "react";
 import axios, { all } from "axios";
 import { useNavigate } from "react-router-dom";
 
@@ -16,12 +16,16 @@ export const TicketsContextProvider = ({ children }) => {
       setLoading(true);
       const res = await axios.get(`${API}/crm_v2/tickets/`);
       setAllTickets(res.data.results);
-      console.log(allTickets);
+      console.log(res.data.results);
+      const userTickets = res.data.results.filter(
+        (ticket) => ticket.user == localStorage.getItem("id")
+      );
+      setMyTickets(userTickets);
     } catch (error) {
       console.log(error);
     } finally {
       setLoading(false);
-      console.log(allTickets);
+      console.log(myTickets);
     }
   };
   const handlePatch = async (id, data) => {
@@ -47,7 +51,7 @@ export const TicketsContextProvider = ({ children }) => {
   //   allTickets;
   // };
 
-  const values = { getTickets, allTickets, handlePatch };
+  const values = { getTickets, allTickets, handlePatch, myTickets };
 
   return (
     <ticketsContext.Provider value={values}>{children}</ticketsContext.Provider>

@@ -9,23 +9,58 @@
   background-color: #cedebd;
   padding: 10px;
 }
+
+/* MODAL */
 .modalTicket {
   display: none;
   transition: ease-in-out 300ms;
 }
+.modalTop {
+  width: 100%;
+  display: flex;
+  height: 50px;
+  align-items: center;
+}
+.modalTitle {
+  margin: 0 auto;
+}
+.closeBtn {
+  position: absolute;
+  right: 0;
+  height: 50px;
+  width: 50px;
+}
+.modalBody {
+  margin: 50px;
+}
+
 .modalTicketOpen {
+  display: flex;
+  flex-direction: column;
   border: 5px solid black;
   border-radius: 5px;
-  top: 25%;
+  top: 15%;
   left: 25%;
   display: flex;
   position: absolute;
   margin: 0 auto;
   width: 50%;
-  height: 50%;
+  height: 70%;
   background-color: antiquewhite;
   transition: ease-in-out 300ms;
+  overflow-y: auto;
 }
-.btn {
+.commentInput {
+  width: 100%;
+  height: 100px;
+}
+
+.bottomButtons {
+  bottom: 0;
+  width: 100%;
   height: 50px;
+}
+.bottomButtons > button {
+  width: 50%;
+  height: 100%;
 }

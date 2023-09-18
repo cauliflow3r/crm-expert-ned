@@ -3,7 +3,7 @@ import TaskBoard from "../components/TaskBoard";
 import { useTickets } from "../provider/TicketsContextProvider";
 
 const TicketsPage = () => {
-  const { getTickets, allTickets, handlePatch } = useTickets();
+  const { getTickets, allTickets, handlePatch, myTickets } = useTickets();
   useEffect(() => {
     document.title = "Tickets";
     getTickets();
@@ -11,7 +11,11 @@ const TicketsPage = () => {
 
   return (
     <div style={{ overflow: "auto", position: "absolute" }}>
-      <TaskBoard allTickets={allTickets} handlePatch={handlePatch} />
+      <TaskBoard
+        allTickets={allTickets}
+        handlePatch={handlePatch}
+        myTickets={myTickets}
+      />
     </div>
   );
 };

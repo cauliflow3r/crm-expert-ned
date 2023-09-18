@@ -1,21 +1,39 @@
 .container {
   height: calc(100vh - 50px);
   width: calc(100vw - 80px);
-  background-color: #6b926f;
+  background-color: #435334;
   /* background-color: #9eb384; */
 
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  overflow-y: auto;
+}
+.appWindow {
+  display: flex;
 }
 .title {
-  margin: 0 auto;
+  padding: 10px;
+  justify-self: center;
+
+  color: black;
+}
+.inProgressTickets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.newTickets {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 .taskboardGrid {
   background-color: #faf1e4;
   border-radius: 5px;
   margin: 20px;
   display: flex;
+  flex-direction: row;
   width: 400px;
   overflow: auto;
-  height: 100%;
+  height: calc(100vh - 100px);
 }
