@@ -1,12 +1,24 @@
-import React from 'react';
-import {useSelector} from "react-redux";
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import { format } from "date-fns";
+import {addComment} from "../crm-logic/addComment";
+import {setIsComments} from "../features/isComments/isCommentsSlice";
 import './../styles/DatabaseDetailedInfo.css'
+import {getOneClient} from "../crm-logic/getOneClient";
 
 const DatabaseDetailedInfo = () => {
 
   const detailedInfo = useSelector((state) => state.getOneClient.getOneClient)
-  console.log(detailedInfo)
+  const dispatch = useDispatch()
+  const comment = useSelector((state) => state.isComments)
+
+  const handleChangeComment = (e) => {
+    e.preventDefault()
+    dispatch(setIsComments({
+      body: e.target.value,
+      crm: `${detailedInfo.id}`
+    }))
+  }
 
   function formatAndAdd4Hours(dateString) {
     const dateObject = new Date(dateString);
@@ -15,6 +27,9 @@ const DatabaseDetailedInfo = () => {
 
   return (
     <div style={{width: '50%', overflowY: 'auto'}}>
+      <div>
+        <button onClick={() => getOneClient(detailedInfo.id, dispatch)}>Обновить</button>
+      </div>
       {
         detailedInfo ?
           <div>
@@ -134,6 +149,21 @@ const DatabaseDetailedInfo = () => {
                   </div>
                 )
               })}
+            </div>
+            <div className='detailed-info-textarea-field'>
+              <form>
+                <textarea
+                  cols="70"
+                  rows="10"
+                  value={comment.body}
+                  onChange={handleChangeComment}
+                />
+                <input
+                  value='Отправить'
+                  type="button"
+                  onClick={() => addComment(dispatch, comment, detailedInfo.id)}
+                />
+              </form>
             </div>
           </div>
           :

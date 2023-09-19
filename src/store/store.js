@@ -5,6 +5,7 @@ import {tokenSlice} from "../features/token/tokenSlice";
 import {isLoadingSlice} from "../features/isLoading/isLoading";
 import {typeOfBaseSlice} from "../features/typeOfBase/typeOfBaseSlice";
 import {getOneClientSlice} from "../features/getOneClient/getOneClientSlice";
+import {isCommentsSlice} from "../features/isComments/isCommentsSlice";
 
 
 export const store = configureStore({
@@ -15,6 +16,7 @@ export const store = configureStore({
       token: tokenSlice.reducer,
       isLoading: isLoadingSlice.reducer,
       typeOfBase: typeOfBaseSlice.reducer,
-      getOneClient: getOneClientSlice.reducer
+      getOneClient: getOneClientSlice.reducer,
+      isComments: isCommentsSlice.reducer
     }
 })

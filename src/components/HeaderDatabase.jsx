@@ -33,19 +33,19 @@ const HeaderDatabase = () => {
         className="header-sales-base"
         onClick={ChangeToSalesBase}
       >
-        Продажи
-      </div>
-      <div
-        className="header-purchases-base"
-        onClick={ChangeToPurchasesBase}
-      >
-        Покупки
+        Собственники
       </div>
       <div
         className="header-potential-base"
         onClick={ChangeToPotentialBase}
       >
         Потенциальные
+      </div>
+      <div
+        className="header-purchases-base"
+        onClick={ChangeToPurchasesBase}
+      >
+        Квалифицирован
       </div>
       <div
         className="header-not-relevant-base"
