@@ -5,16 +5,20 @@ import { AuthContextProvider } from "./provider/AuthContextProvider";
 import { BrowserRouter } from "react-router-dom";
 import { TicketsContextProvider } from "./provider/TicketsContextProvider";
 import { UIContextProvider } from "./provider/UiContextProvider";
+import {Provider} from "react-redux";
+import {store} from "./store/store";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <BrowserRouter>
-    <UIContextProvider>
-      <TicketsContextProvider>
-        <AuthContextProvider>
-          <App />
-        </AuthContextProvider>
-      </TicketsContextProvider>
-    </UIContextProvider>
-  </BrowserRouter>
+  <Provider store={store}>
+    <BrowserRouter>
+      <UIContextProvider>
+        <TicketsContextProvider>
+          <AuthContextProvider>
+            <App />
+          </AuthContextProvider>
+        </TicketsContextProvider>
+      </UIContextProvider>
+    </BrowserRouter>
+  </Provider>
 );

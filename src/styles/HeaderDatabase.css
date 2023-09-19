@@ -1,0 +1,8 @@
+.header-bases-wrap {
+  display: flex;
+  justify-content: space-around;
+}
+
+.header-sales-base, .header-purchases-base, .header-all-base  {
+  font-size: 25px;
+}
