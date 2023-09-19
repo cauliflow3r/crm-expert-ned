@@ -11,6 +11,7 @@ const DatabaseDetailedInfo = () => {
   const detailedInfo = useSelector((state) => state.getOneClient.getOneClient)
   const dispatch = useDispatch()
   const comment = useSelector((state) => state.isComments)
+  const isLoadingDetailedInfo = useSelector((state) => state.isLoadingDetailedInfo)
 
   const handleChangeComment = (e) => {
     e.preventDefault()
@@ -31,7 +32,9 @@ const DatabaseDetailedInfo = () => {
         <button onClick={() => getOneClient(detailedInfo.id, dispatch)}>Обновить</button>
       </div>
       {
-        detailedInfo ?
+        isLoadingDetailedInfo ?
+          <div>Loading...</div>
+          :
           <div>
             <div className="detailed-info-our-information">
               <div>
@@ -58,7 +61,7 @@ const DatabaseDetailedInfo = () => {
               </div>
             </div>
             <div className='detailed-info-our-information-link'>
-               Ссылка : <a href={detailedInfo.link} target="_blank">{detailedInfo.link}</a>
+              Ссылка : <a href={detailedInfo.link} target="_blank">{detailedInfo.link}</a>
             </div>
             <div className="detailed-info-public-description">
               <div>
@@ -125,10 +128,10 @@ const DatabaseDetailedInfo = () => {
               </div>
             </div>
             <div className="detailed-info-public-final-description">
-                <h3>
-                  Доп.информация:
-                </h3>
-                {detailedInfo.description}
+              <h3>
+                Доп.информация:
+              </h3>
+              {detailedInfo.description}
             </div>
             <div className="detailed-info-public-comments">
               <h2 className='detailed-info-comment-head'>
@@ -166,8 +169,6 @@ const DatabaseDetailedInfo = () => {
               </form>
             </div>
           </div>
-          :
-          <div>Эксперт Недвижимость.</div>
       }
     </div>
   );

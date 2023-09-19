@@ -1,6 +1,6 @@
 import {createSlice} from '@reduxjs/toolkit'
 
-const initialState = true
+const initialState = true;
 
 export const isLoadingSlice = createSlice({
   name: 'isLoadingSlice',
