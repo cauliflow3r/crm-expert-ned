@@ -1,0 +1,94 @@
+.detailed-info-our-information {
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr 1fr;
+  margin: 10px 0 0 20px;
+  font-size: 14px;
+}
+
+.detailed-info-our-information-link {
+  margin: 15px auto;
+  text-align: center;
+}
+
+.detailed-info-our-information-link a {
+  color: black;
+  transition: 0.2s ease-in-out;
+  font-size: 14px;
+}
+
+.detailed-info-our-information-link a:hover {
+  color: green;
+}
+
+
+.detailed-info-public-description {
+  margin: 10px 0 0 20px;
+  display: grid;
+  align-items: start;
+  grid-template-columns: 1fr 1fr;
+}
+
+.detailed-info-public-final-description {
+  margin: 10px  20px;
+  text-align: center;
+}
+
+.detailed-info-public-comments {
+  margin: 10px  20px;
+  text-align: center;
+}
+
+.detailed-info-comment-head {
+  border-bottom: 1px solid black;
+  padding: 10px 0;
+  border-top: 1px solid black;
+}
+
+.detailed-info-every-comment {
+  border-bottom: 1px solid black;
+}
+
+.detailed-info-comment-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.detailed-info-every-comment-author {
+  font-style: italic;
+  font-weight: 500;
+  /*font-size: 17px;*/
+}
+
+
+.detailed-info-comment {
+  margin: 10px 5px;
+  text-align: start;
+  /*font-weight: 500;*/
+  /* font-size: 18px;*/
+}
+
+.detailed-info-comment-admin {
+  color: red;
+}
+
+
+
+
+/* тело полосы скролла*/
+::-webkit-scrollbar {
+  width: 8px; /* Ширина полосы прокрутки */
+}
+
+/* само тело скролла */
+::-webkit-scrollbar-thumb {
+  background-color: #9eb384; /* Цвет "бегунка" */
+  border-radius: 25px; /* Закругление углов "бегунка" */
+}
+
+/*Фон скролла*/
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+  border-radius: 25px;
+}

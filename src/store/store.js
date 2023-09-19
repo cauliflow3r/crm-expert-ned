@@ -4,6 +4,7 @@ import {dataSlice} from "../features/data/dataSlice";
 import {tokenSlice} from "../features/token/tokenSlice";
 import {isLoadingSlice} from "../features/isLoading/isLoading";
 import {typeOfBaseSlice} from "../features/typeOfBase/typeOfBaseSlice";
+import {getOneClientSlice} from "../features/getOneClient/getOneClientSlice";
 
 
 export const store = configureStore({
@@ -13,6 +14,7 @@ export const store = configureStore({
       data: dataSlice.reducer,
       token: tokenSlice.reducer,
       isLoading: isLoadingSlice.reducer,
-      typeOfBase: typeOfBaseSlice.reducer
+      typeOfBase: typeOfBaseSlice.reducer,
+      getOneClient: getOneClientSlice.reducer
     }
 })

@@ -3,6 +3,11 @@
   justify-content: space-around;
 }
 
-.header-sales-base, .header-purchases-base, .header-all-base  {
+.header-sales-base, .header-purchases-base, .header-all-base, .header-potential-base, .header-not-relevant-base  {
   font-size: 25px;
+  cursor: pointer;
+}
+
+.header-sales-base:hover, .header-purchases-base:hover, .header-all-base:hover, .header-potential-base:hover, .header-not-relevant-base:hover {
+  color: red;
 }

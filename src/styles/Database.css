@@ -1,0 +1,46 @@
+.data-base {
+  background-color: #faf1e4;
+  border-radius: 5px;
+  font-size: 14px;
+}
+
+.data-base-wrap {
+  display: flex;
+  height: calc(100vh - 83px);
+}
+
+.data-base-all-client-list {
+ border-right: 1px solid black;
+  width: 50%;
+  overflow: auto;
+}
+
+
+.data-base-all-client-menu {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.18fr;
+  border-bottom: 1px solid black;
+  border-top: 1px solid black;
+  background: #9eb384;
+}
+
+
+.data-base-every-client {
+  display: grid;
+  grid-template-columns: 0.5fr 1fr 0.18fr;
+  border-bottom: 1px solid black ;
+  cursor: pointer;
+}
+
+.data-base-every-client:hover {
+  background: #9eb384;
+}
+
+.data-base-every-client-name {
+  border-right: 1px solid black;
+  padding-left: 20px;
+}
+
+.data-base-every-client-address {
+  border-right: 1px solid black;
+}

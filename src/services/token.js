@@ -1,7 +1,7 @@
 import axios from "axios";
-import {getToken, setToken} from "../utils/token";
+import {setToken} from "../utils/token";
 
-export const updateAccessToken = async (refreshToken) => {
+export const updateAccessToken = async () => {
   const refresh = JSON.parse(localStorage.getItem("refreshToken"));
   try {
     const response = await axios.post(

@@ -19,6 +19,14 @@ const HeaderDatabase = () => {
     dispatch(setTypeOfBase(`Полная база`))
   }
 
+  const ChangeToNotRelevantBase = () => {
+    dispatch(setTypeOfBase(`Неактуальные`))
+  }
+
+  const ChangeToPotentialBase = () => {
+    dispatch(setTypeOfBase(`Потенциальные`))
+  }
+
   return (
     <div className="header-bases-wrap">
       <div
@@ -32,6 +40,18 @@ const HeaderDatabase = () => {
         onClick={ChangeToPurchasesBase}
       >
         Покупки
+      </div>
+      <div
+        className="header-potential-base"
+        onClick={ChangeToPotentialBase}
+      >
+        Потенциальные
+      </div>
+      <div
+        className="header-not-relevant-base"
+        onClick={ChangeToNotRelevantBase}
+      >
+        Неактуальные
       </div>
       <div
         className="header-all-base"
