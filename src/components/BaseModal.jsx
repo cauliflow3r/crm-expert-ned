@@ -3,12 +3,20 @@ import {useDispatch, useSelector} from "react-redux";
 import {setBaseModal} from "../features/baseModal/baseModalSlice";
 import './../styles/BaseModal.css'
 import BaseModalAddSeller from "./BaseModalAddSeller";
+import BaseModalAddBuyer from "./BaseModalAddBuyer";
+import BaseModalAddPotential from "./BaseModalAddPotential";
 
 const BaseModal = () => {
   const dispatch = useDispatch()
   const baseModal = useSelector((state) => state.baseModal)
   const userId = localStorage.getItem('id')
 
+  const [addClientChoice, setAddClientChoice] = useState({
+    isSelect: true,
+    sale: false,
+    purchase: false,
+    potential: false
+  })
   const [modalData, setModalData] = useState({
       name: '',
       phone: '',
@@ -40,6 +48,7 @@ const BaseModal = () => {
       manager: userId
     }
   );
+  console.log(modalData)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -57,10 +66,50 @@ const BaseModal = () => {
     <div onClick={closeBaseModal} className={baseModal ? 'base-modal active' : 'base-modal'}>
       <div onClick={(e) => e.stopPropagation()} className={baseModal ? 'modal__content active' : 'modal__content'}>
 
-        <BaseModalAddSeller
-          modalData={modalData}
-          handleInputChange={handleInputChange}
-        />
+        {
+          addClientChoice.isSelect &&
+          <div className='base-modal-buttons-wrap'>
+            <button
+              onClick={() => setAddClientChoice({isSelect: false, sale: true, purchase: false, potential: false})}
+            >
+              Собственник
+            </button>
+            <button
+              onClick={() => setAddClientChoice({isSelect: false, sale: false, purchase: true, potential: false})}
+            >
+              Покупатель
+            </button>
+            <button
+              onClick={() => setAddClientChoice({isSelect: false, sale: false, purchase: false, potential: true})}
+            >
+              Потенциальный клиент
+            </button>
+          </div>
+        }
+
+        {
+          addClientChoice.sale &&
+          <BaseModalAddSeller
+            modalData={modalData}
+            handleInputChange={handleInputChange}
+          />
+        }
+
+        {
+          addClientChoice.purchase &&
+          <BaseModalAddBuyer
+            modalData={modalData}
+            handleInputChange={handleInputChange}
+          />
+        }
+
+        {
+          addClientChoice.potential &&
+          <BaseModalAddPotential
+            modalData={modalData}
+            handleInputChange={handleInputChange}
+          />
+        }
 
       </div>
     </div>

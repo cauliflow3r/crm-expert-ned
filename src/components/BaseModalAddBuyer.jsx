@@ -1,9 +1,8 @@
 import React from 'react';
-import './../styles/BaseModalAddSeller.css'
 import {useDispatch} from "react-redux";
 import {addClient} from "../crm-logic/addClient";
 
-const BaseModalAddSeller = (props) => {
+const BaseModalAddBuyer = (props) => {
 
   const {
     modalData,
@@ -15,7 +14,7 @@ const BaseModalAddSeller = (props) => {
   return (
     <div>
       <form>
-        <h2 className='base-modal-title'>Добавить собственника</h2>
+        <h2 className='base-modal-title'>Добавить покупателя</h2>
         {/*Имя и телефон*/}
         <div className="base-modal-window-flex">
           <div className="base-modal-window">
@@ -45,18 +44,18 @@ const BaseModalAddSeller = (props) => {
             <input
               type="text"
               name='adress'
-              placeholder='Адрес'
+              placeholder='Желаемый район'
               value={modalData.adress}
               onChange={handleInputChange}
             />
           </div>
           <div className="base-modal-window">
-            <select 
+            <select
               name="type_of_housing"
               value={modalData.type_of_housing}
               onChange={handleInputChange}
             >
-              <option value="">Выберите вариант</option>
+              <option value="">Что хочет покупатель</option>
               <option value="Частный дом">Частный дом</option>
               <option value="Квартира">Квартира</option>
               <option value="Коммерческая недвижимость">Коммерческая недвижимость</option>
@@ -68,12 +67,12 @@ const BaseModalAddSeller = (props) => {
           </div>
         </div>
 
-        {/*Кол-во комнат и квадратура*/}
-        <div className="base-modal-window-flex">
+        {/*Кол-во комнат и квадратура NONE*/}
+        <div className="base-modal-window-flex base-modal-display-none">
           <div className="base-modal-window">
             <select
               name="rooms"
-              value={modalData.rooms}
+              value={modalData.rooms = 9999}
               onChange={handleInputChange}
             >
               <option value="">Выберите вариант</option>
@@ -94,18 +93,18 @@ const BaseModalAddSeller = (props) => {
               type="text"
               name='quadrature'
               placeholder='Квадратура'
-              value={modalData.quadrature}
+              value={modalData.quadrature = 9999}
               onChange={handleInputChange}
             />
           </div>
         </div>
 
-        {/*Этаж и всего этажей*/}
-        <div className="base-modal-window-flex">
+        {/*Этаж и всего этажей NONE*/}
+        <div className="base-modal-window-flex base-modal-display-none">
           <div className="base-modal-window">
             <select
               name="floor"
-              value={modalData.floor}
+              value={modalData.floor = 9999}
               onChange={handleInputChange}
             >
               <option value="">Этаж</option>
@@ -132,7 +131,7 @@ const BaseModalAddSeller = (props) => {
           <div className="base-modal-window">
             <select
               name="total_floors"
-              value={modalData.total_floors}
+              value={modalData.total_floors = 9999}
               onChange={handleInputChange}
             >
               <option value="">Всего этажей</option>
@@ -163,7 +162,7 @@ const BaseModalAddSeller = (props) => {
             <input
               type="text"
               name='price'
-              placeholder='Наша цена'
+              placeholder='Бюджет'
               value={modalData.price}
               onChange={handleInputChange}
             />
@@ -172,7 +171,7 @@ const BaseModalAddSeller = (props) => {
             <input
               type="text"
               name='owner_price'
-              placeholder='Цена в руки'
+              placeholder='Красный бюджет'
               value={modalData.owner_price}
               onChange={handleInputChange}
             />
@@ -180,12 +179,12 @@ const BaseModalAddSeller = (props) => {
           </div>
         </div>
 
-        {/*Вид отопления и серия*/}
+        {/*Серия и состояние, а отопление NONE*/}
         <div className="base-modal-window-flex">
-          <div className="base-modal-window">
+          <div className="base-modal-window base-modal-display-none">
             <select
               name="heating"
-              value={modalData.heating}
+              value={modalData.heating = "Неважно"}
               onChange={handleInputChange}
             >
               <option value="">Вид отопления</option>
@@ -224,10 +223,6 @@ const BaseModalAddSeller = (props) => {
 
 
           </div>
-        </div>
-
-        {/*Состояние и мебель*/}
-        <div className="base-modal-window-flex">
           <div className="base-modal-window">
             <select
               name="repair"
@@ -245,10 +240,14 @@ const BaseModalAddSeller = (props) => {
 
 
           </div>
+        </div>
+
+        {/* мебель NONE*/}
+        <div className="base-modal-window-flex base-modal-display-none">
           <div className="base-modal-window">
             <select
               name="furniture"
-              value={modalData.furniture}
+              value={modalData.furniture = 'Неважно'}
               onChange={handleInputChange}
             >
               <option value="">Мебель</option>
@@ -264,12 +263,12 @@ const BaseModalAddSeller = (props) => {
           </div>
         </div>
 
-        {/*Участок и документы*/}
+        {/*Документы и коммуникации, а участок NONE */}
         <div className="base-modal-window-flex">
-          <div className="base-modal-window">
+          <div className="base-modal-window base-modal-display-none">
             <select
               name="plot"
-              value={modalData.plot}
+              value={modalData.plot = "Неважно"}
               onChange={handleInputChange}
             >
               <option value="">Участок</option>
@@ -309,14 +308,23 @@ const BaseModalAddSeller = (props) => {
 
 
           </div>
+          <div className="base-modal-window">
+            <input
+              type="text"
+              name='communications'
+              placeholder='Коммуникации'
+              value={modalData.communications}
+              onChange={handleInputChange}
+            />
+          </div>
         </div>
 
-        {/*Год постройки и коммуникации*/}
+        {/*Год постройки NONE*/}
         <div className="base-modal-window-flex">
-          <div className="base-modal-window">
+          <div className="base-modal-window base-modal-display-none">
             <select
               name="year_of_construction"
-              value={modalData.year_of_construction}
+              value={modalData.year_of_construction = 'Неважно'}
               onChange={handleInputChange}
             >
               <option value="">Год строительства</option>
@@ -345,23 +353,14 @@ const BaseModalAddSeller = (props) => {
 
 
           </div>
-          <div className="base-modal-window">
-            <input
-              type="text"
-              name='communications'
-              placeholder='Коммуникации'
-              value={modalData.communications}
-              onChange={handleInputChange}
-            />
-          </div>
         </div>
 
-        {/*Тип предложения и тип базы*/}
-        <div className="base-modal-window-flex">
+        {/*Тип предложения и тип базы NONE*/}
+        <div className="base-modal-window-flex base-modal-display-none">
           <div className="base-modal-window">
             <select
               name="type_of_sentence"
-              value={modalData.type_of_sentence}
+              value={modalData.type_of_sentence = 'Неважно'}
               onChange={handleInputChange}
             >
               <option value="">Тип предложения</option>
@@ -375,7 +374,7 @@ const BaseModalAddSeller = (props) => {
           <div className="base-modal-window">
             <select
               name="type_of_base"
-              value={modalData.type_of_base}
+              value={modalData.type_of_base = 'Покупка'}
               onChange={handleInputChange}
             >
               <option value="">Тип клиента</option>
@@ -392,21 +391,21 @@ const BaseModalAddSeller = (props) => {
           </div>
         </div>
 
-        {/*Материал стен и ссылка*/}
-        <div className="base-modal-window-flex">
+        {/*Материал стен и ссылка NONE*/}
+        <div className="base-modal-window-flex base-modal-display-none">
           <div className="base-modal-window">
             <input
               type="text"
               name='link'
               placeholder='Ссылка'
-              value={modalData.link}
+              value={modalData.link = 'Неважно'}
               onChange={handleInputChange}
             />
           </div>
           <div className="base-modal-window">
             <select
               name="wall_material"
-              value={modalData.wall_material}
+              value={modalData.wall_material = "Неважно"}
               onChange={handleInputChange}
             >
               <option value="">Материал стен</option>
@@ -442,7 +441,7 @@ const BaseModalAddSeller = (props) => {
             onChange={handleInputChange}
           >
             <option value="">Выберите менеджера</option>
-            <option value="Собственник">Замир Баялиев</option>
+            <option value="Замир Баялиев">Замир Баялиев</option>
             <option value="Алмаз Имашов">Алмаз Имашов</option>
             <option value="Усубалиев Эльдар">Усубалиев Эльдар</option>
             <option value="Самсалиев Арген">Самсалиев Арген</option>
@@ -463,4 +462,4 @@ const BaseModalAddSeller = (props) => {
   );
 };
 
-export default BaseModalAddSeller;
+export default BaseModalAddBuyer;

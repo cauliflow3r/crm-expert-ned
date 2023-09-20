@@ -1,3 +1,15 @@
+.base-modal-buttons-wrap {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.base-modal-buttons-wrap button {
+  margin-bottom: 100px;
+}
+
 .base-modal {
   height: 100vh;
   width: 100vw;
@@ -21,13 +33,13 @@
 
 .modal__content {
   padding: 20px;
-  /*border-radius: 12px;*/
+  border-radius: 10px;
   background: #9eb384;
   transform: scale(0);
   transition: 0.4s all;
   width: 60vw;
   height: 80vh;
-  border: 0.2vh solid #435334;
+  border: 0.5vh solid #435334;
   overflow-y: auto;
   overflow-x: hidden;
 }
