@@ -56,11 +56,12 @@ const BaseModal = () => {
   return (
     <div onClick={closeBaseModal} className={baseModal ? 'base-modal active' : 'base-modal'}>
       <div onClick={(e) => e.stopPropagation()} className={baseModal ? 'modal__content active' : 'modal__content'}>
+
         <BaseModalAddSeller
           modalData={modalData}
           handleInputChange={handleInputChange}
         />
-        в процессе, я чутка заебался
+
       </div>
     </div>
   );

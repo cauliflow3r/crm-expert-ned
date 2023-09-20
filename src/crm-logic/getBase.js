@@ -4,6 +4,7 @@ import {setData} from "../features/data/dataSlice";
 import {setIsLoading} from "../features/isLoading/isLoading";
 
 export const getBase = async (dispatch) => {
+  dispatch(setIsLoading(true))
   await updateAccessToken();
   try {
     const response = await axiosInstance.get('crm/?limit=5000');

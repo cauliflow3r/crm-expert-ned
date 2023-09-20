@@ -27,7 +27,7 @@ const DatabaseDetailedInfo = () => {
   }
 
   return (
-    <div style={{width: '50%', overflowY: 'auto'}}>
+    <div className='detailed-info-border-box'>
       <div>
         <button onClick={() => getOneClient(detailedInfo.id, dispatch)}>Обновить</button>
       </div>
@@ -50,6 +50,14 @@ const DatabaseDetailedInfo = () => {
               </div>
               <div>
                 Телефон: {detailedInfo.phone}
+              </div>
+            </div>
+            <div className="detailed-info-our-information">
+              <div>
+                Адресс: {detailedInfo.adress}
+              </div>
+              <div>
+                Тип базы: {detailedInfo.type_of_base}
               </div>
             </div>
             <div className="detailed-info-our-information">

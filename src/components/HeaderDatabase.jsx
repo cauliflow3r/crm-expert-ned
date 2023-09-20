@@ -3,6 +3,7 @@ import {useDispatch} from "react-redux";
 import {setTypeOfBase} from "../features/typeOfBase/typeOfBaseSlice";
 import '../styles/HeaderDatabase.css'
 import {setBaseModal} from "../features/baseModal/baseModalSlice";
+import {getBase} from "../crm-logic/getBase";
 
 const HeaderDatabase = () => {
 
@@ -70,7 +71,9 @@ const HeaderDatabase = () => {
         <button
           onClick={openBaseModal}
         >Добавить клиента</button>
-        <button>Обновить</button>
+        <button
+          onClick={() => getBase(dispatch)}
+        >Обновить</button>
       </div>
     </div>
   );
