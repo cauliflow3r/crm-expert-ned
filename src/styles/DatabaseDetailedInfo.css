@@ -1,3 +1,9 @@
+.detailed-info-border-box {
+  width: 50%;
+  overflow-y: auto;
+  border-top: 1px solid black;
+}
+
 .detailed-info-our-information {
   display: grid;
   align-items: start;
@@ -73,6 +79,9 @@
   color: red;
 }
 
+.detailed-info-textarea-field {
+  text-align: center;
+}
 
 
 

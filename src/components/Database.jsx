@@ -5,6 +5,7 @@ import HeaderDatabase from './HeaderDatabase';
 import './../styles/Database.css'
 import {getOneClient} from "../crm-logic/getOneClient";
 import DatabaseDetailedInfo from "./DatabaseDetailedInfo";
+import BaseModal from "./BaseModal";
 
 const Database = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,8 @@ const Database = () => {
   const data = useSelector((state) => state.data.data);
   const typeOfBase = useSelector((state) => state.typeOfBase);
   const selectedClient = useSelector((state) => state.getOneClient.getOneClient)
+  const baseModal = useSelector((state) => state.baseModal)
+
 
   useEffect(() => {
     (async () => {
@@ -60,6 +63,9 @@ const Database = () => {
           }
         </div>
       </div>
+
+      {baseModal && <BaseModal/>}
+
     </div>
   );
 };

@@ -1,0 +1,34 @@
+.base-modal-window-flex {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.base-modal-window {
+  text-align: center;
+  font-size: 2vh;
+  padding-bottom: 1vh;
+  width: 50%;
+}
+
+.base-modal-window input, .base-modal-window select {
+  width: 80%;
+  height: 35px;
+}
+
+.base-modal-window-flex textarea {
+  width: 90%;
+  height: 100px;
+}
+
+.base-modal-window-manager-select {
+  width: 40%;
+  margin: 20px auto 0;
+}
+
+.base-modal-add-button {
+  width: 50%;
+  display: block;
+  margin: 20px auto 5px;
+}

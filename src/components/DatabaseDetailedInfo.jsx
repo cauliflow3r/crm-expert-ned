@@ -1,12 +1,25 @@
-import React from 'react';
-import {useSelector} from "react-redux";
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import { format } from "date-fns";
+import {addComment} from "../crm-logic/addComment";
+import {setIsComments} from "../features/isComments/isCommentsSlice";
 import './../styles/DatabaseDetailedInfo.css'
+import {getOneClient} from "../crm-logic/getOneClient";
 
 const DatabaseDetailedInfo = () => {
 
   const detailedInfo = useSelector((state) => state.getOneClient.getOneClient)
-  console.log(detailedInfo)
+  const dispatch = useDispatch()
+  const comment = useSelector((state) => state.isComments)
+  const isLoadingDetailedInfo = useSelector((state) => state.isLoadingDetailedInfo)
+
+  const handleChangeComment = (e) => {
+    e.preventDefault()
+    dispatch(setIsComments({
+      body: e.target.value,
+      crm: `${detailedInfo.id}`
+    }))
+  }
 
   function formatAndAdd4Hours(dateString) {
     const dateObject = new Date(dateString);
@@ -14,9 +27,14 @@ const DatabaseDetailedInfo = () => {
   }
 
   return (
-    <div style={{width: '50%', overflowY: 'auto'}}>
+    <div className='detailed-info-border-box'>
+      <div>
+        <button onClick={() => getOneClient(detailedInfo.id, dispatch)}>Обновить</button>
+      </div>
       {
-        detailedInfo ?
+        isLoadingDetailedInfo ?
+          <div>Loading...</div>
+          :
           <div>
             <div className="detailed-info-our-information">
               <div>
@@ -36,6 +54,14 @@ const DatabaseDetailedInfo = () => {
             </div>
             <div className="detailed-info-our-information">
               <div>
+                Адресс: {detailedInfo.adress}
+              </div>
+              <div>
+                Тип базы: {detailedInfo.type_of_base}
+              </div>
+            </div>
+            <div className="detailed-info-our-information">
+              <div>
                 Красная цена: {detailedInfo.owner_price} $
               </div>
               <div>
@@ -43,7 +69,7 @@ const DatabaseDetailedInfo = () => {
               </div>
             </div>
             <div className='detailed-info-our-information-link'>
-               Ссылка : <a href={detailedInfo.link} target="_blank">{detailedInfo.link}</a>
+              Ссылка : <a href={detailedInfo.link} target="_blank">{detailedInfo.link}</a>
             </div>
             <div className="detailed-info-public-description">
               <div>
@@ -110,10 +136,10 @@ const DatabaseDetailedInfo = () => {
               </div>
             </div>
             <div className="detailed-info-public-final-description">
-                <h3>
-                  Доп.информация:
-                </h3>
-                {detailedInfo.description}
+              <h3>
+                Доп.информация:
+              </h3>
+              {detailedInfo.description}
             </div>
             <div className="detailed-info-public-comments">
               <h2 className='detailed-info-comment-head'>
@@ -135,9 +161,22 @@ const DatabaseDetailedInfo = () => {
                 )
               })}
             </div>
+            <div className='detailed-info-textarea-field'>
+              <form>
+                <textarea
+                  cols="70"
+                  rows="10"
+                  value={comment.body}
+                  onChange={handleChangeComment}
+                />
+                <input
+                  value='Отправить'
+                  type="button"
+                  onClick={() => addComment(dispatch, comment, detailedInfo.id)}
+                />
+              </form>
+            </div>
           </div>
-          :
-          <div>Эксперт Недвижимость.</div>
       }
     </div>
   );
