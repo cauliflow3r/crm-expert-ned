@@ -1,12 +1,21 @@
 import React, { useEffect, useState } from "react";
 import styles from "../styles/Ticket.module.css";
 
-const ModalTicket = ({ ticket, closeModal, isOpen, onUpdate }) => {
+const ModalTicket = ({
+  ticket,
+  closeModal,
+  isOpen,
+  handlePatch,
+  addSubtask,
+}) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTicket, setEditedTicket] = useState({ ...ticket });
-  const handleEditClick = () => {
-    setIsEditing(!isEditing);
-  };
+
+  const [subtask, setSubtask] = useState({
+    description: "",
+    is_completed: false,
+    // ticket: ticket.id,
+  });
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -15,9 +24,24 @@ const ModalTicket = ({ ticket, closeModal, isOpen, onUpdate }) => {
       [name]: value,
     });
   };
+  const takeTicket = async () => {
+    const updatedTicket = {
+      ...editedTicket,
+      user: localStorage.getItem("id"), // Set the user field to the localStorage id
+      status: "To Do",
+      archived: false,
+    };
+
+    try {
+      // Send the PATCH request with the updatedTicket data
+      await handlePatch(ticket.id, updatedTicket);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const handleSaveClick = () => {
-    onUpdate(editedTicket);
+    handlePatch(editedTicket);
     setIsEditing(false);
   };
 
@@ -67,10 +91,56 @@ const ModalTicket = ({ ticket, closeModal, isOpen, onUpdate }) => {
             {/* Display other ticket details */}
           </ul>
         )}
-        <button onClick={handleEditClick}>Редактировать</button>
+        <button>Редактировать</button>
+        <ul>
+          <h4>Подзадачи</h4>
+          {ticket.subtask ? (
+            <>
+              {ticket.subtask.map((subtask) => (
+                <li key={subtask.id}>
+                  <input
+                    type="checkbox"
+                    name="is_completed"
+                    checked={subtask.is_completed}
+                  />
+                  {subtask.description}
+                </li>
+              ))}
+            </>
+          ) : (
+            <>
+              <li>Создать подзадачу</li>
+            </>
+          )}
+        </ul>
       </div>
+      <input
+        onChange={(e) =>
+          setSubtask({
+            ...subtask,
+            description: e.target.value,
+            ticket: ticket.id,
+          })
+        }
+        type="text"
+        name="description"
+        placeholder="Добавить подзадачу"
+      />
       <div className={styles.bottomButtons}>
-        <button>Забрать себе</button>
+        <button onClick={() => addSubtask(subtask)}>Добавить подзадачу</button>
+        {ticket.user ? (
+          <>
+            <select name="status" id="">
+              <option value="To Do">К работе</option>
+              <option value="In Progress">В работе</option>
+              <option value="Done">Сделано</option>
+              <option value="Archived">Архив</option>
+            </select>
+          </>
+        ) : (
+          <button onClick={() => takeTicket()}>Забрать себе</button>
+        )}
+
         <button>Удалить</button>
       </div>
     </div>

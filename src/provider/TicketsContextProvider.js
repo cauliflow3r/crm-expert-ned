@@ -25,7 +25,6 @@ export const TicketsContextProvider = ({ children }) => {
       console.log(error);
     } finally {
       setLoading(false);
-      console.log(myTickets);
     }
   };
   const handlePatch = async (id, data) => {
@@ -46,12 +45,21 @@ export const TicketsContextProvider = ({ children }) => {
     }
   };
 
+  // ! SUBTASK
+  const addSubtask = async (subtask) => {
+    try {
+      await axios.post(`${API}/crm_v2/subtasks/`, subtask);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   // const getMyTickets = () => {
   //   localStorage.getItem("username");
   //   allTickets;
   // };
 
-  const values = { getTickets, allTickets, handlePatch, myTickets };
+  const values = { getTickets, allTickets, handlePatch, myTickets, addSubtask };
 
   return (
     <ticketsContext.Provider value={values}>{children}</ticketsContext.Provider>

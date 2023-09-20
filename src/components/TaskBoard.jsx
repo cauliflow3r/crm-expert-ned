@@ -3,9 +3,10 @@ import styles from "../styles/Taskboard.module.css";
 import Ticket from "./Ticket";
 import ModalTicket from "./ModalTicket";
 
-const TaskBoard = ({ allTickets, myTickets }) => {
+const TaskBoard = ({ allTickets, myTickets, handlePatch, addSubtask }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState(null);
+
   const openModal = (id) => {
     const modalticket = allTickets.find((ticket) => ticket.id === id);
     setSelectedTicket(modalticket);
@@ -25,6 +26,8 @@ const TaskBoard = ({ allTickets, myTickets }) => {
           isOpen={isOpen}
           closeModal={closeModal}
           ticket={selectedTicket}
+          handlePatch={handlePatch}
+          addSubtask={addSubtask}
         />
 
         <div className={styles.taskboardGrid}>
@@ -45,7 +48,10 @@ const TaskBoard = ({ allTickets, myTickets }) => {
         </div>
         <div className={styles.taskboardGrid}>
           <div className={styles.inProgressTickets}>
-            <h2 className={styles.title}>Мои Задачи : {myTickets.length}</h2>
+            <h2 className={styles.title}>
+              К работе :
+              {myTickets.filter((ticket) => ticket.status === "To Do").length}
+            </h2>
 
             {myTickets.map((ticket) => {
               if (ticket.status === "To Do") {
@@ -60,10 +66,16 @@ const TaskBoard = ({ allTickets, myTickets }) => {
         </div>
         <div className={styles.taskboardGrid}>
           <div className={styles.inProgressTickets}>
-            <h2 className={styles.title}>Мои Задачи : {myTickets.length}</h2>
+            <h2 className={styles.title}>
+              В работе:{" "}
+              {
+                myTickets.filter((ticket) => ticket.status === "In Progress")
+                  .length
+              }
+            </h2>
 
             {myTickets.map((ticket) => {
-              if (ticket.status === "To Do") {
+              if (ticket.status === "In Progress") {
                 return (
                   <div onClick={() => openModal(ticket.id)} key={ticket.id}>
                     <Ticket ticket={ticket} />
@@ -75,10 +87,13 @@ const TaskBoard = ({ allTickets, myTickets }) => {
         </div>
         <div className={styles.taskboardGrid}>
           <div className={styles.inProgressTickets}>
-            <h2 className={styles.title}>Мои Задачи : {myTickets.length}</h2>
+            <h2 className={styles.title}>
+              Сделано :{" "}
+              {myTickets.filter((ticket) => ticket.status === "Done").length}
+            </h2>
 
             {myTickets.map((ticket) => {
-              if (ticket.status === "To Do") {
+              if (ticket.status === "Done") {
                 return (
                   <div onClick={() => openModal(ticket.id)} key={ticket.id}>
                     <Ticket ticket={ticket} />
@@ -90,10 +105,13 @@ const TaskBoard = ({ allTickets, myTickets }) => {
         </div>
         <div className={styles.taskboardGrid}>
           <div className={styles.inProgressTickets}>
-            <h2 className={styles.title}>Мои Задачи : {myTickets.length}</h2>
+            <h2 className={styles.title}>
+              Архив :
+              {myTickets.filter((ticket) => ticket.archived === true).length}
+            </h2>
 
             {myTickets.map((ticket) => {
-              if (ticket.status === "To Do") {
+              if (ticket.archived === true) {
                 return (
                   <div onClick={() => openModal(ticket.id)} key={ticket.id}>
                     <Ticket ticket={ticket} />
