@@ -10,6 +10,7 @@ const ModalTicket = ({
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTicket, setEditedTicket] = useState({ ...ticket });
+  const [refresh, setRefresh] = useState(false); // Add a refresh state variable
 
   const [subtask, setSubtask] = useState({
     description: "",
@@ -43,6 +44,7 @@ const ModalTicket = ({
   const handleSaveClick = () => {
     handlePatch(editedTicket);
     setIsEditing(false);
+    setRefresh(!refresh); // Update the refresh state variable when saving
   };
 
   const handleStatusChange = async (e) => {
@@ -66,12 +68,21 @@ const ModalTicket = ({
 
     try {
       await handlePatch(ticket.id, updatedTicket);
+      setRefresh(!refresh); // Update the refresh state variable
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    // Code to run when the component needs to refresh
+  }, [refresh]);
 
   if (!ticket) return null;
+
+  const handleModalClick = (event) => {
+    // Prevent the click event from propagating to the overlay
+    event.stopPropagation();
+  };
 
   return (
     <div className={`${isOpen ? styles.modalTicketOpen : styles.modalTicket}`}>
@@ -81,7 +92,7 @@ const ModalTicket = ({
           X
         </button>
       </div>
-      <div className={styles.modalBody}>
+      <div className={styles.modalBody} onClick={handleModalClick}>
         {isEditing ? (
           <form>
             <input

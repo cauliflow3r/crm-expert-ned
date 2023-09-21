@@ -12,7 +12,7 @@ const TaskBoard = ({ allTickets, myTickets, handlePatch, addSubtask }) => {
     setSelectedTicket(modalticket);
     setIsOpen(true);
   };
-  const closeModal = () => {
+  const closeModal = (e) => {
     setSelectedTicket(null);
     setIsOpen(false);
   };
