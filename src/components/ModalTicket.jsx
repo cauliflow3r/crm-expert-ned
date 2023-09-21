@@ -10,6 +10,7 @@ const ModalTicket = ({
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTicket, setEditedTicket] = useState({ ...ticket });
+  const [refresh, setRefresh] = useState(false); // Add a refresh state variable
 
   const [subtask, setSubtask] = useState({
     description: "",
@@ -43,9 +44,45 @@ const ModalTicket = ({
   const handleSaveClick = () => {
     handlePatch(editedTicket);
     setIsEditing(false);
+    setRefresh(!refresh); // Update the refresh state variable when saving
   };
 
+  const handleStatusChange = async (e) => {
+    const { value } = e.target;
+    let updatedTicket = { ...editedTicket };
+    console.log(value);
+
+    if (value === "Archived") {
+      updatedTicket = {
+        ...updatedTicket,
+        status: "Done",
+        archived: true,
+      };
+    } else {
+      updatedTicket = {
+        ...updatedTicket,
+        status: value,
+        archived: false,
+      };
+    }
+
+    try {
+      await handlePatch(ticket.id, updatedTicket);
+      setRefresh(!refresh); // Update the refresh state variable
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  useEffect(() => {
+    // Code to run when the component needs to refresh
+  }, [refresh]);
+
   if (!ticket) return null;
+
+  const handleModalClick = (event) => {
+    // Prevent the click event from propagating to the overlay
+    event.stopPropagation();
+  };
 
   return (
     <div className={`${isOpen ? styles.modalTicketOpen : styles.modalTicket}`}>
@@ -55,7 +92,7 @@ const ModalTicket = ({
           X
         </button>
       </div>
-      <div className={styles.modalBody}>
+      <div className={styles.modalBody} onClick={handleModalClick}>
         {isEditing ? (
           <form>
             <input
@@ -129,14 +166,16 @@ const ModalTicket = ({
       <div className={styles.bottomButtons}>
         <button onClick={() => addSubtask(subtask)}>Добавить подзадачу</button>
         {ticket.user ? (
-          <>
-            <select name="status" id="">
-              <option value="To Do">К работе</option>
-              <option value="In Progress">В работе</option>
-              <option value="Done">Сделано</option>
-              <option value="Archived">Архив</option>
-            </select>
-          </>
+          <select
+            name="status"
+            onChange={handleStatusChange}
+            value={editedTicket.status}
+          >
+            <option value="To Do">К работе</option>
+            <option value="In Progress">В работе</option>
+            <option value="Done">Сделано</option>
+            <option value="Archived">Архив</option>
+          </select>
         ) : (
           <button onClick={() => takeTicket()}>Забрать себе</button>
         )}

@@ -12,7 +12,7 @@ const TaskBoard = ({ allTickets, myTickets, handlePatch, addSubtask }) => {
     setSelectedTicket(modalticket);
     setIsOpen(true);
   };
-  const closeModal = () => {
+  const closeModal = (e) => {
     setSelectedTicket(null);
     setIsOpen(false);
   };
@@ -33,7 +33,8 @@ const TaskBoard = ({ allTickets, myTickets, handlePatch, addSubtask }) => {
         <div className={styles.taskboardGrid}>
           <div className={styles.newTickets}>
             <h2 className={styles.title}>
-              Новые Обьявления : {allTickets.length}
+              Новые Обьявления :{" "}
+              {allTickets.filter((ticket) => ticket.user === null).length}
             </h2>
             {allTickets.map((ticket) => {
               if (ticket.status === "New") {
