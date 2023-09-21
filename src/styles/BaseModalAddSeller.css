@@ -1,3 +1,8 @@
+.base-modal-title{
+  text-align: center;
+  margin-bottom: 20px;
+}
+
 .base-modal-window-flex {
   width: 100%;
   display: flex;
@@ -31,4 +36,8 @@
   width: 50%;
   display: block;
   margin: 20px auto 5px;
+}
+
+.base-modal-display-none {
+  display: none;
 }

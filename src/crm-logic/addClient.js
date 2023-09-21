@@ -12,8 +12,6 @@ export const addClient = async (modalData, dispatch) => {
       await getBase()
     }
   } catch (e) {
-    if (e.response.status === 400) {
-      alert('Заполните все поля!')
-    }
+    console.log(e)
   }
 }

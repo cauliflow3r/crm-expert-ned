@@ -68,25 +68,33 @@ const DatabaseDetailedInfo = () => {
                 Менеджер: {detailedInfo.comments}
               </div>
             </div>
-            <div className='detailed-info-our-information-link'>
-              Ссылка : <a href={detailedInfo.link} target="_blank">{detailedInfo.link}</a>
-            </div>
+            { detailedInfo.link !== 'Неважно' &&
+              <div className='detailed-info-our-information-link'>
+                Ссылка : <a href={detailedInfo.link} target="_blank">{detailedInfo.link}</a>
+              </div>
+            }
+            <div style={{marginTop: '20px', borderTop: '1px solid black'}}/>
             <div className="detailed-info-public-description">
               <div>
                 Тип: {detailedInfo.type_of_housing}
               </div>
-              <div>
-                Комнаты: {detailedInfo.rooms}
-              </div>
+              { detailedInfo.rooms !== 9999 &&
+                <div>
+                  Комнаты: {detailedInfo.rooms}
+                </div>
+              }
             </div>
-            <div className="detailed-info-public-description">
-              <div>
-                Этаж: {detailedInfo.floor}
+            { detailedInfo.floor !== 9999 &&
+              <div className="detailed-info-public-description">
+                <div>
+                  Этаж: {detailedInfo.floor}
+                </div>
+                <div>
+                  Всего этажей: {detailedInfo.total_floor}
+                </div>
               </div>
-              <div>
-                Всего этажей: {detailedInfo.total_floor}
-              </div>
-            </div>
+            }
+
             <div className="detailed-info-public-description">
               <div>
                 Цена: {detailedInfo.price} $
@@ -107,34 +115,44 @@ const DatabaseDetailedInfo = () => {
               <div>
                 Документы: {detailedInfo.document}
               </div>
-              <div>
+              { detailedInfo.year_of_construction !== 'Неважно' &&
+                <div>
                 Год строительства: {detailedInfo.year_of_construction}
-              </div>
+                </div>}
             </div>
             <div className="detailed-info-public-description">
-              <div>
-                Отопление: {detailedInfo.heating}
-              </div>
+              { detailedInfo.heating !== 'Неважно' &&
+                <div>
+                  Отопление: {detailedInfo.heating}
+                </div>
+              }
               <div>
                 Коммуникации: {detailedInfo.communications}
               </div>
             </div>
-            <div className="detailed-info-public-description">
-              <div>
-                Мебель: {detailedInfo.furniture}
+            { detailedInfo.furniture !== 'Неважно' &&
+              <div className="detailed-info-public-description">
+                <div>
+                  Мебель: {detailedInfo.furniture}
+                </div>
+                <div>
+                  Стены: {detailedInfo.wall_material}
+                </div>
               </div>
-              <div>
-                Стены: {detailedInfo.wall_material}
+            }
+
+            { detailedInfo.plot !== 'Неважно' &&
+              <div className="detailed-info-public-description">
+                <div>
+                  Участок: {detailedInfo.plot}
+                </div>
+                <div>
+                  Тип предложения: {detailedInfo.type_of_sentence}
+                </div>
               </div>
-            </div>
-            <div className="detailed-info-public-description">
-              <div>
-                Участок: {detailedInfo.plot}
-              </div>
-              <div>
-                Тип предложения: {detailedInfo.type_of_sentence}
-              </div>
-            </div>
+            }
+
+
             <div className="detailed-info-public-final-description">
               <h3>
                 Доп.информация:
