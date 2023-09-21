@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "../styles/Taskboard.module.css";
 import Ticket from "./Ticket";
 import ModalTicket from "./ModalTicket";
+import { set } from "date-fns";
 
 const TaskBoard = ({ allTickets, myTickets, handlePatch, addSubtask }) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,6 +20,7 @@ const TaskBoard = ({ allTickets, myTickets, handlePatch, addSubtask }) => {
 
   if (!allTickets) return null;
   // console.log(allTickets);
+
   return (
     <div className={styles.container}>
       <div className={styles.appWindow}>
