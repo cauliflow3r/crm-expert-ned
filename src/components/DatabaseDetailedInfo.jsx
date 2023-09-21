@@ -5,6 +5,8 @@ import {addComment} from "../crm-logic/addComment";
 import {setIsComments} from "../features/isComments/isCommentsSlice";
 import './../styles/DatabaseDetailedInfo.css'
 import {getOneClient} from "../crm-logic/getOneClient";
+import {setBaseModal} from "../features/baseModal/baseModalSlice";
+import {setEdit} from "../features/selectModalType/isSelectModalTypeSlice";
 
 const DatabaseDetailedInfo = () => {
 
@@ -26,10 +28,16 @@ const DatabaseDetailedInfo = () => {
     return format(dateObject, "dd.MM.yyyy в HH:mm");
   }
 
+  const isEdit = () => {
+    dispatch(setBaseModal(true))
+    dispatch(setEdit(true))
+  }
+
   return (
     <div className='detailed-info-border-box'>
       <div>
         <button onClick={() => getOneClient(detailedInfo.id, dispatch)}>Обновить</button>
+        <button onClick={isEdit}>Редактировать</button>
       </div>
       {
         isLoadingDetailedInfo ?
@@ -95,26 +103,35 @@ const DatabaseDetailedInfo = () => {
               </div>
             }
 
+            { detailedInfo.price !== 1 &&
+              <div className="detailed-info-public-description">
+                <div>
+                  Цена: {detailedInfo.price} $
+                </div>
+                <div>
+                  Цена за квадрат: {(detailedInfo.price / detailedInfo.quadrature).toFixed(1)} $
+                </div>
+              </div>
+            }
+
             <div className="detailed-info-public-description">
-              <div>
-                Цена: {detailedInfo.price} $
-              </div>
-              <div>
-                Цена за квадрат: {(detailedInfo.price / detailedInfo.quadrature).toFixed(1)} $
-              </div>
+              { detailedInfo.repair !== 'Неважно' &&
+                <div>
+                  Состояние: {detailedInfo.repair}
+                </div>
+              }
+              { detailedInfo.series !== 'Неважно' &&
+                <div>
+                  Серия: {detailedInfo.series}
+                </div>
+              }
             </div>
             <div className="detailed-info-public-description">
-              <div>
-                Состояние: {detailedInfo.repair}
-              </div>
-              <div>
-                Серия: {detailedInfo.series}
-              </div>
-            </div>
-            <div className="detailed-info-public-description">
-              <div>
-                Документы: {detailedInfo.document}
-              </div>
+              { detailedInfo.document !== "Неважно" &&
+                <div>
+                  Документы: {detailedInfo.document}
+                </div>
+              }
               { detailedInfo.year_of_construction !== 'Неважно' &&
                 <div>
                 Год строительства: {detailedInfo.year_of_construction}
@@ -126,9 +143,11 @@ const DatabaseDetailedInfo = () => {
                   Отопление: {detailedInfo.heating}
                 </div>
               }
-              <div>
-                Коммуникации: {detailedInfo.communications}
-              </div>
+              { detailedInfo.communications !== 'Неважно' &&
+                <div>
+                  Коммуникации: {detailedInfo.communications}
+                </div>
+              }
             </div>
             { detailedInfo.furniture !== 'Неважно' &&
               <div className="detailed-info-public-description">

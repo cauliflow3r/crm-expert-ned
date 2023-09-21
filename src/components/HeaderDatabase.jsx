@@ -4,6 +4,7 @@ import {setTypeOfBase} from "../features/typeOfBase/typeOfBaseSlice";
 import '../styles/HeaderDatabase.css'
 import {setBaseModal} from "../features/baseModal/baseModalSlice";
 import {getBase} from "../crm-logic/getBase";
+import {setIsSelect} from "../features/selectModalType/isSelectModalTypeSlice";
 
 const HeaderDatabase = () => {
 
@@ -31,6 +32,7 @@ const HeaderDatabase = () => {
 
   const openBaseModal = () => {
     dispatch(setBaseModal(true))
+    dispatch(setIsSelect(true))
   }
 
   return (

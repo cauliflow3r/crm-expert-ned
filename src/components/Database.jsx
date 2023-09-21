@@ -15,7 +15,6 @@ const Database = () => {
   const selectedClient = useSelector((state) => state.getOneClient.getOneClient)
   const baseModal = useSelector((state) => state.baseModal)
 
-
   useEffect(() => {
     (async () => {
       await getBase(dispatch);
@@ -24,6 +23,7 @@ const Database = () => {
 
   const selectClient = async (id) => {
    await getOneClient(id, dispatch)
+
   }
 
   return (
@@ -46,7 +46,7 @@ const Database = () => {
                     <div
                       key={idx}
                       onClick={() => selectClient(item.id)}
-                      className='data-base-every-client'
+                      className={`data-base-every-client ${selectedClient && selectedClient.id === item.id ? 'data-base-selected' : ''}`}
                     >
                       <div className='data-base-every-client-name'> {item.name}</div>
                       <div className='data-base-every-client-address'> {item.adress}</div>
