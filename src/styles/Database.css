@@ -32,8 +32,12 @@
   cursor: pointer;
 }
 
+.data-base-every-client-type-of-base {
+  font-size: 20px;
+}
+
 .data-base-selected {
-  background: rgb(67, 83, 52);
+  background: #9eb384;
 }
 
 .data-base-every-client:hover {

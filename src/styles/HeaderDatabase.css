@@ -1,13 +1,24 @@
 .header-bases-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.header-flex {
   display: flex;
-  justify-content: space-around;
+
 }
 
 .header-sales-base, .header-purchases-base, .header-all-base, .header-potential-base, .header-not-relevant-base  {
   font-size: 25px;
   cursor: pointer;
+  width: max-content;
+  margin: 0 auto;
 }
 
 .header-sales-base:hover, .header-purchases-base:hover, .header-all-base:hover, .header-potential-base:hover, .header-not-relevant-base:hover {
   color: red;
+}
+
+.header-head-buttons-flex-box {
+  display: flex;
 }

@@ -1,8 +1,9 @@
 import {updateAccessToken} from "../services/token";
 import {axiosInstance} from "../utils/api";
-import {getOneClient} from "./getOneClient";
 import {setBaseModal} from "../features/baseModal/baseModalSlice";
 import {setEdit} from "../features/selectModalType/isSelectModalTypeSlice";
+import {getBase} from "./getBase";
+import {getOneClient} from "./getOneClient";
 
 export const editClient = async (clientInfo, dispatch) => {
   const id = clientInfo.id
@@ -12,8 +13,9 @@ export const editClient = async (clientInfo, dispatch) => {
     if (response.status === 200) {
       dispatch(setBaseModal(false))
       dispatch(setEdit(false))
-      await getOneClient()
     }
+    await getOneClient(id, dispatch)
+    await getBase(dispatch)
   } catch (e) {
 
   }

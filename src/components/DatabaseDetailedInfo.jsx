@@ -6,7 +6,13 @@ import {setIsComments} from "../features/isComments/isCommentsSlice";
 import './../styles/DatabaseDetailedInfo.css'
 import {getOneClient} from "../crm-logic/getOneClient";
 import {setBaseModal} from "../features/baseModal/baseModalSlice";
-import {setEdit} from "../features/selectModalType/isSelectModalTypeSlice";
+import {
+  setEdit,
+  setIsSelect,
+  setPotential,
+  setPurchase,
+  setSale
+} from "../features/selectModalType/isSelectModalTypeSlice";
 
 const DatabaseDetailedInfo = () => {
 
@@ -30,6 +36,10 @@ const DatabaseDetailedInfo = () => {
 
   const isEdit = () => {
     dispatch(setBaseModal(true))
+    dispatch(setIsSelect(false))
+    dispatch(setSale(false))
+    dispatch(setPurchase(false))
+    dispatch(setPotential(false))
     dispatch(setEdit(true))
   }
 
@@ -49,7 +59,7 @@ const DatabaseDetailedInfo = () => {
                 ID клиента: {detailedInfo.id}
               </div>
               <div>
-                Дата: {formatAndAdd4Hours(detailedInfo.created_ad)}
+                Создан: {formatAndAdd4Hours(detailedInfo.created_ad)}
               </div>
             </div>
             <div className="detailed-info-our-information">

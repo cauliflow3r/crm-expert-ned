@@ -379,8 +379,11 @@ const BaseModalAddSeller = (props) => {
               onChange={handleInputChange}
             >
               <option value="">Тип клиента</option>
-              <option value="Продажа">Продажа</option>
-              <option value="Покупка">Покупка</option>
+              <option value="Продажа">Собственник</option>
+              <option value="Покупка">Квалифицирован</option>
+              <option value="Встречи">Встречи</option>
+              <option value="Результаты встречи">Результаты встречи</option>
+              <option value="Заключение сделки">Заключение сделки</option>
               <option value="Потенциальные">Потенциальные</option>
               <option value="Закрытые сделки">Закрытые сделки</option>
               <option value="Неактуальные">Неактуальные</option>
