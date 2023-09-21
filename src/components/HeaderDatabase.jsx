@@ -47,6 +47,10 @@ const HeaderDatabase = () => {
     dispatch(setTypeOfBase(`Заключение сделки`))
   }
 
+  const ChangeToClosedBase = () => {
+    dispatch(setTypeOfBase(`Закрытые сделки`))
+  }
+
   const openBaseModal = () => {
     dispatch(setBaseModal(true))
     dispatch(setIsSelect(true))
@@ -117,8 +121,12 @@ const HeaderDatabase = () => {
                 onClick={() => getBase(dispatch)}
               >Обновить</button>
             </div>
-            { id === '7' &&
+            { (id === '7' || id === '6' || id === '13') &&
               <div className="header-head-buttons">
+                <button
+                  onClick={ChangeToClosedBase}
+                >Закрытые сделки
+                </button>
               <button
                 onClick={ChangeToDeleteBase}
               >Корзина

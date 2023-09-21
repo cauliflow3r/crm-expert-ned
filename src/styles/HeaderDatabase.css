@@ -21,4 +21,9 @@
 
 .header-head-buttons-flex-box {
   display: flex;
+  justify-content: space-between;
+}
+
+.header-head-buttons button {
+  margin: 0 10px;
 }
