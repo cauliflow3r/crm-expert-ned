@@ -1,15 +1,21 @@
 import {updateAccessToken} from "../services/token";
 import {axiosInstance} from "../utils/api";
-import {getBase} from "./getBase";
+import {getOneClient} from "./getOneClient";
+import {setBaseModal} from "../features/baseModal/baseModalSlice";
+import {setEdit} from "../features/selectModalType/isSelectModalTypeSlice";
 
-export const editClient = async () => {
+export const editClient = async (clientInfo, dispatch) => {
+  const id = clientInfo.id
   await updateAccessToken()
   try {
-    const response = await axiosInstance.put(`/crm/${id}`)
-    if (response.status === 201) {
-      await getBase()
+    const response = await axiosInstance.put(`/crm/${id}/`, clientInfo)
+    if (response.status === 200) {
+      dispatch(setBaseModal(false))
+      dispatch(setEdit(false))
+      await getOneClient()
     }
   } catch (e) {
-    console.log(e)
+
   }
 }
+

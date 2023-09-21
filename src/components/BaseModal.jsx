@@ -5,18 +5,21 @@ import './../styles/BaseModal.css'
 import BaseModalAddSeller from "./BaseModalAddSeller";
 import BaseModalAddBuyer from "./BaseModalAddBuyer";
 import BaseModalAddPotential from "./BaseModalAddPotential";
+import BaseModalEditClient from "./BaseModalEditClient";
+import {
+  setEdit,
+  setIsSelect,
+  setPotential,
+  setPurchase,
+  setSale
+} from "../features/selectModalType/isSelectModalTypeSlice";
 
 const BaseModal = () => {
   const dispatch = useDispatch()
   const baseModal = useSelector((state) => state.baseModal)
   const userId = localStorage.getItem('id')
+  const isModalType = useSelector((state) => state.isSelectModalType)
 
-  const [addClientChoice, setAddClientChoice] = useState({
-    isSelect: true,
-    sale: false,
-    purchase: false,
-    potential: false
-  })
   const [modalData, setModalData] = useState({
       name: '',
       phone: '',
@@ -48,7 +51,6 @@ const BaseModal = () => {
       manager: userId
     }
   );
-  console.log(modalData)
 
   const handleInputChange = (event) => {
     const { name, value } = event.target;
@@ -60,6 +62,35 @@ const BaseModal = () => {
 
   const closeBaseModal = () => {
     dispatch(setBaseModal(false))
+    dispatch(setIsSelect(false))
+    dispatch(setSale(false))
+    dispatch(setPurchase(false))
+    dispatch(setPotential(false))
+    dispatch(setEdit(false))
+  }
+
+  const saleOpen = () => {
+    dispatch(setIsSelect(false))
+    dispatch(setSale(true))
+    dispatch(setPurchase(false))
+    dispatch(setPotential(false))
+    dispatch(setEdit(false))
+  }
+
+  const purchaseOpen = () => {
+    dispatch(setIsSelect(false))
+    dispatch(setSale(false))
+    dispatch(setPurchase(true))
+    dispatch(setPotential(false))
+    dispatch(setEdit(false))
+  }
+
+  const potentialOpen = () => {
+    dispatch(setIsSelect(false))
+    dispatch(setSale(false))
+    dispatch(setPurchase(false))
+    dispatch(setPotential(true))
+    dispatch(setEdit(false))
   }
 
   return (
@@ -67,20 +98,20 @@ const BaseModal = () => {
       <div onClick={(e) => e.stopPropagation()} className={baseModal ? 'modal__content active' : 'modal__content'}>
 
         {
-          addClientChoice.isSelect &&
+          isModalType.isSelect &&
           <div className='base-modal-buttons-wrap'>
             <button
-              onClick={() => setAddClientChoice({isSelect: false, sale: true, purchase: false, potential: false})}
+              onClick={saleOpen}
             >
               Собственник
             </button>
             <button
-              onClick={() => setAddClientChoice({isSelect: false, sale: false, purchase: true, potential: false})}
+              onClick={purchaseOpen}
             >
               Покупатель
             </button>
             <button
-              onClick={() => setAddClientChoice({isSelect: false, sale: false, purchase: false, potential: true})}
+              onClick={potentialOpen}
             >
               Потенциальный клиент
             </button>
@@ -88,7 +119,7 @@ const BaseModal = () => {
         }
 
         {
-          addClientChoice.sale &&
+          isModalType.sale &&
           <BaseModalAddSeller
             modalData={modalData}
             handleInputChange={handleInputChange}
@@ -96,7 +127,7 @@ const BaseModal = () => {
         }
 
         {
-          addClientChoice.purchase &&
+          isModalType.purchase &&
           <BaseModalAddBuyer
             modalData={modalData}
             handleInputChange={handleInputChange}
@@ -104,11 +135,15 @@ const BaseModal = () => {
         }
 
         {
-          addClientChoice.potential &&
+          isModalType.potential &&
           <BaseModalAddPotential
             modalData={modalData}
             handleInputChange={handleInputChange}
           />
+        }
+
+        {  isModalType.edit &&
+          <BaseModalEditClient />
         }
 
       </div>

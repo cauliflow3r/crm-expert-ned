@@ -32,6 +32,10 @@
   cursor: pointer;
 }
 
+.data-base-selected {
+  background: rgb(67, 83, 52);
+}
+
 .data-base-every-client:hover {
   background: #9eb384;
 }
