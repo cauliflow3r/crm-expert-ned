@@ -45,6 +45,32 @@ const ModalTicket = ({
     setIsEditing(false);
   };
 
+  const handleStatusChange = async (e) => {
+    const { value } = e.target;
+    let updatedTicket = { ...editedTicket };
+    console.log(value);
+
+    if (value === "Archived") {
+      updatedTicket = {
+        ...updatedTicket,
+        status: "Done",
+        archived: true,
+      };
+    } else {
+      updatedTicket = {
+        ...updatedTicket,
+        status: value,
+        archived: false,
+      };
+    }
+
+    try {
+      await handlePatch(ticket.id, updatedTicket);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   if (!ticket) return null;
 
   return (
@@ -129,14 +155,16 @@ const ModalTicket = ({
       <div className={styles.bottomButtons}>
         <button onClick={() => addSubtask(subtask)}>Добавить подзадачу</button>
         {ticket.user ? (
-          <>
-            <select name="status" id="">
-              <option value="To Do">К работе</option>
-              <option value="In Progress">В работе</option>
-              <option value="Done">Сделано</option>
-              <option value="Archived">Архив</option>
-            </select>
-          </>
+          <select
+            name="status"
+            onChange={handleStatusChange}
+            value={editedTicket.status}
+          >
+            <option value="To Do">К работе</option>
+            <option value="In Progress">В работе</option>
+            <option value="Done">Сделано</option>
+            <option value="Archived">Архив</option>
+          </select>
         ) : (
           <button onClick={() => takeTicket()}>Забрать себе</button>
         )}
