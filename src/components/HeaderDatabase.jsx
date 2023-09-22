@@ -132,7 +132,7 @@ const HeaderDatabase = () => {
                 onClick={openBaseModal}
               >Добавить клиента</button>
               <button
-                onClick={() => getBase(dispatch)}
+                onClick={ async () => await getBase(dispatch, searchParameters)}
               >Обновить</button>
             </div>
 

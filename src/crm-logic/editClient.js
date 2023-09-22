@@ -5,7 +5,7 @@ import {setEdit} from "../features/selectModalType/isSelectModalTypeSlice";
 import {getBase} from "./getBase";
 import {getOneClient} from "./getOneClient";
 
-export const editClient = async (clientInfo, dispatch) => {
+export const editClient = async (clientInfo, dispatch, searchParameters) => {
   const id = clientInfo.id
   await updateAccessToken()
   try {
@@ -15,7 +15,7 @@ export const editClient = async (clientInfo, dispatch) => {
       dispatch(setEdit(false))
     }
     await getOneClient(id, dispatch)
-    await getBase(dispatch)
+    await getBase(dispatch, searchParameters)
   } catch (e) {
 
   }

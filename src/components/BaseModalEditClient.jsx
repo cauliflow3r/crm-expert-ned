@@ -7,6 +7,7 @@ const BaseModalEditClient = () => {
 
 
   const clientInfo = useSelector((state) => state.getOneClient.getOneClient)
+  const searchParameters = useSelector((state) => state.searchParameters)
   const dispatch = useDispatch()
 
   const handleInputChange = (event) => {
@@ -462,7 +463,7 @@ const BaseModalEditClient = () => {
           className='base-modal-add-button'
           type="button"
           value='Редактировать клиента'
-          onClick={() => editClient(clientInfo, dispatch)}
+          onClick={() => editClient(clientInfo, dispatch, searchParameters)}
         />
 
       </form>
