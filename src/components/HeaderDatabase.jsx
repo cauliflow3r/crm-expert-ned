@@ -173,10 +173,12 @@ const HeaderDatabase = () => {
 
             { (id === '7' || id === '6' || id === '13') &&
               <div className="header-head-buttons">
-                <button
-                  onClick={ChangeToClosedBase}
-                >Закрытые сделки
-                </button>
+                { (id === '7' || id === '6') &&
+                  <button
+                    onClick={ChangeToClosedBase}
+                  >Закрытые сделки
+                  </button>
+                }
               <button
                 onClick={ChangeToDeleteBase}
               >Корзина
