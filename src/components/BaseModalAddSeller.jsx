@@ -445,7 +445,7 @@ const BaseModalAddSeller = (props) => {
             onChange={handleInputChange}
           >
             <option value="">Выберите менеджера</option>
-            <option value="Собственник">Замир Баялиев</option>
+            <option value="Замир Баялиев">Замир Баялиев</option>
             <option value="Алмаз Имашов">Алмаз Имашов</option>
             <option value="Усубалиев Эльдар">Усубалиев Эльдар</option>
             <option value="Самсалиев Арген">Самсалиев Арген</option>
