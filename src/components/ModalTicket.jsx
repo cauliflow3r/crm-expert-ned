@@ -8,6 +8,7 @@ const ModalTicket = ({
   handlePatch,
   addSubtask,
   getTickets,
+  updateSubtask,
 }) => {
   const [isEditing, setIsEditing] = useState(false);
   const [editedTicket, setEditedTicket] = useState({ ...ticket });
@@ -73,6 +74,14 @@ const ModalTicket = ({
       console.log(error);
     }
   };
+  const handleSubtaskToggle = (id, subtask) => {
+    const updatedSubtask = {
+      ...subtask,
+      is_completed: !subtask.is_completed,
+    };
+    updateSubtask(id, updatedSubtask);
+    closeModal();
+  };
 
   if (!ticket) return null;
 
@@ -131,6 +140,7 @@ const ModalTicket = ({
                     type="checkbox"
                     name="is_completed"
                     checked={subtask.is_completed}
+                    onChange={() => handleSubtaskToggle(subtask.id, subtask)}
                   />
                   {subtask.description}
                 </li>
@@ -156,7 +166,14 @@ const ModalTicket = ({
         placeholder="Добавить подзадачу"
       />
       <div className={styles.bottomButtons}>
-        <button onClick={() => addSubtask(subtask)}>Добавить подзадачу</button>
+        <button
+          onClick={() => {
+            addSubtask(subtask);
+            closeModal();
+          }}
+        >
+          Добавить подзадачу
+        </button>
         {ticket.user ? (
           <select
             name="status"
@@ -171,8 +188,6 @@ const ModalTicket = ({
         ) : (
           <button onClick={() => takeTicket()}>Забрать себе</button>
         )}
-
-        <button>Удалить</button>
       </div>
     </div>
   );

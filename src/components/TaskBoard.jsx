@@ -4,7 +4,13 @@ import Ticket from "./Ticket";
 import ModalTicket from "./ModalTicket";
 import { set } from "date-fns";
 
-const TaskBoard = ({ allTickets, myTickets, handlePatch, addSubtask }) => {
+const TaskBoard = ({
+  allTickets,
+  myTickets,
+  handlePatch,
+  addSubtask,
+  updateSubtask,
+}) => {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState(null);
 
@@ -30,6 +36,7 @@ const TaskBoard = ({ allTickets, myTickets, handlePatch, addSubtask }) => {
           ticket={selectedTicket}
           handlePatch={handlePatch}
           addSubtask={addSubtask}
+          updateSubtask={updateSubtask}
         />
 
         <div className={styles.taskboardGrid}>
