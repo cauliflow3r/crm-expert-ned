@@ -14,10 +14,11 @@ const Database = () => {
   const typeOfBase = useSelector((state) => state.typeOfBase);
   const selectedClient = useSelector((state) => state.getOneClient.getOneClient)
   const baseModal = useSelector((state) => state.baseModal)
+  const searchParameters = useSelector((state) => state.searchParameters)
 
   useEffect(() => {
     (async () => {
-      await getBase(dispatch);
+      await getBase(dispatch, searchParameters);
     })();
   }, []);
 

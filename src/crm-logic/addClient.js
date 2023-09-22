@@ -9,7 +9,6 @@ export const addClient = async (modalData, dispatch) => {
     const response = await axiosInstance.post('/crm/', modalData)
     if (response.status === 201) {
       dispatch(setBaseModal(false))
-      await getBase()
     }
   } catch (e) {
     console.log(e)

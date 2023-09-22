@@ -16,7 +16,13 @@
 }
 
 .header-sales-base:hover, .header-purchases-base:hover, .header-all-base:hover, .header-potential-base:hover, .header-not-relevant-base:hover {
-  color: red;
+  color: #9eb384;
+  text-decoration: underline;
+}
+
+.header-head-button-active {
+  color: #9eb384;
+  text-decoration: underline;
 }
 
 .header-head-buttons-flex-box {

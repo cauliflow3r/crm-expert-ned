@@ -1,15 +1,29 @@
-import React from 'react';
-import {useDispatch} from "react-redux";
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import {setTypeOfBase} from "../features/typeOfBase/typeOfBaseSlice";
 import '../styles/HeaderDatabase.css'
 import {setBaseModal} from "../features/baseModal/baseModalSlice";
 import {getBase} from "../crm-logic/getBase";
 import {setIsSelect} from "../features/selectModalType/isSelectModalTypeSlice";
+import {setByRooms, setBySearchField, setByTypeOfHousing} from "../features/searchParametres/searchParametersSlice";
 
 const HeaderDatabase = () => {
 
   const dispatch = useDispatch()
   const id = localStorage.getItem('id')
+  const active = useSelector((state) => state.typeOfBase)
+  const searchParameters = useSelector((state) => state.searchParameters)
+
+  const isSearch = async () => {
+    await getBase(dispatch, searchParameters)
+  }
+
+  const isReset = async () => {
+    dispatch(setByRooms(''))
+    dispatch(setByTypeOfHousing(''))
+    dispatch(setBySearchField(''))
+    await getBase(dispatch, searchParameters)
+  }
 
   const ChangeToSalesBase = () => {
     dispatch(setTypeOfBase('Продажа'))
@@ -59,27 +73,27 @@ const HeaderDatabase = () => {
   return (
     <div>
 
-          <div className="header-bases-wrap">
+          <div className="header-bases-wrap ">
             <div
-              className="header-sales-base"
+              className={ active === 'Продажа' ? 'header-sales-base header-head-button-active' : "header-sales-base"}
               onClick={ChangeToSalesBase}
             >
               Собственники
             </div>
             <div
-              className="header-potential-base"
+              className={ active === 'Потенциальные' ? 'header-potential-base header-head-button-active' : " header-potential-base"}
               onClick={ChangeToPotentialBase}
             >
               Потенциальные
             </div>
             <div
-              className="header-purchases-base"
+              className={ active === 'Покупка' ? 'header-purchases-base header-head-button-active' : "  header-purchases-base"}
               onClick={ChangeToPurchasesBase}
             >
               Квалифицирован
             </div>
             <div
-              className="header-not-relevant-base"
+              className={ active === 'Встречи' ? 'header-not-relevant-base header-head-button-active' : "header-not-relevant-base"}
               onClick={ChangeToMeetingBase}
             >
               Встречи
@@ -87,25 +101,25 @@ const HeaderDatabase = () => {
           </div>
           <div className="header-bases-wrap">
             <div
-              className="header-sales-base"
+              className={ active === 'Результаты встречи' ? 'header-sales-base header-head-button-active' : "header-sales-base"}
               onClick={ChangeToResultOfMeet}
             >
               Результаты встречи
             </div>
             <div
-              className="header-sales-base"
+              className={ active === 'Заключение сделки' ? 'header-sales-base header-head-button-active' : "header-sales-base"}
               onClick={ChangeToMakeDeal}
             >
               Заключение сделки
             </div>
             <div
-              className="header-potential-base"
+              className={ active === 'Неактуальные' ? 'header-potential-base header-head-button-active' : "header-potential-base"}
               onClick={ChangeToNotRelevantBase}
             >
               Неактуальные
             </div>
             <div
-              className="header-sales-base"
+              className={ active === 'Полная база' ? 'header-sales-base header-head-button-active' : "header-sales-base"}
               onClick={ChangeToAllBase}
             >
               Полная база
@@ -121,6 +135,42 @@ const HeaderDatabase = () => {
                 onClick={() => getBase(dispatch)}
               >Обновить</button>
             </div>
+
+            <div className="header-search-filter-field">
+              <select value={searchParameters.byRooms} onChange={(e) => dispatch(setByRooms(e.target.value))}>
+                <option value="">Кол-во комнат</option>
+                <option value="1">1 комната</option>
+                <option value="2">2 комнаты</option>
+                <option value="3">3 комнаты</option>
+                <option value="4">4 комнаты</option>
+                <option value="5">5 комнат</option>
+                <option value="6">6 комнат</option>
+              </select>
+              <select value={searchParameters.byTypeOfHousing} onChange={(e) => dispatch(setByTypeOfHousing(e.target.value))}>
+                <option value="">Тип недвижимости</option>
+                <option value="Частный дом">Частный дом</option>
+                <option value="Квартира">Квартира</option>
+                <option value="Коммерческая недвижимость">Ком.недвиж.</option>
+                <option value="Участок">Участок</option>
+              </select>
+              <input
+                type="text"
+                placeholder='Поиск'
+                value={searchParameters.bySearchField}
+                onChange={(e) => dispatch(setBySearchField(e.target.value))}
+              />
+              <input
+                type="button"
+                value='Поиск'
+                onClick={isSearch}
+              />
+              <input
+                type="button"
+                value='Сброс'
+                onClick={isReset}
+              />
+            </div>
+
             { (id === '7' || id === '6' || id === '13') &&
               <div className="header-head-buttons">
                 <button

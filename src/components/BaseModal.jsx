@@ -52,6 +52,8 @@ const BaseModal = () => {
     }
   );
 
+  // console.log(modalData)
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setModalData({
