@@ -16,7 +16,7 @@ export const TicketsContextProvider = ({ children }) => {
       setLoading(true);
       const res = await axios.get(`${API}/crm_v2/tickets/`);
       setAllTickets(res.data.results);
-      console.log(res.data.results);
+      // console.log(res.data.results);
       const userTickets = res.data.results.filter(
         (ticket) => ticket.user == localStorage.getItem("id")
       );

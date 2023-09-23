@@ -5,6 +5,7 @@ import LoginPage from "../pages/LoginPage";
 import TicketsPage from "../pages/TicketsPage";
 import Mainlayout from "../layouts/Mainlayout";
 import SiteAdminPage from "../pages/SiteAdminPage";
+import AdminBoard from "../components/AdminBoard";
 
 // Private routes - so only authenticated users can access them.
 function PrivateRoute({ children }) {
@@ -47,6 +48,14 @@ const MainRoutes = () => {
                 element={
                   <PrivateRoute>
                     <SiteAdminPage />
+                  </PrivateRoute>
+                }
+              />
+              <Route
+                path="/admin"
+                element={
+                  <PrivateRoute>
+                    <AdminBoard />
                   </PrivateRoute>
                 }
               />

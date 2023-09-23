@@ -22,6 +22,16 @@ const Navbar = () => {
 
   console.log("Initials:", initials);
 
+  const logout = () => {
+    localStorage.removeItem("accessToken");
+    localStorage.removeItem("user");
+    localStorage.removeItem("refreshToken");
+    localStorage.removeItem("first_name");
+    localStorage.removeItem("last_name");
+    localStorage.removeItem("id");
+    window.location.href = "/";
+  };
+
   return (
     <div className={`${styles.container} ${isOpen ? styles.minimized : ""}`}>
       <div className={styles.left}>
@@ -39,6 +49,9 @@ const Navbar = () => {
           <button className={styles.searchBtn}>Поиск</button>
         </div>
         <button className={styles.profile}>{initials}</button>
+        <button style={{ marginRight: "10px" }} onClick={logout}>
+          Log out
+        </button>
       </div>
     </div>
   );

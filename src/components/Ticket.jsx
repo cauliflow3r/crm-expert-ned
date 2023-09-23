@@ -13,7 +13,6 @@ const Ticket = ({ ticket }) => {
     );
   }
   const completedTickets = ticket.subtask.filter((subtask) => {
-    console.log(subtask);
     return subtask.is_completed === true; // Add return here
   });
   return (
