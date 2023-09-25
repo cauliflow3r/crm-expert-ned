@@ -131,7 +131,7 @@ const BaseModalEditClient = () => {
               <option value="13">13</option>
               <option value="14">14</option>
               <option value="15">15</option>
-              <option value="Неважно">Частный дом</option>
+              <option value="9999">Частный дом</option>
             </select>
 
 

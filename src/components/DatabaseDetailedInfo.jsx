@@ -105,11 +105,20 @@ const DatabaseDetailedInfo = () => {
               }
             </div>
               <div className="detailed-info-public-description">
-                { detailedInfo.floor !== 9999 &&
                   <div>
-                    Этаж: {detailedInfo.floor}/{detailedInfo.total_floors}
+
+                    { detailedInfo.floor === 9999 ?
+
+                      <div>
+                        Всего этажей: { detailedInfo.total_floors}
+                      </div>
+                      :
+                      <div>
+                        Этаж: {detailedInfo.floor} / { detailedInfo.total_floors}
+                      </div>
+                    }
+
                   </div>
-                }
                 <div>
                   Квадратура: {detailedInfo.quadrature} м2
                 </div>

@@ -20,7 +20,7 @@ const Navbar = () => {
 
   const initials = getInitials(storedFirstName, storedLastName);
 
-  console.log("Initials:", initials);
+  // console.log("Initials:", initials);
 
   const logout = () => {
     localStorage.removeItem("accessToken");

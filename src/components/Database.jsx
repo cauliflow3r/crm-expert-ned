@@ -18,6 +18,7 @@ const Database = () => {
   const baseModal = useSelector((state) => state.baseModal)
   const searchParameters = useSelector((state) => state.searchParameters)
 
+
   useEffect(() => {
     (async () => {
       await getBase(dispatch, searchParameters);
@@ -28,13 +29,12 @@ const Database = () => {
    await getOneClient(id, dispatch)
   }
 
-  const changeBySort = async () => {
+  const changeBySort = () => {
     if (searchParameters.sortByPrice === 'ascending') {
-       dispatch(setSortByPrice('descending'))
+      dispatch(setSortByPrice('descending'))
     } else if (searchParameters.sortByPrice === 'descending') {
-       dispatch(setSortByPrice('ascending'))
+      dispatch(setSortByPrice('ascending'))
     } else return
-    await getBase(dispatch, searchParameters)
   }
 
   return (
