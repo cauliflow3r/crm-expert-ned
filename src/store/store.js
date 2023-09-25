@@ -10,6 +10,7 @@ import {isLoadingDetailedInfoSlice} from "../features/isLoadingDetailedInfo/isLo
 import {baseModalSlice} from "../features/baseModal/baseModalSlice";
 import {isSelectModalTypeSlice} from "../features/selectModalType/isSelectModalTypeSlice";
 import {searchParametersSlice} from "../features/searchParametres/searchParametersSlice";
+import {buttonLockSlice} from "../features/buttonLock/buttonLockSlice";
 
 
 export const store = configureStore({
@@ -25,6 +26,7 @@ export const store = configureStore({
       isComments: isCommentsSlice.reducer,
       baseModal: baseModalSlice.reducer,
       isSelectModalType: isSelectModalTypeSlice.reducer,
-      searchParameters: searchParametersSlice.reducer
+      searchParameters: searchParametersSlice.reducer,
+      buttonLock: buttonLockSlice.reducer
     }
 })

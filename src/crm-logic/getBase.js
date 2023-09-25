@@ -2,8 +2,10 @@ import {updateAccessToken} from "../services/token";
 import {axiosInstance} from "../utils/api";
 import {setData} from "../features/data/dataSlice";
 import {setIsLoading} from "../features/isLoading/isLoading";
+import {setButtonLock} from "../features/buttonLock/buttonLockSlice";
 
 export const getBase = async (dispatch, searchParameters) => {
+  dispatch(setButtonLock(true))
   dispatch(setIsLoading(true))
   await updateAccessToken();
   try {
@@ -47,5 +49,6 @@ export const getBase = async (dispatch, searchParameters) => {
     console.log(error, 'error');
   } finally {
     dispatch(setIsLoading(false))
+    dispatch(setButtonLock(false))
   }
 };

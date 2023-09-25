@@ -1,10 +1,11 @@
 import React from 'react';
 import {addClient} from "../crm-logic/addClient";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 
 const BaseModalAddPotential = (props) => {
 
   const dispatch = useDispatch()
+  const isButtonActive = useSelector((state) => state.buttonLock)
 
   const {
     modalData,
@@ -457,6 +458,7 @@ const BaseModalAddPotential = (props) => {
           className='base-modal-add-button'
           type="button"
           value='Добавить клиента'
+          disabled={isButtonActive}
           onClick={() => addClient(modalData, dispatch)}
         />
 

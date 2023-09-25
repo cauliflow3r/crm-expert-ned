@@ -99,25 +99,31 @@ const BaseModal = () => {
     <div onClick={closeBaseModal} className={baseModal ? 'base-modal active' : 'base-modal'}>
       <div onClick={(e) => e.stopPropagation()} className={baseModal ? 'modal__content active' : 'modal__content'}>
 
+        { isModalType.isSelect &&
+          <div
+            className='base-modal-logo'
+          />
+        }
+
         {
           isModalType.isSelect &&
-          <div className='base-modal-buttons-wrap'>
-            <button
-              onClick={saleOpen}
-            >
-              Собственник
-            </button>
-            <button
-              onClick={purchaseOpen}
-            >
-              Покупатель
-            </button>
-            <button
-              onClick={potentialOpen}
-            >
-              Потенциальный клиент
-            </button>
-          </div>
+            <div className='base-modal-buttons-wrap'>
+              <button
+                onClick={saleOpen}
+              >
+                Собственник
+              </button>
+              <button
+                onClick={purchaseOpen}
+              >
+                Квалифицирован
+              </button>
+              <button
+                onClick={potentialOpen}
+              >
+                Потенциальный клиент
+              </button>
+            </div>
         }
 
         {

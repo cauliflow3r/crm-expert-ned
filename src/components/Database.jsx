@@ -7,6 +7,7 @@ import {getOneClient} from "../crm-logic/getOneClient";
 import DatabaseDetailedInfo from "./DatabaseDetailedInfo";
 import BaseModal from "./BaseModal";
 import {setSortByPrice} from "../features/searchParametres/searchParametersSlice";
+import CircularIndeterminate from "./LoaderMaterialUi";
 
 const Database = () => {
   const dispatch = useDispatch();
@@ -51,7 +52,7 @@ const Database = () => {
               >Цена</div>
             </div>
             {isLoading ? (
-              <div>Loading...</div>
+              <CircularIndeterminate />
             ) : (
               data.map((item, idx) => {
                 if (typeOfBase === 'Полная база' || item.type_of_base === typeOfBase) {

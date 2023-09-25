@@ -13,6 +13,7 @@ import {
   setPurchase,
   setSale
 } from "../features/selectModalType/isSelectModalTypeSlice";
+import CircularIndeterminate from "./LoaderMaterialUi";
 
 const DatabaseDetailedInfo = () => {
 
@@ -20,6 +21,7 @@ const DatabaseDetailedInfo = () => {
   const dispatch = useDispatch()
   const comment = useSelector((state) => state.isComments)
   const isLoadingDetailedInfo = useSelector((state) => state.isLoadingDetailedInfo)
+  const isButtonActive = useSelector((state) => state.buttonLock)
 
   const handleChangeComment = (e) => {
     e.preventDefault()
@@ -51,7 +53,7 @@ const DatabaseDetailedInfo = () => {
       </div>
       {
         isLoadingDetailedInfo ?
-          <div>Loading...</div>
+          <CircularIndeterminate />
           :
           <div>
             <div className="detailed-info-our-information">
@@ -220,6 +222,7 @@ const DatabaseDetailedInfo = () => {
                 <input
                   value='Отправить'
                   type="button"
+                  disabled={isButtonActive}
                   onClick={() => addComment(dispatch, comment, detailedInfo.id)}
                 />
               </form>

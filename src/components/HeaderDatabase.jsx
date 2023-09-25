@@ -13,16 +13,16 @@ const HeaderDatabase = () => {
   const id = localStorage.getItem('id')
   const active = useSelector((state) => state.typeOfBase)
   const searchParameters = useSelector((state) => state.searchParameters)
+  const isButtonActive = useSelector((state) => state.buttonLock)
 
   const isSearch = async () => {
     await getBase(dispatch, searchParameters)
   }
 
   const isReset = async () => {
-    dispatch(setByRooms(''))
-    dispatch(setByTypeOfHousing(''))
-    dispatch(setBySearchField(''))
-    await getBase(dispatch, searchParameters)
+    await dispatch(setByRooms(''))
+    await dispatch(setByTypeOfHousing(''))
+    await dispatch(setBySearchField(''))
   }
 
   const ChangeToSalesBase = () => {
@@ -127,11 +127,13 @@ const HeaderDatabase = () => {
           </div>
 
           <div className='header-head-buttons-flex-box'>
+
             <div className="header-head-buttons">
               <button
                 onClick={openBaseModal}
               >Добавить клиента</button>
               <button
+                disabled={isButtonActive}
                 onClick={ async () => await getBase(dispatch, searchParameters)}
               >Обновить</button>
             </div>
@@ -162,6 +164,7 @@ const HeaderDatabase = () => {
               <input
                 type="button"
                 value='Поиск'
+                disabled={isButtonActive}
                 onClick={isSearch}
               />
               <input
@@ -171,19 +174,22 @@ const HeaderDatabase = () => {
               />
             </div>
 
-            { (id === '7' || id === '6' || id === '13') &&
-              <div className="header-head-buttons">
-                { (id === '7' || id === '6') &&
+            <div className='header-head-buttons-right'>
+              { (id === '7' || id === '6' || id === '13') &&
+                <div className="header-head-buttons">
+                  { (id === '7' || id === '6') &&
+                    <button
+                      onClick={ChangeToClosedBase}
+                    >Закрытые сделки
+                    </button>
+                  }
                   <button
-                    onClick={ChangeToClosedBase}
-                  >Закрытые сделки
+                    onClick={ChangeToDeleteBase}
+                  >Корзина
                   </button>
-                }
-              <button
-                onClick={ChangeToDeleteBase}
-              >Корзина
-              </button>
-            </div>}
+                </div>}
+            </div>
+
           </div>
     </div>
   );
