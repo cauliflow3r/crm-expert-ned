@@ -29,6 +29,7 @@ const Navbar = () => {
     localStorage.removeItem("first_name");
     localStorage.removeItem("last_name");
     localStorage.removeItem("id");
+    localStorage.removeItem("allUsers");
     window.location.href = "/";
   };
 

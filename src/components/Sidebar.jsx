@@ -60,21 +60,23 @@ const Sidebar = () => {
             Сайт
           </p>
         </button>
-        <button
-          onClick={() => navigate("/admin")}
-          className={`${isOpen ? styles.centered : ""}`}
-        >
-          <img
-            className={styles.btnLogo}
-            width="30px"
-            height="30px"
-            src="https://img.icons8.com/3d-fluency/94/manager--v3.png"
-            alt="manager--v3"
-          />
-          <p className={`${styles.btnLabel} ${isOpen ? "" : styles.hidden}`}>
-            Admin
-          </p>
-        </button>
+        {localStorage.getItem("id") == 6 && (
+          <button
+            onClick={() => navigate("/admin")}
+            className={`${isOpen ? styles.centered : ""}`}
+          >
+            <img
+              className={styles.btnLogo}
+              width="30px"
+              height="30px"
+              src="https://img.icons8.com/3d-fluency/94/manager--v3.png"
+              alt="manager--v3"
+            />
+            <p className={`${styles.btnLabel} ${isOpen ? "" : styles.hidden}`}>
+              Admin
+            </p>
+          </button>
+        )}
       </div>
     </div>
   );

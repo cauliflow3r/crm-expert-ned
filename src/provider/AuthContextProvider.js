@@ -24,6 +24,7 @@ export const AuthContextProvider = ({ children }) => {
       localStorage.setItem("refreshToken", JSON.stringify(refresh));
       localStorage.setItem("user", JSON.stringify(formData.username));
       const allUsers = await axios.get(`${API}/user/profile/`);
+      localStorage.setItem("allUsers", JSON.stringify(allUsers.data.results));
 
       // setting currentuser info
       for (const user of allUsers.data.results) {
