@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&display=swap');
+
 .base-modal-buttons-wrap {
   display: flex;
   justify-content: space-around;
@@ -70,6 +72,18 @@
   width: 30vw;
   height: 15vh;
   margin: 0 auto 10vh;
+}
+
+.base-modal-letter {
+  font-family: 'Kalam', cursive;
+  font-size: 20px;
+  width: 100%;
+  height: 15vh;
+  margin: 0 auto;
+  text-align: center;
+  justify-content: center;
+  display: flex;
+  align-items: end;
 }
 
 @keyframes pulseShadow {

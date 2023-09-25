@@ -25,9 +25,15 @@
   text-decoration: underline;
 }
 
+
+
 .header-head-buttons-flex-box {
   display: grid;
-  grid-template-columns: 0.6fr 1fr 0.5fr;
+  grid-template-columns: 0.5fr 1fr 0.5fr;
+}
+
+.header-head-buttons-price  input {
+  max-width: 60px;
 }
 
 .header-head-buttons-right {

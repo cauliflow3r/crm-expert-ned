@@ -154,6 +154,12 @@ const BaseModal = () => {
           <BaseModalEditClient />
         }
 
+        { isModalType.isSelect &&
+          <div className='base-modal-letter'>
+            The platform is created for commercial use by the EN team.
+          </div>
+        }
+
       </div>
     </div>
   );

@@ -5,7 +5,13 @@ import '../styles/HeaderDatabase.css'
 import {setBaseModal} from "../features/baseModal/baseModalSlice";
 import {getBase} from "../crm-logic/getBase";
 import {setIsSelect} from "../features/selectModalType/isSelectModalTypeSlice";
-import {setByRooms, setBySearchField, setByTypeOfHousing} from "../features/searchParametres/searchParametersSlice";
+import {
+  setByRooms,
+  setBySearchField,
+  setByTypeOfHousing,
+  setMaxPrice,
+  setMinPrice
+} from "../features/searchParametres/searchParametersSlice";
 
 const HeaderDatabase = () => {
 
@@ -23,6 +29,8 @@ const HeaderDatabase = () => {
     await dispatch(setByRooms(''))
     await dispatch(setByTypeOfHousing(''))
     await dispatch(setBySearchField(''))
+    await dispatch(setMinPrice(0))
+    await dispatch(setMaxPrice(0))
   }
 
   const ChangeToSalesBase = () => {
@@ -157,10 +165,24 @@ const HeaderDatabase = () => {
               </select>
               <input
                 type="text"
-                placeholder='Поиск'
+                placeholder='Ключевые слова...'
                 value={searchParameters.bySearchField}
                 onChange={(e) => dispatch(setBySearchField(e.target.value))}
               />
+              <span className='header-head-buttons-price'>
+                <input
+                  type="text"
+                  placeholder='Цена от'
+                  value={ searchParameters.minPrice ? searchParameters.minPrice : '' }
+                  onChange={(e) => dispatch(setMinPrice(e.target.value))}
+                />
+                <input
+                  type="text"
+                  placeholder='Цена до'
+                  value={ searchParameters.maxPrice ? searchParameters.maxPrice : '' }
+                  onChange={(e) => dispatch(setMaxPrice(e.target.value))}
+                />
+              </span>
               <input
                 type="button"
                 value='Поиск'

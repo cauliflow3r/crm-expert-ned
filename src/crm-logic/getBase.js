@@ -44,6 +44,13 @@ export const getBase = async (dispatch, searchParameters) => {
       filteredData = filteredData.slice().sort((a, b) => {  return b.price - a.price; })
     } else return
 
+    if (searchParameters.maxPrice) {
+      filteredData = filteredData.filter(item => {
+        const price = item.price;
+        return price >= searchParameters.minPrice && price <= searchParameters.maxPrice;
+      })
+    }
+
     dispatch(setData(filteredData))
   } catch (error) {
     console.log(error, 'error');
