@@ -26,10 +26,17 @@
 }
 
 
-
 .header-head-buttons-flex-box {
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.5fr;
+}
+
+.header-search-filter-field {
+  text-align: center;
+}
+
+.header-search-filter-field-more-filters {
+  width: 30px;
 }
 
 .header-head-buttons-price  input {
@@ -39,4 +46,23 @@
 .header-head-buttons-right {
   text-align: right;
   margin-right: 5px;
+}
+
+.header-head-buttons-more-filters {
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: 0.5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.more-filters-active {
+  opacity: 1;
+  height: 30px;
+  transition: 0.5s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

@@ -10,7 +10,7 @@ import {
   setBySearchField,
   setByTypeOfHousing,
   setMaxPrice,
-  setMinPrice
+  setMinPrice, setSortByPrice
 } from "../features/searchParametres/searchParametersSlice";
 
 const HeaderDatabase = () => {
@@ -20,6 +20,7 @@ const HeaderDatabase = () => {
   const active = useSelector((state) => state.typeOfBase)
   const searchParameters = useSelector((state) => state.searchParameters)
   const isButtonActive = useSelector((state) => state.buttonLock)
+  const [moreFilters, setMoreFilters] = useState(false)
 
   const isSearch = async () => {
     await getBase(dispatch, searchParameters)
@@ -147,42 +148,22 @@ const HeaderDatabase = () => {
             </div>
 
             <div className="header-search-filter-field">
-              <select value={searchParameters.byRooms} onChange={(e) => dispatch(setByRooms(e.target.value))}>
-                <option value="">Кол-во комнат</option>
-                <option value="1">1 комната</option>
-                <option value="2">2 комнаты</option>
-                <option value="3">3 комнаты</option>
-                <option value="4">4 комнаты</option>
-                <option value="5">5 комнат</option>
-                <option value="6">6 комнат</option>
-              </select>
-              <select value={searchParameters.byTypeOfHousing} onChange={(e) => dispatch(setByTypeOfHousing(e.target.value))}>
-                <option value="">Тип недвижимости</option>
-                <option value="Частный дом">Частный дом</option>
-                <option value="Квартира">Квартира</option>
-                <option value="Коммерческая недвижимость">Ком.недвиж.</option>
-                <option value="Участок">Участок</option>
-              </select>
+
+              <input
+                className='header-search-filter-field-more-filters'
+                value={ moreFilters? '▲': '▼'}
+                type="button"
+                onClick={() => setMoreFilters(prevState => !prevState)}
+              />
+
               <input
                 type="text"
                 placeholder='Ключевые слова...'
                 value={searchParameters.bySearchField}
                 onChange={(e) => dispatch(setBySearchField(e.target.value))}
               />
-              <span className='header-head-buttons-price'>
-                <input
-                  type="text"
-                  placeholder='Цена от'
-                  value={ searchParameters.minPrice ? searchParameters.minPrice : '' }
-                  onChange={(e) => dispatch(setMinPrice(e.target.value))}
-                />
-                <input
-                  type="text"
-                  placeholder='Цена до'
-                  value={ searchParameters.maxPrice ? searchParameters.maxPrice : '' }
-                  onChange={(e) => dispatch(setMaxPrice(e.target.value))}
-                />
-              </span>
+
+
               <input
                 type="button"
                 value='Поиск'
@@ -212,6 +193,49 @@ const HeaderDatabase = () => {
                 </div>}
             </div>
 
+          </div>
+
+          <div className={ moreFilters? 'more-filters-active' : "header-head-buttons-more-filters"}>
+            <div>
+              <select value={searchParameters.byRooms} onChange={(e) => dispatch(setByRooms(e.target.value))}>
+                <option value="">Кол-во комнат</option>
+                <option value="1">1 комната</option>
+                <option value="2">2 комнаты</option>
+                <option value="3">3 комнаты</option>
+                <option value="4">4 комнаты</option>
+                <option value="5">5 комнат</option>
+                <option value="6">6 комнат</option>
+              </select>
+              <select value={searchParameters.byTypeOfHousing} onChange={(e) => dispatch(setByTypeOfHousing(e.target.value))}>
+                <option value="">Тип недвижимости</option>
+                <option value="Частный дом">Частный дом</option>
+                <option value="Квартира">Квартира</option>
+                <option value="Коммерческая недвижимость">Ком.недвиж.</option>
+                <option value="Участок">Участок</option>
+              </select>
+            </div>
+            <div>
+                <span className='header-head-buttons-price'>
+                <input
+                  type="text"
+                  placeholder='Цена от'
+                  value={ searchParameters.minPrice ? searchParameters.minPrice : '' }
+                  onChange={(e) => dispatch(setMinPrice(e.target.value))}
+                />
+                <input
+                  type="text"
+                  placeholder='Цена до'
+                  value={ searchParameters.maxPrice ? searchParameters.maxPrice : '' }
+                  onChange={(e) => dispatch(setMaxPrice(e.target.value))}
+                />
+              </span>
+            </div>
+            <div>
+              <select value={searchParameters.sortByPrice} onChange={(e) => dispatch(setSortByPrice(e.target.value))}>
+                <option value="ascending">Сначала дешевые</option>
+                <option value="descending">Сначала дорогие</option>
+              </select>
+            </div>
           </div>
     </div>
   );
