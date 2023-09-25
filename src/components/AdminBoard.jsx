@@ -4,11 +4,14 @@ import axios from "axios";
 import Ticket from "./Ticket";
 import { useTickets } from "../provider/TicketsContextProvider";
 import ModalTicket from "./ModalTicket";
+import AddTicketModal from "./AddTicketModal";
 
 const AdminBoard = () => {
   const [admindata, setAdminData] = useState(null);
   const [isOpen, setIsOpen] = useState(false);
   const [selectedTicket, setSelectedTicket] = useState(null);
+  const [addModal, setAddModal] = useState(false);
+  const [modalUser, setModalUser] = useState(null);
 
   // const getAdminData = async () => {
   //   try {
@@ -55,9 +58,22 @@ const AdminBoard = () => {
     getTickets();
     setIsOpen(false);
   };
+  const openAddModal = (id) => {
+    setModalUser(id);
+    setAddModal(true);
+  };
+  const closeAddModal = () => {
+    getTickets();
+    setAddModal(false);
+  };
 
   return (
     <div className={styles.container}>
+      <AddTicketModal
+        modalUser={modalUser}
+        isOpen={addModal}
+        closeModal={closeAddModal}
+      />
       <ModalTicket
         isOpen={isOpen}
         closeModal={closeModal}
@@ -75,7 +91,7 @@ const AdminBoard = () => {
               className={styles.taskboardGrid}
             >
               <h2>{`${user.first_name} ${user.last_name}`}</h2>
-              <button>Добавить</button>
+              <button onClick={() => openAddModal(user.id)}>Добавить</button>
               <p>статус: К работе </p>
               {allTickets.map((ticket) => {
                 console.log(ticket);
