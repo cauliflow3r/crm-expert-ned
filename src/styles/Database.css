@@ -52,3 +52,11 @@
 .data-base-every-client-address {
   border-right: 1px solid black;
 }
+
+.data-base-every-client-price {
+  cursor: pointer;
+}
+
+.data-base-every-client-price:hover {
+  background: #435334;
+}

@@ -36,6 +36,12 @@ export const getBase = async (dispatch, searchParameters) => {
       });
     }
 
+    if (searchParameters.sortByPrice === 'ascending') {
+      filteredData = filteredData.slice().sort((a, b) => {  return a.price - b.price; })
+    } else if (searchParameters.sortByPrice === 'descending') {
+      filteredData = filteredData.slice().sort((a, b) => {  return b.price - a.price; })
+    } else return
+
     dispatch(setData(filteredData))
   } catch (error) {
     console.log(error, 'error');

@@ -6,6 +6,7 @@ import './../styles/Database.css'
 import {getOneClient} from "../crm-logic/getOneClient";
 import DatabaseDetailedInfo from "./DatabaseDetailedInfo";
 import BaseModal from "./BaseModal";
+import {setSortByPrice} from "../features/searchParametres/searchParametersSlice";
 
 const Database = () => {
   const dispatch = useDispatch();
@@ -24,7 +25,15 @@ const Database = () => {
 
   const selectClient = async (id) => {
    await getOneClient(id, dispatch)
+  }
 
+  const changeBySort = async () => {
+    if (searchParameters.sortByPrice === 'ascending') {
+       dispatch(setSortByPrice('descending'))
+    } else if (searchParameters.sortByPrice === 'descending') {
+       dispatch(setSortByPrice('ascending'))
+    } else return
+    await getBase(dispatch, searchParameters)
   }
 
   return (
@@ -36,7 +45,10 @@ const Database = () => {
             <div className="data-base-all-client-menu">
               <div className='data-base-every-client-name'>Имя</div>
               <div className='data-base-every-client-address'>Адрес</div>
-              <div>Цена</div>
+              <div
+                className='data-base-every-client-price'
+                onClick={changeBySort}
+              >Цена</div>
             </div>
             {isLoading ? (
               <div>Loading...</div>

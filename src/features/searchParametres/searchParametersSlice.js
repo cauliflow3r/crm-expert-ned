@@ -3,7 +3,8 @@ import {createSlice} from '@reduxjs/toolkit'
 const initialState = {
   byRooms: '',
   byTypeOfHousing: '',
-  bySearchField: ''
+  bySearchField: '',
+  sortByPrice: 'ascending'
 }
 
 export const searchParametersSlice = createSlice({
@@ -21,9 +22,13 @@ export const searchParametersSlice = createSlice({
 
     setBySearchField: (state, action) => {
       state.bySearchField = action.payload
+    },
+
+    setSortByPrice: (state, action) => {
+      state.sortByPrice = action.payload
     }
   }
 })
 
-export const { setByRooms, setByTypeOfHousing, setBySearchField } = searchParametersSlice.actions
+export const { setByRooms, setByTypeOfHousing, setBySearchField, setSortByPrice } = searchParametersSlice.actions
 export default searchParametersSlice.reducer
