@@ -13,9 +13,9 @@ const AddTicketModal = ({ isOpen, closeModal, modalUser }) => {
     comment: "",
     archived: false,
     status: "To Do",
-    color: "red",
+    color: "black",
     user: modalUser,
-    client_id: null,
+    client_id: "",
   });
   console.log(modalUser);
 
@@ -24,6 +24,9 @@ const AddTicketModal = ({ isOpen, closeModal, modalUser }) => {
     console.log(ticket.user);
     console.log(name, value); // Log the name and value
     setTicket({ ...ticket, [name]: value });
+  };
+  const setUser = () => {
+    setTicket({ ...ticket, user: modalUser });
   };
 
   const postTicket = async () => {
@@ -85,7 +88,13 @@ const AddTicketModal = ({ isOpen, closeModal, modalUser }) => {
         name="comment"
         placeholder="Коментарии"
       />
-
+      <input
+        onChange={handleInputChange}
+        type="text"
+        name="user"
+        placeholder="мэнеджер"
+        value={modalUser}
+      />
       <input
         onChange={handleInputChange}
         type="text"
@@ -94,6 +103,7 @@ const AddTicketModal = ({ isOpen, closeModal, modalUser }) => {
       />
       <button
         onClick={() => {
+          setUser();
           postTicket();
           closeModal();
         }}

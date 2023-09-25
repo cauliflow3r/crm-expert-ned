@@ -94,7 +94,7 @@ const AdminBoard = () => {
               <button onClick={() => openAddModal(user.id)}>Добавить</button>
               <p>статус: К работе </p>
               {allTickets.map((ticket) => {
-                console.log(ticket);
+                // console.log(ticket);
                 if (ticket.user === user.id && ticket.status === "To Do")
                   return (
                     <div onClick={() => openModal(ticket.id)} key={ticket.id}>
@@ -104,7 +104,7 @@ const AdminBoard = () => {
               })}
               <p>статус: В работе </p>
               {allTickets.map((ticket) => {
-                console.log(ticket);
+                // console.log(ticket);
                 if (ticket.user === user.id && ticket.status === "In Progress")
                   return (
                     <div onClick={() => openModal(ticket.id)} key={ticket.id}>
@@ -114,7 +114,7 @@ const AdminBoard = () => {
               })}
               <p>статус: Сдлелано</p>
               {allTickets.map((ticket) => {
-                console.log(ticket);
+                // console.log(ticket);
                 if (ticket.user === user.id && ticket.status === "Done")
                   return (
                     <div onClick={() => openModal(ticket.id)} key={ticket.id}>
