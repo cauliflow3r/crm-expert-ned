@@ -449,6 +449,7 @@ const BaseModalAddSeller = (props) => {
             <option value="">Выберите менеджера</option>
             <option value="Замир Баялиев">Замир Баялиев</option>
             <option value="Алмаз Имашов">Алмаз Имашов</option>
+            <option value="Калыбек Казыбеков">Калыбек Казыбеков</option>
             <option value="Усубалиев Эльдар">Усубалиев Эльдар</option>
             <option value="Самсалиев Арген">Самсалиев Арген</option>
             <option value="Азирет Турдаалиев">Азирет Турдаалиев</option>
