@@ -95,9 +95,11 @@ const DatabaseDetailedInfo = () => {
             }
             <div style={{marginTop: '20px', borderTop: '1px solid black'}}/>
             <div className="detailed-info-public-description">
-              <div>
-                Тип: {detailedInfo.type_of_housing}
-              </div>
+              { detailedInfo.type_of_housing !== 'Неважно' &&
+                <div>
+                  Тип: {detailedInfo.type_of_housing}
+                </div>
+              }
               { detailedInfo.rooms !== 9999 &&
                 <div>
                   Комнаты: {detailedInfo.rooms}
@@ -110,7 +112,10 @@ const DatabaseDetailedInfo = () => {
                     { detailedInfo.floor === 9999 ?
 
                       <div>
-                        Всего этажей: { detailedInfo.total_floors}
+                        { detailedInfo.total_floors !== 9999
+                          ||
+                         <span> Всего этажей: { detailedInfo.total_floors}</span> }
+
                       </div>
                       :
                       <div>
@@ -119,13 +124,15 @@ const DatabaseDetailedInfo = () => {
                     }
 
                   </div>
-                <div>
-                  Квадратура: {detailedInfo.quadrature} м2
-                </div>
+                { (detailedInfo.quadrature !== 9999) && (detailedInfo.quadrature !== 1)  &&
+                  <div>
+                    Квадратура: {detailedInfo.quadrature} м2
+                  </div>
+                }
               </div>
 
 
-            { detailedInfo.price !== 1 &&
+            { (detailedInfo.price !== 1) && (detailedInfo.price !== 9999) &&
               <div className="detailed-info-public-description">
                 <div>
                   Цена: {detailedInfo.price} $

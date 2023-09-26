@@ -49,7 +49,7 @@ const Database = () => {
               <div
                 className='data-base-every-client-price'
                 onClick={changeBySort}
-              >Цена</div>
+              >Цена, $</div>
             </div>
             {isLoading ? (
               <CircularIndeterminate />
@@ -64,7 +64,13 @@ const Database = () => {
                     >
                       <div className='data-base-every-client-name'> {item.name}</div>
                       <div className='data-base-every-client-address'> {item.adress}</div>
-                      <div> {item.price}$</div>
+                      <div>
+                        { (item.price !== 1 ) && (item.price !== 9999 ) ?
+                          item.price
+                          :
+                          'неизв.'
+                        }
+                      </div>
                     </div>
                   );
                 }
