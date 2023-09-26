@@ -1,5 +1,8 @@
 import React, { useState } from "react";
 import { useAuth } from "../provider/AuthContextProvider";
+import "../styles/Loginpage.css";
+import { AiOutlineUser, AiFillUnlock } from "react-icons/ai";
+import logo from "../assets/fullblack.png";
 
 const Login = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
@@ -16,25 +19,38 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          onChange={handleInputChange}
-          value={formData.username}
-          type="text"
-          name="username"
-          placeholder="Username"
-        />
-        <input
-          onChange={handleInputChange}
-          value={formData.password}
-          type="password"
-          name="password"
-          placeholder="Password"
-        />
-        <button type="submit">Login</button>
-      </form>
-    </div>
+    <body className="login-background">
+      <div className="login-container">
+        <form className="login-form" onSubmit={handleSubmit}>
+          <img src={logo} alt="" className="logo" />
+          <div className="input-container">
+            <AiOutlineUser className="input-icon" />
+            <input
+              className="login-input"
+              onChange={handleInputChange}
+              value={formData.username}
+              type="text"
+              name="username"
+              placeholder="Username"
+            />
+          </div>
+          <div className="input-container">
+            <AiFillUnlock className="input-icon" />
+            <input
+              className="login-input"
+              onChange={handleInputChange}
+              value={formData.password}
+              type="password"
+              name="password"
+              placeholder="Password"
+            />
+          </div>
+          <button className="login-button" type="submit">
+            Login
+          </button>
+        </form>
+      </div>
+    </body>
   );
 };
 
