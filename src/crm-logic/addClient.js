@@ -17,16 +17,17 @@ export const addClient = async (modalData, dispatch) => {
     const response = await axiosInstance.post('/crm/', modalData)
     if (response.status === 201) {
       dispatch(setBaseModal(false))
+      dispatch(setIsSelect(false))
+      dispatch(setSale(false))
+      dispatch(setPurchase(false))
+      dispatch(setPotential(false))
+      dispatch(setEdit(false))
     }
   } catch (e) {
-    console.log(e)
+    if (e.response.status === 400) {
+      alert('Проверьте все поля на валидацию')
+    }
   } finally {
     dispatch(setButtonLock(false))
-    dispatch(setBaseModal(false))
-    dispatch(setIsSelect(false))
-    dispatch(setSale(false))
-    dispatch(setPurchase(false))
-    dispatch(setPotential(false))
-    dispatch(setEdit(false))
   }
 }
