@@ -11,6 +11,7 @@ import {baseModalSlice} from "../features/baseModal/baseModalSlice";
 import {isSelectModalTypeSlice} from "../features/selectModalType/isSelectModalTypeSlice";
 import {searchParametersSlice} from "../features/searchParametres/searchParametersSlice";
 import {buttonLockSlice} from "../features/buttonLock/buttonLockSlice";
+import {alertMUISlice} from "../features/alertMUI/alertMUISlice";
 
 
 export const store = configureStore({
@@ -27,6 +28,7 @@ export const store = configureStore({
       baseModal: baseModalSlice.reducer,
       isSelectModalType: isSelectModalTypeSlice.reducer,
       searchParameters: searchParametersSlice.reducer,
-      buttonLock: buttonLockSlice.reducer
+      buttonLock: buttonLockSlice.reducer,
+      alertMUI: alertMUISlice.reducer
     }
 })

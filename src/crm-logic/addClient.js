@@ -9,6 +9,7 @@ import {
   setPurchase,
   setSale
 } from "../features/selectModalType/isSelectModalTypeSlice";
+import {setActive, setTitle, setType, setValue} from "../features/alertMUI/alertMUISlice";
 
 export const addClient = async (modalData, dispatch) => {
   dispatch(setButtonLock(true))
@@ -22,10 +23,17 @@ export const addClient = async (modalData, dispatch) => {
       dispatch(setPurchase(false))
       dispatch(setPotential(false))
       dispatch(setEdit(false))
+      dispatch(setType('success'))
+      dispatch(setTitle('Успешно выполнено!'))
+      dispatch(setValue('Клиент успешно добавлен!'))
+      dispatch(setActive(true))
     }
   } catch (e) {
     if (e.response.status === 400) {
-      alert('Проверьте все поля на валидацию')
+      dispatch(setType('error'))
+      dispatch(setTitle('Ошибка добавления клиента!'))
+      dispatch(setValue('Заполните все поля!'))
+      dispatch(setActive(true))
     }
   } finally {
     dispatch(setButtonLock(false))

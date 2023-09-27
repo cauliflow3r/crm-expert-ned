@@ -8,6 +8,8 @@ import DatabaseDetailedInfo from "./DatabaseDetailedInfo";
 import BaseModal from "./BaseModal";
 import {setSortByPrice} from "../features/searchParametres/searchParametersSlice";
 import CircularIndeterminate from "./LoaderMaterialUi";
+import {Alert, AlertTitle} from "@mui/material";
+import {setActive} from "../features/alertMUI/alertMUISlice";
 
 const Database = () => {
   const dispatch = useDispatch();
@@ -17,6 +19,7 @@ const Database = () => {
   const selectedClient = useSelector((state) => state.getOneClient.getOneClient)
   const baseModal = useSelector((state) => state.baseModal)
   const searchParameters = useSelector((state) => state.searchParameters)
+  const alertMUI = useSelector((state) => state.alertMUI)
 
 
   useEffect(() => {
@@ -36,6 +39,32 @@ const Database = () => {
       dispatch(setSortByPrice('ascending'))
     } else return
   }
+
+  const alertDefault = {
+    position: 'fixed',
+    left: '40%',
+    top: '120%',
+    transition: '0.6s',
+    zIndex: '999'
+  }
+
+  const alertActive = {
+    position: 'fixed',
+    left: '40%',
+    top: '85%',
+    transition: '0.6s',
+    zIndex: '999'
+  }
+
+
+    useEffect(() => {
+      const timeout = setTimeout(() => {
+        dispatch(setActive(false))
+      }, 3000);
+      return () => {
+        clearTimeout(timeout);
+      };
+    }, [alertMUI]);
 
   return (
     <div style={{background: '#435334', padding: '20px'}}>
@@ -85,6 +114,14 @@ const Database = () => {
       </div>
 
       {baseModal && <BaseModal/>}
+
+        <Alert
+          severity={alertMUI.type}
+          sx={ alertMUI.active ? alertActive : alertDefault}
+        >
+          <AlertTitle>{alertMUI.title}</AlertTitle>
+          {alertMUI.value}
+        </Alert>
 
     </div>
   );

@@ -4,6 +4,7 @@ import {setBaseModal} from "../features/baseModal/baseModalSlice";
 import {setEdit} from "../features/selectModalType/isSelectModalTypeSlice";
 import {getBase} from "./getBase";
 import {getOneClient} from "./getOneClient";
+import {setActive, setTitle, setType, setValue} from "../features/alertMUI/alertMUISlice";
 
 export const editClient = async (clientInfo, dispatch, searchParameters) => {
   const id = clientInfo.id
@@ -13,11 +14,18 @@ export const editClient = async (clientInfo, dispatch, searchParameters) => {
     if (response.status === 200) {
       dispatch(setBaseModal(false))
       dispatch(setEdit(false))
+      dispatch(setType('success'))
+      dispatch(setTitle('Успешно выполнено!'))
+      dispatch(setValue('Клиент успешно отредактирован!'))
+      dispatch(setActive(true))
     }
     await getOneClient(id, dispatch)
     await getBase(dispatch, searchParameters)
   } catch (e) {
-
+    dispatch(setType('error'))
+    dispatch(setTitle('Ошибка редактирования!'))
+    dispatch(setValue('Произошла непредвиденная ошибка!'))
+    dispatch(setActive(true))
   }
 }
 

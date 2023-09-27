@@ -12,6 +12,7 @@ import {
   setMaxPrice,
   setMinPrice, setSortByPrice
 } from "../features/searchParametres/searchParametersSlice";
+import {setActive, setTitle, setType, setValue} from "../features/alertMUI/alertMUISlice";
 
 const HeaderDatabase = () => {
 
@@ -32,6 +33,10 @@ const HeaderDatabase = () => {
     await dispatch(setBySearchField(''))
     await dispatch(setMinPrice(0))
     await dispatch(setMaxPrice(0))
+    await dispatch(setType('success'))
+    await dispatch(setTitle('Успешно выполнено!'))
+    await dispatch(setValue('Фильтры выставлены по умолчанию!'))
+    await dispatch(setActive(true))
   }
 
   const ChangeToSalesBase = () => {
@@ -78,6 +83,7 @@ const HeaderDatabase = () => {
     dispatch(setBaseModal(true))
     dispatch(setIsSelect(true))
   }
+
 
   return (
     <div>
