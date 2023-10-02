@@ -2,14 +2,14 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBase } from '../crm-logic/getBase';
 import HeaderDatabase from './HeaderDatabase';
-import './../styles/Database.css'
-import {getOneClient} from "../crm-logic/getOneClient";
-import DatabaseDetailedInfo from "./DatabaseDetailedInfo";
-import BaseModal from "./BaseModal";
-import {setSortByPrice} from "../features/searchParametres/searchParametersSlice";
-import CircularIndeterminate from "./LoaderMaterialUi";
-import {Alert, AlertTitle} from "@mui/material";
-import {setActive} from "../features/alertMUI/alertMUISlice";
+import './../styles/Database.css';
+import { getOneClient } from '../crm-logic/getOneClient';
+import DatabaseDetailedInfo from './DatabaseDetailedInfo';
+import BaseModal from './BaseModal';
+import { setSortByPrice } from '../features/searchParametres/searchParametersSlice';
+import CircularIndeterminate from './LoaderMaterialUi';
+import { Alert, AlertTitle } from '@mui/material';
+import { setActive } from '../features/alertMUI/alertMUISlice';
 
 const Database = () => {
   const dispatch = useDispatch();
@@ -20,7 +20,6 @@ const Database = () => {
   const baseModal = useSelector((state) => state.baseModal)
   const searchParameters = useSelector((state) => state.searchParameters)
   const alertMUI = useSelector((state) => state.alertMUI)
-
 
   useEffect(() => {
     (async () => {

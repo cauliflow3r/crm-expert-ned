@@ -13,6 +13,9 @@ import {
   setMinPrice, setSortByPrice
 } from "../features/searchParametres/searchParametersSlice";
 import {setActive, setTitle, setType, setValue} from "../features/alertMUI/alertMUISlice";
+import {Button, MenuItem, TextField} from "@mui/material";
+import Box from "@mui/material/Box";
+import {filterByRooms, filterByTypeOfHousing} from "../constants/searchValues";
 
 const HeaderDatabase = () => {
 
@@ -87,7 +90,6 @@ const HeaderDatabase = () => {
 
   return (
     <div>
-
           <div className="header-bases-wrap ">
             <div
               className={ active === 'Продажа' ? 'header-sales-base header-head-button-active' : "header-sales-base"}
@@ -144,58 +146,89 @@ const HeaderDatabase = () => {
           <div className='header-head-buttons-flex-box'>
 
             <div className="header-head-buttons">
-              <button
+              <Button
+                variant="outlined"
+                color="success"
+                size='small'
                 onClick={openBaseModal}
-              >Добавить клиента</button>
-              <button
-                disabled={isButtonActive}
+              >
+                Добавить клиента
+              </Button>
+
+              <Button
+                variant="outlined"
+                color="success"
+                size='small'
                 onClick={ async () => await getBase(dispatch, searchParameters)}
-              >Обновить</button>
+                disabled={isButtonActive}
+              >
+                Обновить
+              </Button>
+
+
             </div>
 
             <div className="header-search-filter-field">
 
-              <input
-                className='header-search-filter-field-more-filters'
-                value={ moreFilters? '▲': '▼'}
-                type="button"
+              <Button
+                variant="outlined"
+                color="success"
+                size='small'
                 onClick={() => setMoreFilters(prevState => !prevState)}
-              />
+              >
+                { moreFilters? '▲': '▼'}
+              </Button>
 
-              <input
-                type="text"
-                placeholder='Ключевые слова...'
+              <TextField
+                id="bySearchField"
+                label="Ключевые слова"
+                variant="outlined"
+                size='small'
+                color="success"
                 value={searchParameters.bySearchField}
                 onChange={(e) => dispatch(setBySearchField(e.target.value))}
               />
 
-
-              <input
-                type="button"
-                value='Поиск'
-                disabled={isButtonActive}
+              <Button
+                variant="outlined"
+                color="success"
+                size='small'
                 onClick={isSearch}
-              />
-              <input
-                type="button"
-                value='Сброс'
+              >
+                Поиск
+              </Button>
+
+              <Button
+                variant="outlined"
+                color="success"
+                size='small'
                 onClick={isReset}
-              />
+              >
+                Сброс
+              </Button>
             </div>
 
             <div className='header-head-buttons-right'>
               { (id === '7' || id === '6' || id === '13') &&
                 <div className="header-head-buttons">
                   { (id === '7' || id === '6') &&
-                    <button
-                      onClick={ChangeToClosedBase}
-                    >Закрытые сделки
-                    </button>
+                    <Button
+                    variant="outlined"
+                    color="success"
+                    size='small'
+                    onClick={ChangeToClosedBase}
+                    >
+                    Закрытые сделки
+                    </Button>
                   }
-                  <button
+                  <Button
+                    variant="outlined"
+                    color="success"
+                    size='small'
                     onClick={ChangeToDeleteBase}
-                  >Корзина
-                  </button>
+                  >
+                    Корзина
+                  </Button>
                 </div>}
             </div>
 
@@ -203,44 +236,89 @@ const HeaderDatabase = () => {
 
           <div className={ moreFilters? 'more-filters-active' : "header-head-buttons-more-filters"}>
             <div>
-              <select value={searchParameters.byRooms} onChange={(e) => dispatch(setByRooms(e.target.value))}>
-                <option value="">Кол-во комнат</option>
-                <option value="1">1 комната</option>
-                <option value="2">2 комнаты</option>
-                <option value="3">3 комнаты</option>
-                <option value="4">4 комнаты</option>
-                <option value="5">5 комнат</option>
-                <option value="6">6 комнат</option>
-              </select>
-              <select value={searchParameters.byTypeOfHousing} onChange={(e) => dispatch(setByTypeOfHousing(e.target.value))}>
-                <option value="">Тип недвижимости</option>
-                <option value="Частный дом">Частный дом</option>
-                <option value="Квартира">Квартира</option>
-                <option value="Коммерческая недвижимость">Ком.недвиж.</option>
-                <option value="Участок">Участок</option>
-              </select>
+
+            <Box
+              component="form"
+              sx={{
+                '& .MuiTextField-root': { m: 1, width: '25ch' },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <TextField
+                id='header-rooms-filter'
+                select
+                label='Кол-во комнат'
+                size='small'
+                color="success"
+                value={ searchParameters.byRooms }
+                onChange={(e) => dispatch(setByRooms(e.target.value))}
+              >
+                {filterByRooms.map((option, idx) => (
+                  <MenuItem key={idx} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+
+              <TextField
+                id='header-type-of-housing-filter'
+                select
+                label='Тип недвижимости'
+                size='small'
+                color="success"
+                value={ searchParameters.byTypeOfHousing }
+                onChange={(e) => dispatch(setByTypeOfHousing(e.target.value))}
+              >
+                {filterByTypeOfHousing.map((option, idx) => (
+                  <MenuItem key={idx} value={option.value}>
+                    {option.label}
+                  </MenuItem>
+                ))}
+              </TextField>
+
+            </Box>
+
             </div>
+
             <div>
                 <span className='header-head-buttons-price'>
-                <input
-                  type="text"
-                  placeholder='Цена от'
-                  value={ searchParameters.minPrice ? searchParameters.minPrice : '' }
-                  onChange={(e) => dispatch(setMinPrice(e.target.value))}
-                />
-                <input
-                  type="text"
-                  placeholder='Цена до'
-                  value={ searchParameters.maxPrice ? searchParameters.maxPrice : '' }
-                  onChange={(e) => dispatch(setMaxPrice(e.target.value))}
-                />
+
+                  <TextField
+                    id='header-min-price'
+                    label='Цена от'
+                    color="success"
+                    value={ searchParameters.minPrice ? searchParameters.minPrice : '' }
+                    size='small'
+                    onChange={(e) => dispatch(setMinPrice(e.target.value))}
+                  />
+
+                 <TextField
+                   id='header-max-price'
+                   label='Цена до'
+                   color="success"
+                   value={ searchParameters.maxPrice ? searchParameters.maxPrice : '' }
+                   size='small'
+                   onChange={(e) => dispatch(setMaxPrice(e.target.value))}
+                 />
+
+
               </span>
             </div>
             <div>
-              <select value={searchParameters.sortByPrice} onChange={(e) => dispatch(setSortByPrice(e.target.value))}>
-                <option value="ascending">Сначала дешевые</option>
-                <option value="descending">Сначала дорогие</option>
-              </select>
+
+              <TextField
+                id='header-sort-by-price'
+                select
+                color="success"
+                size='small'
+                value={searchParameters.sortByPrice}
+                onChange={(e) => dispatch(setSortByPrice(e.target.value))}
+              >
+                <MenuItem value="ascending">Сначала дешевые</MenuItem>
+                <MenuItem value="descending">Сначала дорогие</MenuItem>
+              </TextField>
+
             </div>
           </div>
     </div>

@@ -5,7 +5,6 @@ import {editClient} from "../crm-logic/editClient";
 
 const BaseModalEditClient = () => {
 
-
   const clientInfo = useSelector((state) => state.getOneClient.getOneClient)
   const searchParameters = useSelector((state) => state.searchParameters)
   const dispatch = useDispatch()

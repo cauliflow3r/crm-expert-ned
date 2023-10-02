@@ -60,9 +60,25 @@
 
 .more-filters-active {
   opacity: 1;
-  height: 30px;
+  height: 50px;
   transition: 0.5s ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+#bySearchField {
+  height: 0.8em;
+}
+
+#header-min-price, #header-max-price {
+  height: 1em;
+}
+
+#header-rooms-filter, #header-type-of-housing-filter {
+  padding: 5px 7px;
+}
+
+#header-sort-by-price {
+  padding: 5px 30px 5px 15px;
 }
