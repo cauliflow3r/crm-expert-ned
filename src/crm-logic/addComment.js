@@ -22,10 +22,17 @@ export const addComment = async (dispatch, comment, detailedInfo) => {
       await getOneClient(detailedInfo, dispatch)
     }
   } catch (e) {
-    dispatch(setType('error'))
-    dispatch(setTitle('Ошибка комментирования!'))
-    dispatch(setValue('Произошла непредвиденная ошибка!'))
-    dispatch(setActive(true))
+    if (e.response.status === 400) {
+      dispatch(setType('error'))
+      dispatch(setTitle('Ошибка: 400'))
+      dispatch(setValue('Комментарий не должен быть пустым!'))
+      dispatch(setActive(true))
+    } else {
+      dispatch(setType('error'))
+      dispatch(setTitle('Ошибка комментирования!'))
+      dispatch(setValue('Произошла непредвиденная ошибка!'))
+      dispatch(setActive(true))
+    }
   } finally {
     dispatch(setButtonLock(false))
   }

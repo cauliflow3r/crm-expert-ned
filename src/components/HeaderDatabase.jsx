@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {setTypeOfBase} from "../features/typeOfBase/typeOfBaseSlice";
-import '../styles/HeaderDatabase.css'
 import {setBaseModal} from "../features/baseModal/baseModalSlice";
 import {getBase} from "../crm-logic/getBase";
 import {setIsSelect} from "../features/selectModalType/isSelectModalTypeSlice";
@@ -10,12 +9,14 @@ import {
   setBySearchField,
   setByTypeOfHousing,
   setMaxPrice,
-  setMinPrice, setSortByPrice
+  setMinPrice,
+  setSortByPrice
 } from "../features/searchParametres/searchParametersSlice";
 import {setActive, setTitle, setType, setValue} from "../features/alertMUI/alertMUISlice";
 import {Button, MenuItem, TextField} from "@mui/material";
 import Box from "@mui/material/Box";
 import {filterByRooms, filterByTypeOfHousing} from "../constants/searchValues";
+import '../styles/HeaderDatabase.css'
 
 const HeaderDatabase = () => {
 

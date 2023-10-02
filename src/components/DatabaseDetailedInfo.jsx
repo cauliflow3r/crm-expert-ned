@@ -14,6 +14,7 @@ import {
   setSale
 } from "../features/selectModalType/isSelectModalTypeSlice";
 import CircularIndeterminate from "./LoaderMaterialUi";
+import {Button, TextField} from "@mui/material";
 
 const DatabaseDetailedInfo = () => {
 
@@ -48,8 +49,22 @@ const DatabaseDetailedInfo = () => {
   return (
     <div className='detailed-info-border-box'>
       <div>
-        <button onClick={() => getOneClient(detailedInfo.id, dispatch)}>Обновить</button>
-        <button onClick={isEdit}>Редактировать</button>
+        <Button
+          color='success'
+          variant="outlined"
+          size='small'
+          onClick={() => getOneClient(detailedInfo.id, dispatch)}
+        >
+          Обновить
+        </Button>
+        <Button
+          color='success'
+          variant="outlined"
+          size='small'
+          onClick={isEdit}
+        >
+          Редактировать
+        </Button>
       </div>
       {
         isLoadingDetailedInfo ?
@@ -229,18 +244,26 @@ const DatabaseDetailedInfo = () => {
             </div>
             <div className='detailed-info-textarea-field'>
               <form>
-                <textarea
-                  cols="70"
-                  rows="10"
+
+                <TextField
+                  id="outlined-multiline-static"
+                  multiline
+                  rows={7}
+                  color='success'
+                  sx={{width: '95%'}}
                   value={comment.body}
                   onChange={handleChangeComment}
                 />
-                <input
-                  value='Отправить'
-                  type="button"
+
+                <Button
+                  variant="outlined"
+                  color='success'
                   disabled={isButtonActive}
                   onClick={() => addComment(dispatch, comment, detailedInfo.id)}
-                />
+                >
+                  Комментировать
+                </Button>
+
               </form>
             </div>
           </div>

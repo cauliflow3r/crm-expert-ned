@@ -29,6 +29,7 @@
 .header-head-buttons-flex-box {
   display: grid;
   grid-template-columns: 0.5fr 1fr 0.5fr;
+  margin: 5px auto;
 }
 
 .header-search-filter-field {
