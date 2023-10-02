@@ -88,6 +88,11 @@ const HeaderDatabase = () => {
     dispatch(setIsSelect(true))
   }
 
+  const handleKeyPress = async (event) => {
+    if (event.key === 'Enter') {
+     await isSearch();
+    }
+  };
 
   return (
     <div>
@@ -188,6 +193,7 @@ const HeaderDatabase = () => {
                 color="success"
                 value={searchParameters.bySearchField}
                 onChange={(e) => dispatch(setBySearchField(e.target.value))}
+                onKeyPress={handleKeyPress}
               />
 
               <Button
@@ -195,6 +201,7 @@ const HeaderDatabase = () => {
                 color="success"
                 size='small'
                 onClick={isSearch}
+                disabled={isButtonActive}
               >
                 Поиск
               </Button>
