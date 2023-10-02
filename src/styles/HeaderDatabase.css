@@ -1,6 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@700&family=Oswald:wght@600&display=swap');
+
 .header-bases-wrap {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .header-flex {
@@ -9,20 +11,23 @@
 }
 
 .header-sales-base, .header-purchases-base, .header-all-base, .header-potential-base, .header-not-relevant-base  {
-  font-size: 25px;
+  font-family: 'Oswald', sans-serif;
+  font-size: 15px;
   cursor: pointer;
   width: max-content;
   margin: 0 auto;
+  padding: 5px;
 }
 
 .header-sales-base:hover, .header-purchases-base:hover, .header-all-base:hover, .header-potential-base:hover, .header-not-relevant-base:hover {
-  color: #9eb384;
-  text-decoration: underline;
+  border-radius: 25px;
+  background: #9eb384;
 }
 
 .header-head-button-active {
-  color: #9eb384;
-  text-decoration: underline;
+  padding: 5px;
+  border-radius: 25px;
+  background: #9eb384;
 }
 
 
@@ -45,8 +50,8 @@
 }
 
 .header-head-buttons-right {
-  text-align: right;
-  margin-right: 5px;
+  display: flex;
+  justify-content: right;
 }
 
 .header-head-buttons-more-filters {

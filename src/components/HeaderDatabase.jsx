@@ -121,8 +121,6 @@ const HeaderDatabase = () => {
             >
               Встречи
             </div>
-          </div>
-          <div className="header-bases-wrap">
             <div
               className={ active === 'Результаты встречи' ? 'header-sales-base header-head-button-active' : "header-sales-base"}
               onClick={ChangeToResultOfMeet}
@@ -141,14 +139,7 @@ const HeaderDatabase = () => {
             >
               Неактуальные
             </div>
-            <div
-              className={ active === 'Полная база' ? 'header-sales-base header-head-button-active' : "header-sales-base"}
-              onClick={ChangeToAllBase}
-            >
-              Полная база
-            </div>
           </div>
-
           <div className='header-head-buttons-flex-box'>
 
             <div className="header-head-buttons">
@@ -217,11 +208,19 @@ const HeaderDatabase = () => {
             </div>
 
             <div className='header-head-buttons-right'>
+              <Button
+                variant={ active === 'Полная база' ?  "contained" : "outlined"}
+                size='small'
+                color='success'
+                onClick={ChangeToAllBase}
+              >
+                Полная база
+              </Button>
               { (id === '7' || id === '6' || id === '13') &&
                 <div className="header-head-buttons">
                   { (id === '7' || id === '6') &&
                     <Button
-                    variant="outlined"
+                      variant={ active === 'Закрытые сделки' ?  "contained" : "outlined"}
                     color="success"
                     size='small'
                     onClick={ChangeToClosedBase}
@@ -230,7 +229,7 @@ const HeaderDatabase = () => {
                     </Button>
                   }
                   <Button
-                    variant="outlined"
+                    variant={ active === 'На удаление' ?  "contained" : "outlined"}
                     color="success"
                     size='small'
                     onClick={ChangeToDeleteBase}
