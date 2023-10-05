@@ -13,10 +13,11 @@ import {
   setSortByPrice
 } from "../features/searchParametres/searchParametersSlice";
 import {setActive, setTitle, setType, setValue} from "../features/alertMUI/alertMUISlice";
-import {Button, MenuItem, TextField} from "@mui/material";
+import {Badge, Button, MenuItem, TextField} from "@mui/material";
 import Box from "@mui/material/Box";
 import {filterByRooms, filterByTypeOfHousing} from "../constants/searchValues";
 import '../styles/HeaderDatabase.css'
+
 
 const HeaderDatabase = () => {
 
@@ -26,6 +27,7 @@ const HeaderDatabase = () => {
   const searchParameters = useSelector((state) => state.searchParameters)
   const isButtonActive = useSelector((state) => state.buttonLock)
   const [moreFilters, setMoreFilters] = useState(false)
+  const counter = useSelector(state => state.counter)
 
   const isSearch = async () => {
     await getBase(dispatch, searchParameters)
@@ -213,14 +215,16 @@ const HeaderDatabase = () => {
 
             <div className='header-head-buttons-right'>
 
-              <Button
-                variant={ active === 'Заявки' ?  "contained" : "outlined"}
-                size='small'
-                color='success'
-                onClick={ChangeToApplicationsBase}
-              >
-                Заявки
-              </Button>
+              <Badge badgeContent={counter} color="success">
+                <Button
+                  variant={ active === 'Заявки' ?  "contained" : "outlined"}
+                  size='small'
+                  color='success'
+                  onClick={ChangeToApplicationsBase}
+                >
+                  Заявки
+                </Button>
+              </Badge>
 
               <Button
                 variant={ active === 'Полная база' ?  "contained" : "outlined"}

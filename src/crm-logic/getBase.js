@@ -3,6 +3,7 @@ import {axiosInstance} from "../utils/api";
 import {setData} from "../features/data/dataSlice";
 import {setIsLoading} from "../features/isLoading/isLoading";
 import {setButtonLock} from "../features/buttonLock/buttonLockSlice";
+import {setCounter} from "../features/counter/counterSlice";
 
 export const getBase = async (dispatch, searchParameters) => {
   dispatch(setButtonLock(true))
@@ -11,6 +12,11 @@ export const getBase = async (dispatch, searchParameters) => {
   try {
     const response = await axiosInstance.get('crm/?limit=5000');
     const data = response.data.results;
+
+    const count = data.filter((item) => {
+      return item.type_of_base === 'Заявки'
+    })
+    dispatch(setCounter(count.length))
 
     let filteredData = data
 
