@@ -10,6 +10,7 @@ import { setSortByPrice } from '../features/searchParametres/searchParametersSli
 import CircularIndeterminate from './LoaderMaterialUi';
 import { Alert, AlertTitle } from '@mui/material';
 import { setActive } from '../features/alertMUI/alertMUISlice';
+import {updateAccessToken} from "../services/token";
 
 const Database = () => {
   const dispatch = useDispatch();
@@ -26,6 +27,20 @@ const Database = () => {
       await getBase(dispatch, searchParameters);
     })();
   }, []);
+
+  useEffect(() => {
+    updateAccessToken()
+    const intervalId = setInterval(() => {
+      updateAccessToken();
+    }, 60000);
+
+    // Очистить интервал при размонтировании компонента
+    return () => {
+      clearInterval(intervalId);
+    };
+  }, []); // Пустой массив зависимостей означает, что эффект будет вызываться только при монтировании и размонтировании компонента
+
+
 
   const selectClient = async (id) => {
    await getOneClient(id, dispatch)
