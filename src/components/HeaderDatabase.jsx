@@ -213,16 +213,14 @@ const HeaderDatabase = () => {
 
             <div className='header-head-buttons-right'>
 
-              { (id === '7' || id === '6' || id === '18') &&
-                <Button
-                  variant={ active === 'Заявки' ?  "contained" : "outlined"}
-                  size='small'
-                  color='success'
-                  onClick={ChangeToApplicationsBase}
-                >
-                  Заявки
-                </Button>
-              }
+              <Button
+                variant={ active === 'Заявки' ?  "contained" : "outlined"}
+                size='small'
+                color='success'
+                onClick={ChangeToApplicationsBase}
+              >
+                Заявки
+              </Button>
 
               <Button
                 variant={ active === 'Полная база' ?  "contained" : "outlined"}
