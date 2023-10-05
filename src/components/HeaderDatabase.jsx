@@ -83,6 +83,10 @@ const HeaderDatabase = () => {
     dispatch(setTypeOfBase(`Закрытые сделки`))
   }
 
+  const ChangeToApplicationsBase = () => {
+    dispatch(setTypeOfBase(`Заявки`))
+  }
+
   const openBaseModal = () => {
     dispatch(setBaseModal(true))
     dispatch(setIsSelect(true))
@@ -208,6 +212,18 @@ const HeaderDatabase = () => {
             </div>
 
             <div className='header-head-buttons-right'>
+
+              { (id === '7' || id === '6' || id === '18') &&
+                <Button
+                  variant={ active === 'Заявки' ?  "contained" : "outlined"}
+                  size='small'
+                  color='success'
+                  onClick={ChangeToApplicationsBase}
+                >
+                  Заявки
+                </Button>
+              }
+
               <Button
                 variant={ active === 'Полная база' ?  "contained" : "outlined"}
                 size='small'

@@ -33,7 +33,7 @@
 
 .header-head-buttons-flex-box {
   display: grid;
-  grid-template-columns: 0.5fr 1fr 0.5fr;
+  grid-template-columns: 1fr 1fr 1fr;
   margin: 5px auto;
 }
 
@@ -74,7 +74,7 @@
 }
 
 #bySearchField {
-  height: 0.8em;
+  height: 0.9em;
 }
 
 #header-min-price, #header-max-price {
