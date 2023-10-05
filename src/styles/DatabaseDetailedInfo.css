@@ -4,6 +4,10 @@
   border-top: 1px solid black;
 }
 
+.detailed-info-button-flex {
+  display: flex;
+}
+
 .detailed-info-our-information {
   display: grid;
   align-items: start;

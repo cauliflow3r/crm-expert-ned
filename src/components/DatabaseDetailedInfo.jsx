@@ -15,6 +15,8 @@ import {
 } from "../features/selectModalType/isSelectModalTypeSlice";
 import CircularIndeterminate from "./LoaderMaterialUi";
 import {Button, TextField} from "@mui/material";
+import AlertDialog from "./AlertDialog";
+
 
 const DatabaseDetailedInfo = () => {
 
@@ -23,6 +25,7 @@ const DatabaseDetailedInfo = () => {
   const comment = useSelector((state) => state.isComments)
   const isLoadingDetailedInfo = useSelector((state) => state.isLoadingDetailedInfo)
   const isButtonActive = useSelector((state) => state.buttonLock)
+  const id = localStorage.getItem('id')
 
   const handleChangeComment = (e) => {
     e.preventDefault()
@@ -48,7 +51,7 @@ const DatabaseDetailedInfo = () => {
 
   return (
     <div className='detailed-info-border-box'>
-      <div>
+      <div className='detailed-info-button-flex'>
         <Button
           color='success'
           variant="outlined"
@@ -65,6 +68,9 @@ const DatabaseDetailedInfo = () => {
         >
           Редактировать
         </Button>
+        { (id === '7' || id === '6' || id === '13' || id === '18') &&
+          <AlertDialog />
+        }
       </div>
       {
         isLoadingDetailedInfo ?
