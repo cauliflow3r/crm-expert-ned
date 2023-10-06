@@ -1,0 +1,25 @@
+.plan-modal-title {
+  text-align: center;
+  margin: 1.5vh auto;
+}
+
+.plan-modal-description {
+  text-align: center;
+}
+
+.plan-modal-employees {
+  margin: 0 0 0 10vh;
+}
+
+.plan-modal-trade-secret {
+  margin: 0 10vh;
+}
+
+.plan-modal-trade-secret a {
+  color: blue;
+  text-decoration: none;
+}
+
+.plan-modal-second-section {
+  margin-top: 5vh;
+}

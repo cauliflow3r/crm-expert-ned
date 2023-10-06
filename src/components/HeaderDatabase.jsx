@@ -17,6 +17,7 @@ import {Badge, Button, MenuItem, TextField} from "@mui/material";
 import Box from "@mui/material/Box";
 import {filterByRooms, filterByTypeOfHousing} from "../constants/searchValues";
 import '../styles/HeaderDatabase.css'
+import {setPlanModal} from "../features/planModal/planModal";
 
 
 const HeaderDatabase = () => {
@@ -94,6 +95,10 @@ const HeaderDatabase = () => {
     dispatch(setIsSelect(true))
   }
 
+  const openPlanModal = () => {
+    dispatch(setPlanModal(true))
+  }
+
   const handleKeyPress = async (event) => {
     if (event.key === 'Enter') {
      await isSearch();
@@ -166,6 +171,15 @@ const HeaderDatabase = () => {
                 disabled={isButtonActive}
               >
                 Обновить
+              </Button>
+
+              <Button
+                variant="outlined"
+                color="success"
+                size='small'
+                onClick={openPlanModal}
+              >
+                Штат
               </Button>
 
 

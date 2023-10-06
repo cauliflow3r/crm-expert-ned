@@ -11,6 +11,7 @@ import CircularIndeterminate from './LoaderMaterialUi';
 import { Alert, AlertTitle } from '@mui/material';
 import { setActive } from '../features/alertMUI/alertMUISlice';
 import {updateAccessToken} from "../services/token";
+import PlanModal from "./PlanModal";
 
 const Database = () => {
   const dispatch = useDispatch();
@@ -21,6 +22,7 @@ const Database = () => {
   const baseModal = useSelector((state) => state.baseModal)
   const searchParameters = useSelector((state) => state.searchParameters)
   const alertMUI = useSelector((state) => state.alertMUI)
+  const planModal = useSelector(state => state.planModal)
 
   useEffect(() => {
     (async () => {
@@ -128,6 +130,8 @@ const Database = () => {
       </div>
 
       {baseModal && <BaseModal/>}
+
+      {planModal &&  <PlanModal />}
 
         <Alert
           severity={alertMUI.type}
