@@ -87,7 +87,7 @@ const Database = () => {
       <div className='data-base'>
         <HeaderDatabase />
         <div className='data-base-wrap'>
-          <div className='data-base-all-client-list'>
+          <div className={selectedClient ? 'data-base-all-client-list data-base-all-client-list-active' : 'data-base-all-client-list'} >
             <div className="data-base-all-client-menu">
               <div className='data-base-every-client-name'>Имя</div>
               <div className='data-base-every-client-address'>Адрес</div>

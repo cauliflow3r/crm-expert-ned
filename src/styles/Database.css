@@ -80,13 +80,19 @@
   .data-base-all-client-list {
     width: 100%;
     font-size: 12px;
-    height: 40%;
+    height: 100%;
     border-bottom: 0.5vh solid #435334;
+    transition: 0.5s ease-in-out;
+  }
+
+  .data-base-all-client-list-active {
+    height: 10%;
+    transition: 0.5s ease-in-out;
   }
 
   .data-base-wrap .detailed-info-border-box {
     width: 100%;
-    height: 60%;
+    height: 90%;
   }
 
   .detailed-info-border-box .detailed-info-our-information,
@@ -102,4 +108,17 @@
   .detailed-info-comment-head {
     font-size: 14px;
   }
+
+  .detailed-info-button-flex {
+    display: none;
+  }
+
+  .detailed-info-button-flex .detailed-info-admin-btn {
+    display: none;
+  }
+
+  .detailed-info-button-flex .detailed-info-close-btn {
+    display: block;
+  }
+
 }

@@ -16,6 +16,10 @@
   font-size: 14px;
 }
 
+.detailed-info-close-btn {
+  display: none;
+}
+
 .detailed-info-our-information-link {
   margin: 15px auto;
   text-align: center;

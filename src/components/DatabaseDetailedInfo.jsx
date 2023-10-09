@@ -16,6 +16,7 @@ import {
 import CircularIndeterminate from "./LoaderMaterialUi";
 import {Button, TextField} from "@mui/material";
 import AlertDialog from "./AlertDialog";
+import {setGetOneClient} from "../features/getOneClient/getOneClientSlice";
 
 
 const DatabaseDetailedInfo = () => {
@@ -52,25 +53,43 @@ const DatabaseDetailedInfo = () => {
   return (
     <div className='detailed-info-border-box'>
       <div className='detailed-info-button-flex'>
-        <Button
-          color='success'
-          variant="outlined"
-          size='small'
-          onClick={() => getOneClient(detailedInfo.id, dispatch)}
-        >
-          Обновить
-        </Button>
-        <Button
-          color='success'
-          variant="outlined"
-          size='small'
-          onClick={isEdit}
-        >
-          Редактировать
-        </Button>
-        { (id === '7' || id === '6' || id === '13' || id === '18') &&
-          <AlertDialog />
-        }
+
+
+          <Button
+            color='success'
+            variant="outlined"
+            size='small'
+            onClick={() => getOneClient(detailedInfo.id, dispatch)}
+          >
+            Обновить
+          </Button>
+
+          <div className="detailed-info-admin-btn">
+            <Button
+              color='success'
+              variant="outlined"
+              size='small'
+              onClick={isEdit}
+            >
+              Редактировать
+            </Button>
+          </div>
+
+          { (id === '7' || id === '6' || id === '13' || id === '18') &&
+            <AlertDialog />
+          }
+
+
+        <div className="detailed-info-close-btn">
+          <Button
+            color='success'
+            variant="outlined"
+            size='small'
+            onClick={() => dispatch(setGetOneClient(null))}
+          >
+            Закрыть
+          </Button>
+        </div>
       </div>
       {
         isLoadingDetailedInfo ?
