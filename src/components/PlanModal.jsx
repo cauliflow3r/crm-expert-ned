@@ -5,9 +5,10 @@ import './../styles/BaseModal.css'
 import '../styles/PlanModal.css'
 
 
-const PlanModal = () => {
+const StaffModal = () => {
   const planModal = useSelector(state => state.planModal)
   const dispatch = useDispatch()
+  const id = localStorage.getItem('id')
 
   const closeBaseModal = () => {
     dispatch(setPlanModal(false))
@@ -52,10 +53,25 @@ const PlanModal = () => {
               <strong><a target='_blank' href="http://cbd.minjust.gov.kg/act/view/ru-ru/38/40?cl=ru-ru">О коммерческий тайне</a></strong>".
             </p>
           </div>
+          {
+            (id === '7' || id === '6') &&
+            <div>
+              <h4 className="plan-modal-title plan-modal-second-section">Пароли от площадок</h4>
+              <p className="plan-modal-employees">Lalafo.kg - Логин: <strong>Zbayaliev70@gmail.com</strong> , пароль: <strong>0555239318a</strong></p>
+              <p className="plan-modal-employees">House.kg - Логин: <strong>0706485522</strong> , пароль: <strong>0555239318a</strong></p>
+
+              <h4 className="plan-modal-title plan-modal-second-section">Пароли CRM</h4>
+              <p className="plan-modal-employees">Стажер - Логин: <strong>stazher</strong> , пароль: <strong>en2023</strong></p>
+              <p className="plan-modal-employees">Алмаз Имашов - Логин: <strong>aimashov</strong> , пароль: <strong>NAZI9407</strong></p>
+              <p className="plan-modal-employees">Калыбек Казыбеков - Логин: <strong>kkazybekov</strong> , пароль: <strong>Gostoper1996</strong></p>
+              <p className="plan-modal-employees">Арген Самсалиев - Логин: <strong>asamsaliev</strong> , пароль: <strong>0706332125a</strong></p>
+              <p className="plan-modal-employees">Азирет Турдаалиев - Логин: <strong>aturdaaliev</strong> , пароль: <strong>260098a</strong></p>
+            </div>
+          }
         </div>
       </div>
     </div>
   );
 };
 
-export default PlanModal;
+export default StaffModal;

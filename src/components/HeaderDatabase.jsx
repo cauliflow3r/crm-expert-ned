@@ -179,7 +179,7 @@ const HeaderDatabase = () => {
                 size='small'
                 onClick={openPlanModal}
               >
-                Штат
+                Мы...
               </Button>
 
 

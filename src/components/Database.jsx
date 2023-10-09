@@ -11,7 +11,7 @@ import CircularIndeterminate from './LoaderMaterialUi';
 import { Alert, AlertTitle } from '@mui/material';
 import { setActive } from '../features/alertMUI/alertMUISlice';
 import {updateAccessToken} from "../services/token";
-import PlanModal from "./PlanModal";
+import StaffModal from "./PlanModal";
 
 const Database = () => {
   const dispatch = useDispatch();
@@ -131,7 +131,7 @@ const Database = () => {
 
       {baseModal && <BaseModal/>}
 
-      {planModal &&  <PlanModal />}
+      {planModal &&  <StaffModal />}
 
         <Alert
           severity={alertMUI.type}
