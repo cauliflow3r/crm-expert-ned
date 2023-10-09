@@ -17,6 +17,10 @@ import CircularIndeterminate from "./LoaderMaterialUi";
 import {Button, TextField} from "@mui/material";
 import AlertDialog from "./AlertDialog";
 import {setGetOneClient} from "../features/getOneClient/getOneClientSlice";
+import {editClient} from "../crm-logic/editClient";
+import EditIcon from '@mui/icons-material/Edit';
+import CheckIcon from '@mui/icons-material/Check';
+import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
 
 
 const DatabaseDetailedInfo = () => {
@@ -27,6 +31,8 @@ const DatabaseDetailedInfo = () => {
   const isLoadingDetailedInfo = useSelector((state) => state.isLoadingDetailedInfo)
   const isButtonActive = useSelector((state) => state.buttonLock)
   const id = localStorage.getItem('id')
+  const [baseEdit, setBaseEdit] = useState(false)
+  const searchParameters = useSelector((state) => state.searchParameters)
 
   const handleChangeComment = (e) => {
     e.preventDefault()
@@ -48,6 +54,19 @@ const DatabaseDetailedInfo = () => {
     dispatch(setPurchase(false))
     dispatch(setPotential(false))
     dispatch(setEdit(true))
+  }
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    dispatch(setGetOneClient({
+      ...detailedInfo,
+      [name]: value,
+    }))
+  }
+
+  const editBase = async () => {
+    setBaseEdit(false)
+    await editClient(detailedInfo, dispatch, searchParameters)
   }
 
   return (
@@ -116,9 +135,44 @@ const DatabaseDetailedInfo = () => {
               <div>
                 Адресс: {detailedInfo.adress}
               </div>
-              <div>
-                Тип базы: {detailedInfo.type_of_base}
-              </div>
+
+              { baseEdit ?
+                <div>Тип базы:
+                  <select
+                    name="type_of_base"
+                    value={detailedInfo.type_of_base}
+                    onChange={handleInputChange}
+                  >
+                    <option value="Продажа">Собственники</option>
+                    <option value="Потенциальные">Потенциальные</option>
+                    <option value="Покупка">Квалифицирован</option>
+                    <option value="Встречи">Встречи</option>
+                    <option value="Результаты встречи">Результаты встречи</option>
+                    <option value="Заключение сделки">Заключение сделки</option>
+                    <option value="Неактуальные">Неактуальные</option>
+                  </select>
+                  <CheckIcon
+                    fontSize='small'
+                    onClick={editBase}
+                    sx={{cursor: 'pointer', marginLeft: '1.5vh'}}
+                  />
+                  <DoNotDisturbAltIcon
+                    fontSize='small'
+                    onClick={() => setBaseEdit(false)}
+                    sx={{cursor: 'pointer', marginLeft: '1.5vh'}}
+                  />
+                </div>
+                :
+                <div>
+                  Тип базы: {detailedInfo.type_of_base}
+                  <EditIcon
+                    fontSize='small'
+                    onClick={() => setBaseEdit(true)}
+                    sx={{cursor: 'pointer'}}
+                  />
+                </div>
+              }
+
             </div>
             <div className="detailed-info-our-information">
               <div>
