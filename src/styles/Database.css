@@ -1,3 +1,8 @@
+.data-base-head {
+  background: #435334;
+  padding: 20px;
+}
+
 .data-base {
   background-color: #faf1e4;
   border-radius: 5px;
@@ -59,4 +64,42 @@
 
 .data-base-every-client-price:hover {
   background: #435334;
+}
+
+@media (max-width: 490px) {
+  .data-base-head {
+    background: #435334;
+    padding: 2vh 0 0 0;
+  }
+
+  .data-base-wrap {
+    display: block;
+    height: calc(100vh - 175px);
+  }
+
+  .data-base-all-client-list {
+    width: 100%;
+    font-size: 12px;
+    height: 40%;
+    border-bottom: 0.5vh solid #435334;
+  }
+
+  .data-base-wrap .detailed-info-border-box {
+    width: 100%;
+    height: 60%;
+  }
+
+  .detailed-info-border-box .detailed-info-our-information,
+  .detailed-info-border-box .detailed-info-our-information-link,
+  .detailed-info-border-box .detailed-info-our-information-link a,
+  .detailed-info-public-description,
+  .detailed-info-public-final-description,
+  .detailed-info-every-comment
+  {
+    font-size: 10px;
+  }
+
+  .detailed-info-comment-head {
+    font-size: 14px;
+  }
 }

@@ -14,3 +14,11 @@
   width: calc(100% - 80px);
   overflow-y: auto;
 }
+
+@media (max-width: 490px) {
+  .mainContainer {
+    margin-left: 0;
+    width: 100%;
+  }
+
+}

@@ -83,7 +83,7 @@ const Database = () => {
     }, [alertMUI]);
 
   return (
-    <div style={{background: '#435334', padding: '20px'}}>
+    <div className='data-base-head' >
       <div className='data-base'>
         <HeaderDatabase />
         <div className='data-base-wrap'>

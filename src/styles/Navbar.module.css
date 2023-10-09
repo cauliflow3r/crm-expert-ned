@@ -64,3 +64,14 @@
 .searchBtn:active {
   background-color: #8f8f8f;
 }
+
+@media (max-width: 490px) {
+  .container {
+    left: 0;
+    width: 100%;
+  }
+
+  .searchInp, .searchBtn {
+    display: none;
+  }
+}

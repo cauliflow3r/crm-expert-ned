@@ -133,13 +133,13 @@ const HeaderDatabase = () => {
               Встречи
             </div>
             <div
-              className={ active === 'Результаты встречи' ? 'header-sales-base header-head-button-active' : "header-sales-base"}
+              className={ active === 'Результаты встречи' ? 'header-potential-base header-head-button-active' : "header-potential-base"}
               onClick={ChangeToResultOfMeet}
             >
               Результаты встречи
             </div>
             <div
-              className={ active === 'Заключение сделки' ? 'header-sales-base header-head-button-active' : "header-sales-base"}
+              className={ active === 'Заключение сделки' ? 'header-potential-base header-head-button-active' : "header-potential-base"}
               onClick={ChangeToMakeDeal}
             >
               Заключение сделки
