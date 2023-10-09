@@ -143,13 +143,14 @@ const DatabaseDetailedInfo = () => {
                     value={detailedInfo.type_of_base}
                     onChange={handleInputChange}
                   >
-                    <option value="Продажа">Собственники</option>
+                    <option value="Продажа">Продажа</option>
                     <option value="Потенциальные">Потенциальные</option>
                     <option value="Покупка">Квалифицирован</option>
                     <option value="Встречи">Встречи</option>
                     <option value="Результаты встречи">Результаты встречи</option>
                     <option value="Заключение сделки">Заключение сделки</option>
                     <option value="Неактуальные">Неактуальные</option>
+                    <option value="На удаление">На удаление</option>
                   </select>
                   <CheckIcon
                     fontSize='small'
