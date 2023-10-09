@@ -28,6 +28,7 @@ const PlanModal = () => {
 
             <h4 className="plan-modal-title">Отдел продаж</h4>
             <p className="plan-modal-employees">Имашов Алмаз - <strong>Менеджер по работе с клиентами, 0557 510 150</strong></p>
+            <p className="plan-modal-employees">Казыбеков Калыбек - <strong>Менеджер по работе с клиентами, 0556 510 150</strong></p>
             <p className="plan-modal-employees">Самсалиев Арген - <strong>Менеджер по работе с клиентами, 0706 332 125</strong></p>
             <p className="plan-modal-employees">Турдаалиев Азирет - <strong>Менеджер по работе с клиентами, 0702 260 098</strong></p>
 
