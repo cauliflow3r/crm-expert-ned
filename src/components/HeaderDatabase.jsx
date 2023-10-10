@@ -179,7 +179,7 @@ const HeaderDatabase = () => {
                 size='small'
                 onClick={openPlanModal}
               >
-                Мы...
+                Штат
               </Button>
 
 
@@ -356,6 +356,7 @@ const HeaderDatabase = () => {
               >
                 <MenuItem value="ascending">Сначала дешевые</MenuItem>
                 <MenuItem value="descending">Сначала дорогие</MenuItem>
+                <MenuItem value="toNew">По дате добавления</MenuItem>
               </TextField>
 
             </div>

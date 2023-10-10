@@ -48,6 +48,12 @@ export const getBase = async (dispatch, searchParameters) => {
       filteredData = filteredData.slice().sort((a, b) => {  return a.price - b.price; })
     } else if (searchParameters.sortByPrice === 'descending') {
       filteredData = filteredData.slice().sort((a, b) => {  return b.price - a.price; })
+    } else if (searchParameters.sortByPrice === 'toNew') {
+      filteredData = filteredData.slice().sort((a,b) => {
+        const dateA = new Date(a.created_ad);
+        const dateB = new Date(b.created_ad);
+        return  dateA - dateB;
+      })
     } else return
 
     if (searchParameters.maxPrice) {
