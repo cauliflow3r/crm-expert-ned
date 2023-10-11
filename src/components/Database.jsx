@@ -12,6 +12,9 @@ import { Alert, AlertTitle } from '@mui/material';
 import { setActive } from '../features/alertMUI/alertMUISlice';
 import {updateAccessToken} from "../services/token";
 import StaffModal from "./PlanModal";
+import DataBaseAddTicket from "./DataBaseAddTicket";
+import DataBaseShowTicket from "./DataBaseShowTicket";
+import Statistics from "./Statistics";
 
 const Database = () => {
   const dispatch = useDispatch();
@@ -23,6 +26,10 @@ const Database = () => {
   const searchParameters = useSelector((state) => state.searchParameters)
   const alertMUI = useSelector((state) => state.alertMUI)
   const planModal = useSelector(state => state.planModal)
+  const ticketModal = useSelector((state) => state.ticketLoading )
+  const showTicket = useSelector(state => state.showTicketModal)
+  const statisticsModal = useSelector(state => state.statistics)
+
 
   useEffect(() => {
     (async () => {
@@ -132,6 +139,12 @@ const Database = () => {
       {baseModal && <BaseModal/>}
 
       {planModal &&  <StaffModal />}
+
+      {ticketModal && <DataBaseAddTicket />}
+
+      {showTicket && <DataBaseShowTicket />}
+
+      {statisticsModal && <Statistics />}
 
         <Alert
           severity={alertMUI.type}

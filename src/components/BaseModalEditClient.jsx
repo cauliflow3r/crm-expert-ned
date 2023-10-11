@@ -9,6 +9,8 @@ const BaseModalEditClient = () => {
   const searchParameters = useSelector((state) => state.searchParameters)
   const dispatch = useDispatch()
 
+
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     dispatch(setGetOneClient({

@@ -18,6 +18,7 @@ import Box from "@mui/material/Box";
 import {filterByRooms, filterByTypeOfHousing} from "../constants/searchValues";
 import '../styles/HeaderDatabase.css'
 import {setPlanModal} from "../features/planModal/planModal";
+import {setStatisticsActive} from "../features/statistics/statisticsSlice";
 
 
 const HeaderDatabase = () => {
@@ -180,6 +181,15 @@ const HeaderDatabase = () => {
                 onClick={openPlanModal}
               >
                 Штат
+              </Button>
+
+              <Button
+                variant="outlined"
+                color="success"
+                size='small'
+                onClick={() => dispatch(setStatisticsActive(true))}
+              >
+                Статистика
               </Button>
 
 

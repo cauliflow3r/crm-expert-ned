@@ -53,6 +53,21 @@
   text-align: center;
 }
 
+.detailed-info-tickets {
+  text-align: center;
+  margin: 10px 20px;
+}
+
+.detailed-info-ticket-head {
+  border-top: 1px solid black;
+}
+
+.detailed-info-ticket {
+  cursor: pointer;
+  width: max-content;
+  color: blue;
+}
+
 .detailed-info-comment-head {
   border-bottom: 1px solid black;
   padding: 10px 0;

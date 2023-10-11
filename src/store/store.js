@@ -15,6 +15,11 @@ import {alertMUISlice} from "../features/alertMUI/alertMUISlice";
 import {counterSlice} from "../features/counter/counterSlice";
 import {dialogSlice} from "../features/dialogModal/dialogSlice";
 import {planModalSlice} from "../features/planModal/planModal";
+import {addNewTicketSlice} from "../features/addNewTicket/addNewTicketSlice";
+import {ticketLoadingSlice} from "../features/addNewTicket/isLoadingSlice";
+import {showTicketModalSlice} from "../features/showTicketModal/showTicketModal";
+import {ticketDataSlice} from "../features/ticketData/ticketDataSlice";
+import {statisticsSlice} from "../features/statistics/statisticsSlice";
 
 
 export const store = configureStore({
@@ -35,6 +40,11 @@ export const store = configureStore({
       alertMUI: alertMUISlice.reducer,
       counter: counterSlice.reducer,
       dialog: dialogSlice.reducer,
-      planModal: planModalSlice.reducer
+      planModal: planModalSlice.reducer,
+      addNewTicket: addNewTicketSlice.reducer,
+      ticketLoading: ticketLoadingSlice.reducer,
+      showTicketModal: showTicketModalSlice.reducer,
+      ticketData: ticketDataSlice.reducer,
+      statistics: statisticsSlice.reducer
     }
 })

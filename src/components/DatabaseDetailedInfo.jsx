@@ -21,7 +21,9 @@ import {editClient} from "../crm-logic/editClient";
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
 import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
-
+import {setActive} from "../features/addNewTicket/isLoadingSlice";
+import {showTicket} from "../features/showTicketModal/showTicketModal";
+import {getTickets} from "../crm-logic/getTickets";
 
 const DatabaseDetailedInfo = () => {
 
@@ -69,6 +71,11 @@ const DatabaseDetailedInfo = () => {
     await editClient(detailedInfo, dispatch, searchParameters)
   }
 
+  const handleShowTicket = async (id) => {
+   await dispatch(showTicket(true))
+   await getTickets(id, dispatch)
+  }
+
   return (
     <div className='detailed-info-border-box'>
       <div className='detailed-info-button-flex'>
@@ -91,6 +98,14 @@ const DatabaseDetailedInfo = () => {
               onClick={isEdit}
             >
               Редактировать
+            </Button>
+            <Button
+              color='success'
+              variant="outlined"
+              size='small'
+              onClick={() => dispatch(setActive(true))}
+            >
+              Добавить задачу
             </Button>
           </div>
 
@@ -302,6 +317,25 @@ const DatabaseDetailedInfo = () => {
               </h3>
               {detailedInfo.description}
             </div>
+
+            <div className="detailed-info-tickets">
+              <h2 className='detailed-info-ticket-head'>
+                Задачи
+              </h2>
+              {detailedInfo.tickets.map((item, idx) => {
+                return (
+                  <div key={idx}>
+                    <div
+                      className='detailed-info-ticket'
+                      onClick={() => handleShowTicket(item.id)}>
+                      {item.title}
+                    </div>
+                  </div>
+                )
+              })}
+            </div>
+
+
             <div className="detailed-info-public-comments">
               <h2 className='detailed-info-comment-head'>
                 Комментарии:
