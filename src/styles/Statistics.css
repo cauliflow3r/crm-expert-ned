@@ -1,0 +1,30 @@
+.statistics-title {
+  text-align: center;
+}
+
+.statistics-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.4fr 1fr;
+  border: 1px solid black;
+}
+
+.statistics-name-wrap {
+  text-align: center;
+}
+
+.statistics-head-block {
+  border-bottom: 1px solid black;
+  border-right: 1px solid black;
+  border-left: 1px solid black;
+  display: grid;
+  grid-template-columns: 1fr 1fr 0.4fr 1fr;
+}
+
+.statistics-name, .statistics-date, .statistics-phone {
+  border-right: 1px solid black;
+}
+
+.statistics-date {
+  text-align: center;
+}
+

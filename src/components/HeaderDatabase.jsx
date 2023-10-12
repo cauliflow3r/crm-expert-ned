@@ -247,14 +247,22 @@ const HeaderDatabase = () => {
             <div className='header-head-buttons-right'>
 
             <div className="header-head-btns">
-              <Button
-                variant={ active === 'Заявки' ?  "contained" : "outlined"}
+
+              <Badge
+                badgeContent={counter}
+                color="success"
                 size='small'
-                color='success'
-                onClick={ChangeToApplicationsBase}
               >
-                Заявки
-              </Button>
+                <Button
+                  variant={ active === 'Заявки' ?  "contained" : "outlined"}
+                  size='small'
+                  color='success'
+                  onClick={ChangeToApplicationsBase}
+                >
+                  Заявки
+                </Button>
+              </Badge>
+
 
             </div>
 
