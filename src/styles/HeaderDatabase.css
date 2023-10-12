@@ -33,7 +33,7 @@
 .header-head-buttons-flex-box {
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  margin: 5px auto;
+  margin: 5px auto 0;
 }
 
 .header-search-filter-field {
@@ -70,6 +70,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 15px;
 }
 
 

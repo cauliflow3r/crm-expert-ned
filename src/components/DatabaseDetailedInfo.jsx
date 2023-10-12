@@ -100,14 +100,14 @@ const DatabaseDetailedInfo = () => {
             >
               Редактировать
             </Button>
-            <Button
-              color='success'
-              variant="outlined"
-              size='small'
-              onClick={() => dispatch(setActive(true))}
-            >
-              Добавить задачу
-            </Button>
+            {/*<Button*/}
+            {/*  color='success'*/}
+            {/*  variant="outlined"*/}
+            {/*  size='small'*/}
+            {/*  onClick={() => dispatch(setActive(true))}*/}
+            {/*>*/}
+            {/*  Добавить задачу*/}
+            {/*</Button>*/}
           </div>
 
           { (id === '7' || id === '6' || id === '13' || id === '18') &&
@@ -319,22 +319,22 @@ const DatabaseDetailedInfo = () => {
               {detailedInfo.description}
             </div>
 
-            <div className="detailed-info-tickets">
-              <h2 className='detailed-info-ticket-head'>
-                Задачи
-              </h2>
-              {detailedInfo.tickets.map((item, idx) => {
-                return (
-                  <div key={idx}>
-                    <div
-                      className='detailed-info-ticket'
-                      onClick={() => handleShowTicket(item.id)}>
-                      {item.title}
-                    </div>
-                  </div>
-                )
-              })}
-            </div>
+            {/*<div className="detailed-info-tickets">*/}
+            {/*  <h2 className='detailed-info-ticket-head'>*/}
+            {/*    Задачи*/}
+            {/*  </h2>*/}
+            {/*  {detailedInfo.tickets.map((item, idx) => {*/}
+            {/*    return (*/}
+            {/*      <div key={idx}>*/}
+            {/*        <div*/}
+            {/*          className='detailed-info-ticket'*/}
+            {/*          onClick={() => handleShowTicket(item.id)}>*/}
+            {/*          {item.title}*/}
+            {/*        </div>*/}
+            {/*      </div>*/}
+            {/*    )*/}
+            {/*  })}*/}
+            {/*</div>*/}
 
 
             <div className="detailed-info-public-comments">
