@@ -12,22 +12,21 @@
 
 .header-sales-base, .header-purchases-base, .header-all-base, .header-potential-base, .header-not-relevant-base  {
   font-family: 'Oswald', sans-serif;
-  font-size: 15px;
+  font-size: 14px;
   cursor: pointer;
   width: max-content;
   margin: 0 auto;
-  padding: 5px;
+  border-bottom: 3px solid #faf1e4;
 }
 
 .header-sales-base:hover, .header-purchases-base:hover, .header-all-base:hover, .header-potential-base:hover, .header-not-relevant-base:hover {
-  border-radius: 25px;
-  background: #9eb384;
+  border-bottom: 3px solid #435334;
+  color: #435334;
 }
 
 .header-head-button-active {
-  padding: 5px;
-  border-radius: 25px;
-  background: #9eb384;
+  border-bottom: 3px solid #435334;
+  color: #435334;
 }
 
 
@@ -66,16 +65,13 @@
 
 .more-filters-active {
   opacity: 1;
-  height: 50px;
+  height: 30px;
   transition: 0.5s ease-in-out;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-#bySearchField {
-  height: 0.9em;
-}
 
 #header-min-price, #header-max-price {
   height: 1em;

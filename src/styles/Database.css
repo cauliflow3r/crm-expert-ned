@@ -11,7 +11,7 @@
 
 .data-base-wrap {
   display: flex;
-  height: calc(100vh - 162px);
+  height: calc(100vh - 145px);
 }
 
 .data-base-all-client-list {
@@ -64,6 +64,34 @@
 
 .data-base-every-client-price:hover {
   background: #435334;
+}
+
+.detailed-info-button-flex .MuiButtonBase-root,
+.header-head-buttons .MuiButtonBase-root,
+.header-head-btns .MuiButtonBase-root,
+.header-search-filter-field .MuiButtonBase-root,
+.header-search-filter-field .MuiInputBase-root
+{
+  font-size: 0.7em;
+  padding: 2px 5px;
+  color: black;
+}
+
+.header-search-filter-field .MuiInputBase-root .MuiInputBase-input {
+  height: 0.2em
+}
+
+.header-search-filter-field .MuiFormLabel-root,
+.more-filters-active .MuiFormLabel-root,
+.header-head-buttons-more-filters .MuiFormLabel-root
+{
+  top: -7px;
+}
+
+.more-filters-active .MuiInputBase-root,
+.header-head-buttons-more-filters .MuiInputBase-root
+{
+  font-size: 0.7rem;
 }
 
 @media (max-width: 490px) {

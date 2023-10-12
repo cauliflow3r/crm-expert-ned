@@ -76,6 +76,7 @@ const DatabaseDetailedInfo = () => {
    await getTickets(id, dispatch)
   }
 
+
   return (
     <div className='detailed-info-border-box'>
       <div className='detailed-info-button-flex'>

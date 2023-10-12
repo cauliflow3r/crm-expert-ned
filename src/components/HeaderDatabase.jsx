@@ -208,7 +208,7 @@ const HeaderDatabase = () => {
 
               <TextField
                 id="bySearchField"
-                label="Ключевые слова"
+                label="Поиск"
                 variant="outlined"
                 size='small'
                 color="success"
@@ -239,16 +239,15 @@ const HeaderDatabase = () => {
 
             <div className='header-head-buttons-right'>
 
-              <Badge badgeContent={counter} color="success">
-                <Button
-                  variant={ active === 'Заявки' ?  "contained" : "outlined"}
-                  size='small'
-                  color='success'
-                  onClick={ChangeToApplicationsBase}
-                >
-                  Заявки
-                </Button>
-              </Badge>
+            <div className="header-head-btns">
+              <Button
+                variant={ active === 'Заявки' ?  "contained" : "outlined"}
+                size='small'
+                color='success'
+                onClick={ChangeToApplicationsBase}
+              >
+                Заявки
+              </Button>
 
               <Button
                 variant={ active === 'Полная база' ?  "contained" : "outlined"}
@@ -258,6 +257,8 @@ const HeaderDatabase = () => {
               >
                 Полная база
               </Button>
+            </div>
+
               { (id === '7' || id === '6' || id === '13') &&
                 <div className="header-head-buttons">
                   { (id === '7' || id === '6') &&

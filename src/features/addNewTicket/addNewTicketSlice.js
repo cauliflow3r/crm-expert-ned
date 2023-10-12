@@ -7,7 +7,7 @@ const initialState = {
   link: '',
   description: '',
   comment: '',
-  archived: true,
+  archived: false,
   status: 'New',
   color: 'red',
   user: 0,
