@@ -137,13 +137,13 @@ const HeaderDatabase = () => {
               className={ active === 'Результаты встречи' ? 'header-potential-base header-head-button-active' : "header-potential-base"}
               onClick={ChangeToResultOfMeet}
             >
-              Результаты встречи
+              Результат
             </div>
             <div
               className={ active === 'Заключение сделки' ? 'header-potential-base header-head-button-active' : "header-potential-base"}
               onClick={ChangeToMakeDeal}
             >
-              Заключение сделки
+              Заключение
             </div>
             <div
               className={ active === 'Неактуальные' ? 'header-potential-base header-head-button-active' : "header-potential-base"}
@@ -151,6 +151,13 @@ const HeaderDatabase = () => {
             >
               Неактуальные
             </div>
+            <div
+              className={ active === 'Полная база' ? 'header-sales-base header-head-button-active' : "header-sales-base"}
+              onClick={ChangeToAllBase}
+            >
+              Полная база
+            </div>
+
           </div>
           <div className='header-head-buttons-flex-box'>
 
@@ -249,14 +256,6 @@ const HeaderDatabase = () => {
                 Заявки
               </Button>
 
-              <Button
-                variant={ active === 'Полная база' ?  "contained" : "outlined"}
-                size='small'
-                color='success'
-                onClick={ChangeToAllBase}
-              >
-                Полная база
-              </Button>
             </div>
 
               { (id === '7' || id === '6' || id === '13') &&

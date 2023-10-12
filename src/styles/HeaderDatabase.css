@@ -2,7 +2,7 @@
 
 .header-bases-wrap {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
 }
 
 .header-flex {
@@ -109,8 +109,18 @@
   }
 
   .more-filters-active {
-    height: 200px;
+    height: 160px;
     flex-direction: column;
     text-align: center;
+  }
+
+  .header-head-buttons-more-filters {
+    height: 0px;
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .more-filters-active .MuiFormControl-root, .header-head-buttons-more-filters .MuiFormControl-root {
+    margin: 6px !important;
   }
 }

@@ -51,7 +51,7 @@ const Navbar = () => {
         </div>
         <button className={styles.profile}>{initials}</button>
         <button style={{ marginRight: "10px" }} onClick={logout}>
-          Log out
+          Выйти
         </button>
       </div>
     </div>
