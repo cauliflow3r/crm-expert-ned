@@ -86,6 +86,16 @@
   align-items: end;
 }
 
+.base-modal-window-flex .base-modal-window .MuiFormControl-root {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.base-modal-window-flex .MuiFormControl-root {
+  width: 90%;
+  margin-bottom: 10px;
+}
+
 @keyframes pulseShadow {
   0% {
     box-shadow: none;

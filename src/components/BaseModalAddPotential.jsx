@@ -1,6 +1,8 @@
 import React from 'react';
 import {addClient} from "../crm-logic/addClient";
 import {useDispatch, useSelector} from "react-redux";
+import {Button, MenuItem, TextField} from "@mui/material";
+import {managers} from "../constants/managers";
 
 const BaseModalAddPotential = (props) => {
 
@@ -15,25 +17,29 @@ const BaseModalAddPotential = (props) => {
   return (
     <div>
       <form>
-        <h2 className='base-modal-title'>Добавить покупателя</h2>
+        <h2 className='base-modal-title'>Добавить потенциального клиента</h2>
         {/*Имя и телефон*/}
         <div className="base-modal-window-flex">
           <div className="base-modal-window">
-            <input
-              type="text"
+            <TextField
+              type='text'
               name='name'
-              placeholder='Имя клиента'
               value={modalData.name}
               onChange={handleInputChange}
+              label='Имя клиента'
+              size='small'
+              color="success"
             />
           </div>
           <div className="base-modal-window">
-            <input
-              type="text"
+            <TextField
+              type='text'
               name='phone'
-              placeholder='Телефон'
               value={modalData.phone}
               onChange={handleInputChange}
+              label='Номер телефона'
+              size='small'
+              color="success"
             />
 
           </div>
@@ -428,40 +434,81 @@ const BaseModalAddPotential = (props) => {
 
         {/*Описание*/}
         <div className="base-modal-window-flex">
-          <textarea
-            name="description"
-            placeholder='Доп.информация'
+          {/*<textarea*/}
+          {/*  name="description"*/}
+          {/*  placeholder='Доп.информация'*/}
+          {/*  value={modalData.description}*/}
+          {/*  onChange={handleInputChange}*/}
+          {/*/>*/}
+
+          <TextField
+            name='description'
+            multiline
+            rows={7}
+            color='success'
             value={modalData.description}
             onChange={handleInputChange}
+            label='Дополнительная информация'
+            size='small'
           />
         </div>
 
         {/*Менеджер*/}
         <div className="base-modal-window-flex">
-          <select
-            className='base-modal-window-manager-select'
+
+          <TextField
             name="comments"
+            select
             value={modalData.comments}
             onChange={handleInputChange}
+            color="success"
+            size='small'
+            label='Выберите менеджера'
           >
-            <option value="">Выберите менеджера</option>
-            <option value="Замир Баялиев">Замир Баялиев</option>
-            <option value="Алмаз Имашов">Алмаз Имашов</option>
-            <option value="Калыбек Казыбеков">Калыбек Казыбеков</option>
-            <option value="Самсалиев Арген">Самсалиев Арген</option>
-            <option value="Азирет Турдаалиев">Азирет Турдаалиев</option>
-          </select>
+            {managers.map((option, idx) => (
+              <MenuItem key={idx} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
+
+          {/*<select*/}
+          {/*  className='base-modal-window-manager-select'*/}
+          {/*  name="comments"*/}
+          {/*  value={modalData.comments}*/}
+          {/*  onChange={handleInputChange}*/}
+          {/*>*/}
+          {/*  <option value="">Выберите менеджера</option>*/}
+          {/*  <option value="Замир Баялиев">Замир Баялиев</option>*/}
+          {/*  <option value="Алмаз Имашов">Алмаз Имашов</option>*/}
+          {/*  <option value="Калыбек Казыбеков">Калыбек Казыбеков</option>*/}
+          {/*  <option value="Самсалиев Арген">Самсалиев Арген</option>*/}
+          {/*  <option value="Азирет Турдаалиев">Азирет Турдаалиев</option>*/}
+          {/*</select>*/}
         </div>
 
 
         {/*Добавить*/}
-        <input
-          className='base-modal-add-button'
-          type="button"
-          value='Добавить клиента'
-          disabled={isButtonActive}
-          onClick={() => addClient(modalData, dispatch)}
-        />
+
+        <div style={{textAlign: 'center'}}>
+          <Button
+            disabled={isButtonActive}
+            onClick={() => addClient(modalData, dispatch)}
+            size='small'
+            color='success'
+            variant='contained'
+          >
+            Добавить
+          </Button>
+        </div>
+
+        {/*<input*/}
+        {/*  className='base-modal-add-button'*/}
+        {/*  type="button"*/}
+        {/*  value='Добавить клиента'*/}
+        {/*  disabled={isButtonActive}*/}
+        {/*  onClick={() => addClient(modalData, dispatch)}*/}
+        {/*/>*/}
 
       </form>
     </div>
