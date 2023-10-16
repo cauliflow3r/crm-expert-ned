@@ -15,14 +15,14 @@
 .base-modal-buttons-wrap button {
   font-size: 20px;
   backdrop-filter: blur(30px);
-  background: none;
+  background: #435334;;
+  color: white;
   border: 0.1vh solid rgb(67, 83, 52);
-  /*box-shadow: 0.5vh 0.5vw 0.5vw rgb(67, 83, 52), 0.5vh 0.5vh 1vw rgb(67, 83, 52);*/
+  box-shadow: 0.5vh 0.5vw 0.5vw rgb(67, 83, 52), 0.5vh 0.5vh 1vw rgb(67, 83, 52);
   border-radius: 1vw;
-  padding: 4vh 4vh;
+  padding: 1vh 1vh;
   cursor: pointer;
-  transition: 0.89s;
-  animation: pulseShadow 3.5s infinite;
+  transition: 0.5s ease-in-out;
 }
 
 .base-modal-buttons-wrap button:hover {

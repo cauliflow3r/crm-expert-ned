@@ -1,6 +1,12 @@
 import React from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import {addClient} from "../crm-logic/addClient";
+import {Button, MenuItem, TextField} from "@mui/material";
+import {typeOfHousing} from "../constants/typeOfHousing";
+import {series} from "../constants/series";
+import {stateHousing} from "../constants/stateHousing";
+import {documents} from "../constants/documents";
+import {managers} from "../constants/managers";
 
 const BaseModalAddBuyer = (props) => {
 
@@ -19,21 +25,25 @@ const BaseModalAddBuyer = (props) => {
         {/*Имя и телефон*/}
         <div className="base-modal-window-flex">
           <div className="base-modal-window">
-            <input
-              type="text"
+            <TextField
+              type='text'
               name='name'
-              placeholder='Имя клиента'
               value={modalData.name}
               onChange={handleInputChange}
+              label='Имя клиента'
+              size='small'
+              color="success"
             />
           </div>
           <div className="base-modal-window">
-            <input
-              type="text"
+            <TextField
+              type='text'
               name='phone'
-              placeholder='Телефон'
               value={modalData.phone}
               onChange={handleInputChange}
+              label='Номер телефона'
+              size='small'
+              color="success"
             />
 
           </div>
@@ -42,28 +52,33 @@ const BaseModalAddBuyer = (props) => {
         {/*Адрес и тип недвижимости*/}
         <div className="base-modal-window-flex">
           <div className="base-modal-window">
-            <input
-              type="text"
+            <TextField
+              type='text'
               name='adress'
-              placeholder='Желаемый район'
               value={modalData.adress}
               onChange={handleInputChange}
+              label='Желаемый район'
+              size='small'
+              color="success"
             />
           </div>
           <div className="base-modal-window">
-            <select
+
+            <TextField
               name="type_of_housing"
+              select
               value={modalData.type_of_housing}
               onChange={handleInputChange}
+              color="success"
+              size='small'
+              label='Тип недвижимости'
             >
-              <option value="">Что хочет покупатель</option>
-              <option value="Частный дом">Частный дом</option>
-              <option value="Квартира">Квартира</option>
-              <option value="Коммерческая недвижимость">Коммерческая недвижимость</option>
-              <option value="Участок">Участок</option>
-              <option value="Неважно">Неважно</option>
-            </select>
-
+              {typeOfHousing.map((option, idx) => (
+                <MenuItem key={idx} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
           </div>
         </div>
@@ -160,21 +175,25 @@ const BaseModalAddBuyer = (props) => {
         {/*Наша цена и цена в руки*/}
         <div className="base-modal-window-flex">
           <div className="base-modal-window">
-            <input
-              type="text"
+            <TextField
+              type='text'
               name='price'
-              placeholder='Бюджет'
               value={modalData.price}
               onChange={handleInputChange}
+              label='Бюджет клиента'
+              size='small'
+              color="success"
             />
           </div>
           <div className="base-modal-window">
-            <input
-              type="text"
+            <TextField
+              type='text'
               name='owner_price'
-              placeholder='Красный бюджет'
               value={modalData.owner_price}
               onChange={handleInputChange}
+              label='Красный бюджет'
+              size='small'
+              color="success"
             />
 
           </div>
@@ -201,43 +220,41 @@ const BaseModalAddBuyer = (props) => {
 
           </div>
           <div className="base-modal-window">
-            <select
+
+            <TextField
               name="series"
+              select
               value={modalData.series}
               onChange={handleInputChange}
+              color="success"
+              size='small'
+              label='Серия'
             >
-              <option value="">Серия</option>
-              <option value="104 серия">104 серия</option>
-              <option value="104 серия улучшенная">104 серия улучшенная</option>
-              <option value="105 серия">105 серия</option>
-              <option value="105 серия улучшенная">105 серия улучшенная</option>
-              <option value="106 серия">106 серия</option>
-              <option value="106 серия улучшенная">106 серия улучшенная</option>
-              <option value="107 серия">107 серия</option>
-              <option value="108 серия">108 серия</option>
-              <option value="Элитка">Элитка</option>
-              <option value="Индивидуалка">Индивидуалка</option>
-              <option value="Сталинка">Сталинка</option>
-              <option value="Хрущевка">Хрущевка</option>
-              <option value="Неважно">Неважно</option>
-            </select>
-
+              {series.map((option, idx) => (
+                <MenuItem key={idx} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
           </div>
           <div className="base-modal-window">
-            <select
+
+            <TextField
               name="repair"
+              select
               value={modalData.repair}
               onChange={handleInputChange}
+              color="success"
+              size='small'
+              label='Состояние'
             >
-              <option value="">Состояние</option>
-              <option value="Под ПСО">Под ПСО</option>
-              <option value="Евроремонт">Евроремонт</option>
-              <option value="Свежий ремонт">Свежий ремонт</option>
-              <option value="Средний ремонт">Средний ремонт</option>
-              <option value="Требуется ремонт">Требуется ремонт</option>
-              <option value="Неважно">Неважно</option>
-            </select>
+              {stateHousing.map((option, idx) => (
+                <MenuItem key={idx} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
 
           </div>
@@ -290,32 +307,33 @@ const BaseModalAddBuyer = (props) => {
 
           </div>
           <div className="base-modal-window">
-            <select
+
+            <TextField
               name="document"
+              select
               value={modalData.document}
               onChange={handleInputChange}
+              color="success"
+              size='small'
+              label='Документы'
             >
-              <option value="">Документы</option>
-              <option value="Технический паспорт">Технический паспорт</option>
-              <option value="Договор купли-продажи">Договор купли-продажи</option>
-              <option value="Договор купли-продажи + техпаспорт">Договор купли-продажи + техпаспорт</option>
-              <option value="Договор долевого участия">Договор долевого участия</option>
-              <option value="Договор дарения">Договор дарения</option>
-              <option value="Доверенность">Доверенность</option>
-              <option value="Красная книга + техпаспорт">Красная книга + техпаспорт</option>
-              <option value="Красная книга">Красная книга</option>
-              <option value="Неважно">Неважно</option>
-            </select>
-
+              {documents.map((option, idx) => (
+                <MenuItem key={idx} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
 
           </div>
           <div className="base-modal-window">
-            <input
-              type="text"
+            <TextField
+              type='text'
               name='communications'
-              placeholder='Коммуникации'
               value={modalData.communications}
               onChange={handleInputChange}
+              label='Коммуникации'
+              size='small'
+              color="success"
             />
           </div>
         </div>
@@ -428,40 +446,50 @@ const BaseModalAddBuyer = (props) => {
 
         {/*Описание*/}
         <div className="base-modal-window-flex">
-          <textarea
-            name="description"
-            placeholder='Доп.информация'
+          <TextField
+            name='description'
+            multiline
+            rows={7}
+            color='success'
             value={modalData.description}
             onChange={handleInputChange}
+            label='Дополнительная информация'
+            size='small'
           />
         </div>
 
         {/*Менеджер*/}
         <div className="base-modal-window-flex">
-          <select
-            className='base-modal-window-manager-select'
+          <TextField
             name="comments"
+            select
             value={modalData.comments}
             onChange={handleInputChange}
+            color="success"
+            size='small'
+            label='Выберите менеджера'
           >
-            <option value="">Выберите менеджера</option>
-            <option value="Замир Баялиев">Замир Баялиев</option>
-            <option value="Алмаз Имашов">Алмаз Имашов</option>
-            <option value="Калыбек Казыбеков">Калыбек Казыбеков</option>
-            <option value="Самсалиев Арген">Самсалиев Арген</option>
-            <option value="Азирет Турдаалиев">Азирет Турдаалиев</option>
-          </select>
+            {managers.map((option, idx) => (
+              <MenuItem key={idx} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
         </div>
 
 
         {/*Добавить*/}
-        <input
-          className='base-modal-add-button'
-          type="button"
-          value='Добавить клиента'
-          disabled={isButtonActive}
-          onClick={() => addClient(modalData, dispatch)}
-        />
+        <div style={{textAlign: 'center'}}>
+          <Button
+            disabled={isButtonActive}
+            onClick={() => addClient(modalData, dispatch)}
+            size='small'
+            color='success'
+            variant='contained'
+          >
+            Добавить
+          </Button>
+        </div>
 
       </form>
     </div>

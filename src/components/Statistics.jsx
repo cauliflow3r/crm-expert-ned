@@ -15,6 +15,10 @@ const Statistics = () => {
   const dispatch = useDispatch()
   const [data, setData] = useState([])
   const [dataSite, setDataSite] = useState([])
+  const [dataAlmaz, setDataAlmaz] = useState([])
+  const [dataKalybek, setDataKalybek] = useState([])
+  const [dataArgen, setDataArgen] = useState([])
+  const [dataAziret, setDataAziret] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const date = new Date();
   const year = date.getFullYear();
@@ -36,6 +40,18 @@ const Statistics = () => {
       const responseSite = await axiosInstance.get(`crm/?manager=21&created_ad=${formattedDate}`)
       setDataSite(responseSite.data.results)
 
+      const responseAlmaz = await axiosInstance.get(`crm/?manager=13&created_ad=${formattedDate}`)
+      setDataAlmaz(responseAlmaz.data.results)
+
+      const responseKalybek = await axiosInstance.get(`crm/?manager=18&created_ad=${formattedDate}`)
+      setDataKalybek(responseKalybek.data.results)
+
+      const responseArgen = await axiosInstance.get(`crm/?manager=14&created_ad=${formattedDate}`)
+      setDataArgen(responseArgen.data.results)
+
+      const responseAziret = await axiosInstance.get(`crm/?manager=17&created_ad=${formattedDate}`)
+      setDataAziret(responseAziret.data.results)
+
     } catch (e) {
       console.log(e)
     } finally {
@@ -53,6 +69,18 @@ const Statistics = () => {
 
       const responseSite = await axiosInstance.get(`crm/?manager=21&created_ad=${formatDate(selectedDate)}`)
       setDataSite(responseSite.data.results)
+
+      const responseAlmaz = await axiosInstance.get(`crm/?manager=13&created_ad=${formatDate(selectedDate)}`)
+      setDataAlmaz(responseAlmaz.data.results)
+
+      const responseKalybek = await axiosInstance.get(`crm/?manager=18&created_ad=${formatDate(selectedDate)}`)
+      setDataKalybek(responseKalybek.data.results)
+
+      const responseArgen = await axiosInstance.get(`crm/?manager=14&created_ad=${formatDate(selectedDate)}`)
+      setDataArgen(responseArgen.data.results)
+
+      const responseAziret = await axiosInstance.get(`crm/?manager=17&created_ad=${formatDate(selectedDate)}`)
+      setDataAziret(responseAziret.data.results)
 
     } catch (e) {
       console.log(e)
@@ -99,73 +127,228 @@ const Statistics = () => {
                 onClick={getStatisticsSelectedDay}
               />
             </div>
-            <h2 className='statistics-title'>Статистика за заявок Instagram</h2>
+
+            <h2 className='statistics-title'>Статистика заявок Instagram</h2>
             <div className='statistics-title'>
               Общее количество заявок: <strong>{data.length}</strong>
             </div>
-            <div className="statistics-wrap">
-              <div className="statistics-name statistics-name-wrap">Имя</div>
-              <div className="statistics-phone statistics-name-wrap">Номер</div>
-              <div className="statistics-date">Создан</div>
-              <div className="statistics-date">Реакция</div>
-              <div className="statistics-manager statistics-name-wrap">Менеджер</div>
-            </div>
-            <div>
-              {data.map((item, idx) => {
-                return (
-                  <div
-                    className='statistics-head-block'
-                    key={idx}
-                  >
-                    <div className="statistics-name">{item.name}</div>
 
-                    <div className="statistics-phone">{item.phone}</div>
+            {data.length !== 0 &&
+              <>
+                <div className="statistics-wrap">
+                  <div className="statistics-name statistics-name-wrap">Имя</div>
+                  <div className="statistics-phone statistics-name-wrap">Номер</div>
+                  <div className="statistics-date">Создан</div>
+                  <div className="statistics-date">Реакция</div>
+                  <div className="statistics-manager statistics-name-wrap">Менеджер</div>
+                </div>
+                <div>
+                  {data.map((item, idx) => {
+                    return (
+                      <div
+                        className='statistics-head-block'
+                        key={idx}
+                      >
+                        <div className="statistics-name">{item.name}</div>
 
-                    <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+                        <div className="statistics-phone">{item.phone}</div>
 
-                    <div className="statistics-date">{timeAdd(item.updated_ad)}</div>
+                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
 
-                    <div className="statistics-manager">{item.comments === 'Неважно' ? <strong>Не распределен</strong> : <strong> {item.comments}</strong>}</div>
+                        <div className="statistics-date">{timeAdd(item.updated_ad)}</div>
 
-                  </div>
-                )
-              })}
-            </div>
-            <h2 className='statistics-title statistics-second-title'>Статистика за заявок с сайта</h2>
-            <div style={{ display: "flex", justifyContent: 'center', alignContent: 'center'}}>
+                        <div className="statistics-manager">{item.comments === 'Неважно' ? <strong>Не распределен</strong> : <strong> {item.comments}</strong>}</div>
 
-            </div>
+                      </div>
+                    )
+                  })}
+                </div>
+              </>
+            }
+
+
+            <h2 className='statistics-title statistics-second-title'>Статистика заявок с сайта</h2>
             <div className='statistics-title'>
-              Общее количество заявок: <strong>{data.length}</strong>
+              Общее количество заявок: <strong>{dataSite.length}</strong>
             </div>
-            <div className="statistics-wrap">
-              <div className="statistics-name statistics-name-wrap">Имя</div>
-              <div className="statistics-phone statistics-name-wrap">Номер</div>
-              <div className="statistics-date">Создан</div>
-              <div className="statistics-date">Реакция</div>
-              <div className="statistics-manager statistics-name-wrap">Менеджер</div>
-            </div>
-            <div>
-              {dataSite.map((item, idx) => {
-                return (
-                  <div
-                    className='statistics-head-block'
-                    key={idx}
-                  >
-                    <div className="statistics-name">{item.name}</div>
 
-                    <div className="statistics-phone">{item.phone}</div>
+            {dataSite.length !== 0 &&
+              <>
+                <div className="statistics-wrap">
+                  <div className="statistics-name statistics-name-wrap">Имя</div>
+                  <div className="statistics-phone statistics-name-wrap">Номер</div>
+                  <div className="statistics-date">Создан</div>
+                  <div className="statistics-date">Реакция</div>
+                  <div className="statistics-manager statistics-name-wrap">Менеджер</div>
+                </div>
+                <div>
+                  {dataSite.map((item, idx) => {
+                    return (
+                      <div
+                        className='statistics-head-block'
+                        key={idx}
+                      >
+                        <div className="statistics-name">{item.name}</div>
 
-                    <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+                        <div className="statistics-phone">{item.phone}</div>
 
-                    <div className="statistics-date">{timeAdd(item.updated_ad)}</div>
+                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
 
-                    <div className="statistics-manager">{item.comments === 'Неважно' ? <strong>Не распределен</strong> : <strong> {item.comments}</strong>}</div>
+                        <div className="statistics-date">{timeAdd(item.updated_ad)}</div>
 
+                        <div className="statistics-manager">{item.comments === 'Неважно' ? <strong>Не распределен</strong> : <strong> {item.comments}</strong>}</div>
+
+                      </div>
+                    )
+                  })}
+                </div>
+              </>
+            }
+
+
+
+            <h2 className='statistics-title statistics-second-title'>Статистика менеджеров</h2>
+
+            <div className="statistics-wrap-managers">
+              <strong>Алмаз Имашов</strong> - {dataAlmaz.length} добавленных
+
+              {dataAlmaz.length !== 0 &&
+                <>
+                  <div className="statistics-wrap">
+                    <div className="statistics-name statistics-name-wrap">Имя</div>
+                    <div className="statistics-phone statistics-name-wrap">Номер</div>
+                    <div className="statistics-date">Создан</div>
+                    <div className="statistics-date">ID</div>
+                    <div className="statistics-manager statistics-name-wrap">Тип базы</div>
                   </div>
-                )
-              })}
+                  {dataAlmaz.map((item, idx) => {
+                    return (
+                      <div
+                        className='statistics-head-block'
+                        key={idx}
+                      >
+                        <div className="statistics-name">{item.name}</div>
+
+                        <div className="statistics-phone">{item.phone}</div>
+
+                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                        <div className="statistics-date">{item.id}</div>
+
+                        <div className="statistics-date">{item.type_of_base}</div>
+
+                      </div>
+                    )
+                  })}
+                </>
+              }
+
+
             </div>
+
+            <div className="statistics-wrap-managers">
+              <strong>Калыбек Казыбеков</strong> - {dataKalybek.length} добавленных
+              {dataKalybek.length !== 0 &&
+                <>
+                  <div className="statistics-wrap">
+                    <div className="statistics-name statistics-name-wrap">Имя</div>
+                    <div className="statistics-phone statistics-name-wrap">Номер</div>
+                    <div className="statistics-date">Создан</div>
+                    <div className="statistics-date">ID</div>
+                    <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                  </div>
+                  {dataKalybek.map((item, idx) => {
+                    return (
+                      <div
+                        className='statistics-head-block'
+                        key={idx}
+                      >
+                        <div className="statistics-name">{item.name}</div>
+
+                        <div className="statistics-phone">{item.phone}</div>
+
+                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                        <div className="statistics-date">{item.id}</div>
+
+                        <div className="statistics-date">{item.type_of_base}</div>
+
+                      </div>
+                    )
+                  })}
+                </>
+              }
+            </div>
+
+            <div className="statistics-wrap-managers">
+              <strong>Арген Самсалиев</strong> - {dataArgen.length} добавленных
+              {dataArgen.length !== 0 &&
+                <>
+                  <div className="statistics-wrap">
+                    <div className="statistics-name statistics-name-wrap">Имя</div>
+                    <div className="statistics-phone statistics-name-wrap">Номер</div>
+                    <div className="statistics-date">Создан</div>
+                    <div className="statistics-date">ID</div>
+                    <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                  </div>
+                  {dataArgen.map((item, idx) => {
+                    return (
+                      <div
+                        className='statistics-head-block'
+                        key={idx}
+                      >
+                        <div className="statistics-name">{item.name}</div>
+
+                        <div className="statistics-phone">{item.phone}</div>
+
+                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                        <div className="statistics-date">{item.id}</div>
+
+                        <div className="statistics-date">{item.type_of_base}</div>
+
+                      </div>
+                    )
+                  })}
+                </>
+              }
+            </div>
+
+            <div className="statistics-wrap-managers">
+              <strong>Азирет Турдаалиев</strong> - {dataAziret.length} добавленных
+              {dataAziret.length !== 0 &&
+                <>
+                  <div className="statistics-wrap">
+                    <div className="statistics-name statistics-name-wrap">Имя</div>
+                    <div className="statistics-phone statistics-name-wrap">Номер</div>
+                    <div className="statistics-date">Создан</div>
+                    <div className="statistics-date">ID</div>
+                    <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                  </div>
+                  {dataAziret.map((item, idx) => {
+                    return (
+                      <div
+                        className='statistics-head-block'
+                        key={idx}
+                      >
+                        <div className="statistics-name">{item.name}</div>
+
+                        <div className="statistics-phone">{item.phone}</div>
+
+                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                        <div className="statistics-date">{item.id}</div>
+
+                        <div className="statistics-date">{item.type_of_base}</div>
+
+                      </div>
+                    )
+                  })}
+                </>
+              }
+
+            </div>
+
           </>
         }
 
