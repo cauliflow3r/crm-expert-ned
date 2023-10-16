@@ -1,10 +1,15 @@
 .statistics-title {
   text-align: center;
+  margin: 10px auto;
+}
+
+.statistics-second-title {
+  margin-top: 35px;
 }
 
 .statistics-wrap {
   display: grid;
-  grid-template-columns: 1fr 1fr 0.4fr 1fr;
+  grid-template-columns: 1fr 1fr 0.4fr 0.4fr 1fr;
   border: 1px solid black;
 }
 
@@ -17,7 +22,12 @@
   border-right: 1px solid black;
   border-left: 1px solid black;
   display: grid;
-  grid-template-columns: 1fr 1fr 0.4fr 1fr;
+  grid-template-columns: 1fr 1fr 0.4fr 0.4fr 1fr;
+  cursor: pointer;
+}
+
+.statistics-head-block:hover {
+
 }
 
 .statistics-name, .statistics-date, .statistics-phone {
@@ -26,5 +36,27 @@
 
 .statistics-date {
   text-align: center;
+}
+
+.statistics-date-field {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px auto 25px;
+}
+
+.statistics-date-field .react-datepicker-wrapper .react-datepicker__input-container input {
+  height: 35px;
+  font-size: 20px;
+  background: #435334;
+  border: 1px solid black;
+  border-radius: 20px;
+  text-align: center;
+  width: max-content;
+  color: white;
+}
+
+.statistics-date-field .react-datepicker-wrapper .react-datepicker__input-container input::placeholder {
+  color: white;
 }
 

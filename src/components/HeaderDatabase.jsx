@@ -215,7 +215,6 @@ const HeaderDatabase = () => {
 
               <TextField
                 id="bySearchField"
-                label="Поиск"
                 variant="outlined"
                 size='small'
                 color="success"

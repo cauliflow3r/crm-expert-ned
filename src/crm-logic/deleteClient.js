@@ -1,16 +1,19 @@
 import {updateAccessToken} from "../services/token";
 import { axiosInstance } from "../utils/api";
 import {setActive, setTitle, setType, setValue} from "../features/alertMUI/alertMUISlice";
+import {setGetOneClient} from "../features/getOneClient/getOneClientSlice";
 
 export const deleteClient = async (id, dispatch) => {
   await updateAccessToken();
   try {
     const response = await axiosInstance.delete(`crm/${id}/`);
-    console.log(response)
-    dispatch(setType('success'))
-    dispatch(setTitle('Успешно выполнено!'))
-    dispatch(setValue('Клиент успешно удалён!'))
-    dispatch(setActive(true))
+    if (response.status === 204) {
+      dispatch(setType('success'))
+      dispatch(setTitle('Успешно выполнено!'))
+      dispatch(setValue('Клиент успешно удалён!'))
+      dispatch(setActive(true))
+      dispatch(setGetOneClient(null))
+    }
   } catch (e) {
     console.log(e)
     dispatch(setType('error'))
