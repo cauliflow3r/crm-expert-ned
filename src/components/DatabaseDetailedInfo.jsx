@@ -223,7 +223,7 @@ const DatabaseDetailedInfo = () => {
                     { detailedInfo.floor === 9999 ?
 
                       <div>
-                        { detailedInfo.total_floors !== 9999
+                        { (detailedInfo.total_floors !== '9999') && (detailedInfo.total_floors !== 'Неважно')
                           &&
                          <span> Всего этажей: { detailedInfo.total_floors}</span> }
 
