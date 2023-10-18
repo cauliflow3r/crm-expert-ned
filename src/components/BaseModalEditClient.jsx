@@ -456,6 +456,7 @@ const BaseModalEditClient = () => {
             <option value="Замир Баялиев">Замир Баялиев</option>
             <option value="Алмаз Имашов">Алмаз Имашов</option>
             <option value="Калыбек Казыбеков">Калыбек Казыбеков</option>
+            <option value="Семетей Манасбек уулу">Семетей Манасбек уулу</option>
             <option value="Самсалиев Арген">Самсалиев Арген</option>
             <option value="Азирет Турдаалиев">Азирет Турдаалиев</option>
           </select>
