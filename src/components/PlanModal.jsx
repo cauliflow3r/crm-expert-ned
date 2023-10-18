@@ -30,6 +30,7 @@ const StaffModal = () => {
             <h4 className="plan-modal-title">Отдел продаж</h4>
             <p className="plan-modal-employees">Имашов Алмаз - <strong>Менеджер по работе с клиентами, 0557 510 150</strong></p>
             <p className="plan-modal-employees">Казыбеков Калыбек - <strong>Менеджер по работе с клиентами, 0556 510 150</strong></p>
+            <p className="plan-modal-employees">Манасбек уулу Семетей - <strong>Менеджер по работе с клиентами, 0704 373 044</strong></p>
             <p className="plan-modal-employees">Самсалиев Арген - <strong>Менеджер по работе с клиентами, 0706 332 125</strong></p>
             <p className="plan-modal-employees">Турдаалиев Азирет - <strong>Менеджер по работе с клиентами, 0702 260 098</strong></p>
 
@@ -38,9 +39,7 @@ const StaffModal = () => {
 
             <h4 className="plan-modal-title">IT-отдел</h4>
             <p className="plan-modal-employees">Азамат @cauliflow3r - <strong>Frontend-разработчик</strong></p>
-            <p className="plan-modal-employees">Аскар @oscarquell - <strong>Frontend-разработчик, 0755 264 262</strong></p>
-             <p className="plan-modal-employees">Эльдана @fin_shine - <strong>Frontend-разработчик, 0702 559 970</strong></p>
-            <p className="plan-modal-employees">Бекбол @hfhdjkel - <strong>Backend-разработчик, 0557 571 051</strong></p>
+            <p className="plan-modal-employees">Аскар @oscarquell - <strong>Frontend-разработчик</strong></p>
             <p className="plan-modal-employees">Нурсултан @nurrative - <strong>Backend-разработчик</strong></p>
           </div>
           <div>
@@ -64,6 +63,7 @@ const StaffModal = () => {
               <p className="plan-modal-employees">Стажер - Логин: <strong>stazher</strong> , пароль: <strong>en2023</strong></p>
               <p className="plan-modal-employees">Алмаз Имашов - Логин: <strong>aimashov</strong> , пароль: <strong>NAZI9407</strong></p>
               <p className="plan-modal-employees">Калыбек Казыбеков - Логин: <strong>kkazybekov</strong> , пароль: <strong>Gostoper1996</strong></p>
+              <p className="plan-modal-employees">Семетей Манасбек уулу - Логин: <strong>smanasbek</strong> , пароль: <strong>Twentyoneguns21</strong></p>
               <p className="plan-modal-employees">Арген Самсалиев - Логин: <strong>asamsaliev</strong> , пароль: <strong>0706332125a</strong></p>
               <p className="plan-modal-employees">Азирет Турдаалиев - Логин: <strong>aturdaaliev</strong> , пароль: <strong>260098a</strong></p>
             </div>

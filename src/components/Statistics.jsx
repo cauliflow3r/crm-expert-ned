@@ -17,6 +17,7 @@ const Statistics = () => {
   const [dataSite, setDataSite] = useState([])
   const [dataAlmaz, setDataAlmaz] = useState([])
   const [dataKalybek, setDataKalybek] = useState([])
+  const [dataSemetei, setDataSemetei] = useState([])
   const [dataArgen, setDataArgen] = useState([])
   const [dataAziret, setDataAziret] = useState([])
   const [isLoading, setIsLoading] = useState(false)
@@ -52,6 +53,9 @@ const Statistics = () => {
       const responseAziret = await axiosInstance.get(`crm/?manager=17&created_ad=${formattedDate}`)
       setDataAziret(responseAziret.data.results)
 
+      const responseSemetei = await axiosInstance.get(`crm/?manager=22&created_ad=${formattedDate}`)
+      setDataSemetei(responseSemetei.data.results)
+
     } catch (e) {
       console.log(e)
     } finally {
@@ -81,6 +85,9 @@ const Statistics = () => {
 
       const responseAziret = await axiosInstance.get(`crm/?manager=17&created_ad=${formatDate(selectedDate)}`)
       setDataAziret(responseAziret.data.results)
+
+      const responseSemetei = await axiosInstance.get(`crm/?manager=22&created_ad=${formatDate(selectedDate)}`)
+      setDataSemetei(responseSemetei.data.results)
 
     } catch (e) {
       console.log(e)
@@ -258,6 +265,40 @@ const Statistics = () => {
                     <div className="statistics-manager statistics-name-wrap">Тип базы</div>
                   </div>
                   {dataKalybek.map((item, idx) => {
+                    return (
+                      <div
+                        className='statistics-head-block'
+                        key={idx}
+                      >
+                        <div className="statistics-name">{item.name}</div>
+
+                        <div className="statistics-phone">{item.phone}</div>
+
+                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                        <div className="statistics-date">{item.id}</div>
+
+                        <div className="statistics-date">{item.type_of_base}</div>
+
+                      </div>
+                    )
+                  })}
+                </>
+              }
+            </div>
+
+            <div className="statistics-wrap-managers">
+              <strong>Семетей Манасбек уулу</strong> - {dataSemetei.length} добавленных
+              {dataSemetei.length !== 0 &&
+                <>
+                  <div className="statistics-wrap">
+                    <div className="statistics-name statistics-name-wrap">Имя</div>
+                    <div className="statistics-phone statistics-name-wrap">Номер</div>
+                    <div className="statistics-date">Создан</div>
+                    <div className="statistics-date">ID</div>
+                    <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                  </div>
+                  {dataSemetei.map((item, idx) => {
                     return (
                       <div
                         className='statistics-head-block'
