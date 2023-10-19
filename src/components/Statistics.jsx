@@ -18,7 +18,6 @@ const Statistics = () => {
   const [dataAlmaz, setDataAlmaz] = useState([])
   const [dataKalybek, setDataKalybek] = useState([])
   const [dataSemetei, setDataSemetei] = useState([])
-  const [dataArgen, setDataArgen] = useState([])
   const [dataAziret, setDataAziret] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const date = new Date();
@@ -47,8 +46,6 @@ const Statistics = () => {
       const responseKalybek = await axiosInstance.get(`crm/?manager=18&created_ad=${formattedDate}`)
       setDataKalybek(responseKalybek.data.results)
 
-      const responseArgen = await axiosInstance.get(`crm/?manager=14&created_ad=${formattedDate}`)
-      setDataArgen(responseArgen.data.results)
 
       const responseAziret = await axiosInstance.get(`crm/?manager=17&created_ad=${formattedDate}`)
       setDataAziret(responseAziret.data.results)
@@ -79,9 +76,6 @@ const Statistics = () => {
 
       const responseKalybek = await axiosInstance.get(`crm/?manager=18&created_ad=${formatDate(selectedDate)}`)
       setDataKalybek(responseKalybek.data.results)
-
-      const responseArgen = await axiosInstance.get(`crm/?manager=14&created_ad=${formatDate(selectedDate)}`)
-      setDataArgen(responseArgen.data.results)
 
       const responseAziret = await axiosInstance.get(`crm/?manager=17&created_ad=${formatDate(selectedDate)}`)
       setDataAziret(responseAziret.data.results)
@@ -299,40 +293,6 @@ const Statistics = () => {
                     <div className="statistics-manager statistics-name-wrap">Тип базы</div>
                   </div>
                   {dataSemetei.map((item, idx) => {
-                    return (
-                      <div
-                        className='statistics-head-block'
-                        key={idx}
-                      >
-                        <div className="statistics-name">{item.name}</div>
-
-                        <div className="statistics-phone">{item.phone}</div>
-
-                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                        <div className="statistics-date">{item.id}</div>
-
-                        <div className="statistics-date">{item.type_of_base}</div>
-
-                      </div>
-                    )
-                  })}
-                </>
-              }
-            </div>
-
-            <div className="statistics-wrap-managers">
-              <strong>Арген Самсалиев</strong> - {dataArgen.length} добавленных
-              {dataArgen.length !== 0 &&
-                <>
-                  <div className="statistics-wrap">
-                    <div className="statistics-name statistics-name-wrap">Имя</div>
-                    <div className="statistics-phone statistics-name-wrap">Номер</div>
-                    <div className="statistics-date">Создан</div>
-                    <div className="statistics-date">ID</div>
-                    <div className="statistics-manager statistics-name-wrap">Тип базы</div>
-                  </div>
-                  {dataArgen.map((item, idx) => {
                     return (
                       <div
                         className='statistics-head-block'

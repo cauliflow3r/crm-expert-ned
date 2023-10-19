@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import styles from "../styles/Navbar.module.css";
 import logo from "../assets/fullblack.png";
 import { useUI } from "../provider/UiContextProvider";
@@ -19,8 +19,6 @@ const Navbar = () => {
   const storedLastName = localStorage.getItem("last_name") || "";
 
   const initials = getInitials(storedFirstName, storedLastName);
-
-  // console.log("Initials:", initials);
 
   const logout = () => {
     localStorage.removeItem("accessToken");

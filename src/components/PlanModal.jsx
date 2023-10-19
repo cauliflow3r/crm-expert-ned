@@ -64,7 +64,7 @@ const StaffModal = () => {
               <p className="plan-modal-employees">Алмаз Имашов - Логин: <strong>aimashov</strong> , пароль: <strong>NAZI9407</strong></p>
               <p className="plan-modal-employees">Калыбек Казыбеков - Логин: <strong>kkazybekov</strong> , пароль: <strong>Gostoper1996</strong></p>
               <p className="plan-modal-employees">Семетей Манасбек уулу - Логин: <strong>smanasbek</strong> , пароль: <strong>Twentyoneguns21</strong></p>
-              <p className="plan-modal-employees">Арген Самсалиев - Логин: <strong>asamsaliev</strong> , пароль: <strong>0706332125a</strong></p>
+              <p className="plan-modal-employees">Арген Самсалиев - Логин: <strong>asamsaliev</strong> , пароль: <strong>0555239318</strong></p>
               <p className="plan-modal-employees">Азирет Турдаалиев - Логин: <strong>aturdaaliev</strong> , пароль: <strong>260098a</strong></p>
             </div>
           }

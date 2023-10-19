@@ -376,18 +376,6 @@ const BaseModalAddSeller = (props) => {
               ))}
             </TextField>
 
-            {/*<select*/}
-            {/*  name="type_of_sentence"*/}
-            {/*  value={modalData.type_of_sentence}*/}
-            {/*  onChange={handleInputChange}*/}
-            {/*>*/}
-            {/*  <option value="">Тип предложения</option>*/}
-            {/*  <option value="Собственник">Собственник</option>*/}
-            {/*  <option value="Риэлтор">Риэлтор</option>*/}
-            {/*  <option value="Неважно">Неважно</option>*/}
-            {/*</select>*/}
-
-
           </div>
           <div className="base-modal-window">
 

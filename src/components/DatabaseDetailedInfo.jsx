@@ -21,9 +21,9 @@ import {editClient} from "../crm-logic/editClient";
 import EditIcon from '@mui/icons-material/Edit';
 import CheckIcon from '@mui/icons-material/Check';
 import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
-import {setActive} from "../features/addNewTicket/isLoadingSlice";
 import {showTicket} from "../features/showTicketModal/showTicketModal";
 import {getTickets} from "../crm-logic/getTickets";
+import { motion } from "framer-motion"
 
 const DatabaseDetailedInfo = () => {
 
@@ -76,11 +76,10 @@ const DatabaseDetailedInfo = () => {
    await getTickets(id, dispatch)
   }
 
-
   return (
-    <div className='detailed-info-border-box'>
+    <div
+      className='detailed-info-border-box'>
       <div className='detailed-info-button-flex'>
-
 
           <Button
             color='success'
@@ -130,8 +129,13 @@ const DatabaseDetailedInfo = () => {
         isLoadingDetailedInfo ?
           <CircularIndeterminate />
           :
-          <div>
-            <div className="detailed-info-our-information">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            <div
+              className="detailed-info-our-information">
               <div>
                 ID клиента: {detailedInfo.id}
               </div>
@@ -381,7 +385,7 @@ const DatabaseDetailedInfo = () => {
 
               </form>
             </div>
-          </div>
+          </motion.div>
       }
     </div>
   );

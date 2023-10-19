@@ -15,6 +15,8 @@ import StaffModal from "./PlanModal";
 import DataBaseAddTicket from "./DataBaseAddTicket";
 import DataBaseShowTicket from "./DataBaseShowTicket";
 import Statistics from "./Statistics";
+import { motion } from "framer-motion"
+import {setGetOneClient} from "../features/getOneClient/getOneClientSlice";
 
 const Database = () => {
   const dispatch = useDispatch();
@@ -52,6 +54,7 @@ const Database = () => {
 
 
   const selectClient = async (id) => {
+    setGetOneClient(null)
    await getOneClient(id, dispatch)
   }
 
@@ -94,7 +97,9 @@ const Database = () => {
       <div className='data-base'>
         <HeaderDatabase />
         <div className='data-base-wrap'>
-          <div className={selectedClient ? 'data-base-all-client-list data-base-all-client-list-active' : 'data-base-all-client-list'} >
+          <div
+            className={selectedClient ? 'data-base-all-client-list data-base-all-client-list-active' : 'data-base-all-client-list'}
+          >
             <div className="data-base-all-client-menu">
               <div className='data-base-every-client-name'>Имя</div>
               <div className='data-base-every-client-address'>Адрес</div>
@@ -109,7 +114,10 @@ const Database = () => {
               data.map((item, idx) => {
                 if (typeOfBase === 'Полная база' || item.type_of_base === typeOfBase) {
                   return (
-                    <div
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ duration: 0.2 }}
                       key={idx}
                       onClick={() => selectClient(item.id)}
                       className={`data-base-every-client ${selectedClient && selectedClient.id === item.id ? 'data-base-selected' : ''}`}
@@ -123,7 +131,7 @@ const Database = () => {
                           'неизв.'
                         }
                       </div>
-                    </div>
+                    </motion.div>
                   );
                 }
                 return null;
