@@ -7,6 +7,7 @@ import {series} from "../constants/series";
 import {stateHousing} from "../constants/stateHousing";
 import {documents} from "../constants/documents";
 import {managers} from "../constants/managers";
+import {rooms} from "../constants/rooms";
 
 const BaseModalAddBuyer = (props) => {
 
@@ -85,25 +86,7 @@ const BaseModalAddBuyer = (props) => {
 
         {/*Кол-во комнат и квадратура NONE*/}
         <div className="base-modal-window-flex base-modal-display-none">
-          <div className="base-modal-window">
-            <select
-              name="rooms"
-              value={modalData.rooms = 9999}
-              onChange={handleInputChange}
-            >
-              <option value="">Выберите вариант</option>
-              <option value="1">1 комн.</option>
-              <option value="2">2  комн.</option>
-              <option value="3">3 комн.</option>
-              <option value="4">4 комн.</option>
-              <option value="5">5 комн.</option>
-              <option value="6">6 комн.</option>
-              <option value="7">7 комн.</option>
-              <option value="8">8 комн. и более</option>
-            </select>
 
-
-          </div>
           <div className="base-modal-window">
             <input
               type="text"
@@ -174,6 +157,27 @@ const BaseModalAddBuyer = (props) => {
 
         {/*Наша цена и цена в руки*/}
         <div className="base-modal-window-flex">
+
+          <div className="base-modal-window">
+
+            <TextField
+              name="rooms"
+              select
+              value={modalData.rooms}
+              onChange={handleInputChange}
+              color="success"
+              size='small'
+              label='Количество комнат'
+            >
+              {rooms.map((option, idx) => (
+                <MenuItem key={idx} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+
+          </div>
+
           <div className="base-modal-window">
             <TextField
               type='text'
@@ -184,18 +188,6 @@ const BaseModalAddBuyer = (props) => {
               size='small'
               color="success"
             />
-          </div>
-          <div className="base-modal-window">
-            <TextField
-              type='text'
-              name='owner_price'
-              value={modalData.owner_price}
-              onChange={handleInputChange}
-              label='Красный бюджет'
-              size='small'
-              color="success"
-            />
-
           </div>
         </div>
 
