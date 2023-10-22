@@ -39,7 +39,7 @@ const BaseModalEditClient = () => {
   return (
     <div>
       <form>
-        <h2 className='base-modal-title'>Редактирование клиента</h2>
+        <h2 className='base-modal-title'>Редактировать клиента</h2>
 
         {/*Имя и телефон*/}
         <div className="base-modal-window-flex">
