@@ -19,6 +19,7 @@ import {filterByRooms, filterByTypeOfHousing} from "../constants/searchValues";
 import '../styles/HeaderDatabase.css'
 import {setPlanModal} from "../features/planModal/planModal";
 import {setStatisticsActive} from "../features/statistics/statisticsSlice";
+import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 
 const HeaderDatabase = () => {

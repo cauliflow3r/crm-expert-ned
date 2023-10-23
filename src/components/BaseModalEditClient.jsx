@@ -18,7 +18,6 @@ import {typeOfSentence} from "../constants/typeOfSentence";
 import {typeOfBase} from "../constants/typeOfBase";
 import {wallMaterial} from "../constants/wallMaterial";
 import {managers} from "../constants/managers";
-import {addClient} from "../crm-logic/addClient";
 
 const BaseModalEditClient = () => {
 

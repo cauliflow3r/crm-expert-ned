@@ -24,6 +24,7 @@ import DoNotDisturbAltIcon from '@mui/icons-material/DoNotDisturbAlt';
 import {showTicket} from "../features/showTicketModal/showTicketModal";
 import {getTickets} from "../crm-logic/getTickets";
 import { motion } from "framer-motion"
+import {managers} from "../constants/managers";
 
 const DatabaseDetailedInfo = () => {
 
@@ -34,6 +35,7 @@ const DatabaseDetailedInfo = () => {
   const isButtonActive = useSelector((state) => state.buttonLock)
   const id = localStorage.getItem('id')
   const [baseEdit, setBaseEdit] = useState(false)
+  const [managerEdit, setManagerEdit] =useState(false)
   const searchParameters = useSelector((state) => state.searchParameters)
 
   const handleChangeComment = (e) => {
@@ -64,6 +66,11 @@ const DatabaseDetailedInfo = () => {
       ...detailedInfo,
       [name]: value,
     }))
+  }
+
+  const editManager = async () => {
+    setManagerEdit(false)
+    await editClient(detailedInfo, dispatch, searchParameters)
   }
 
   const editBase = async () => {
@@ -199,9 +206,43 @@ const DatabaseDetailedInfo = () => {
               <div>
                 Красная цена: {detailedInfo.owner_price} $
               </div>
-              <div>
-                Менеджер: {detailedInfo.comments}
-              </div>
+
+              {managerEdit ?
+                  <div>
+                    <select
+                        name="comments"
+                        value={detailedInfo.comments}
+                        onChange={handleInputChange}
+                    >
+                      {managers.map((item, idx) => {
+                        return (
+                            <option key={idx} value={item.value}>{item.label}</option>
+                        )
+                      })}
+                    </select>
+                    <CheckIcon
+                        fontSize='small'
+                        onClick={editManager}
+                        sx={{cursor: 'pointer', marginLeft: '1.5vh'}}
+                    />
+                    <DoNotDisturbAltIcon
+                        fontSize='small'
+                        onClick={() => setManagerEdit(false)}
+                        sx={{cursor: 'pointer', marginLeft: '1.5vh'}}
+                    />
+                  </div>
+                  :
+                  <div>
+                    Менеджер: {detailedInfo.comments}
+                    <EditIcon
+                        fontSize='small'
+                        onClick={() => setManagerEdit(true)}
+                        sx={{cursor: 'pointer'}}
+                    />
+                  </div>
+              }
+
+
             </div>
             { detailedInfo.link !== 'Неважно' &&
               <div className='detailed-info-our-information-link'>

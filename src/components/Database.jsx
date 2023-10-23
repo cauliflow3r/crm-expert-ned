@@ -17,6 +17,7 @@ import DataBaseShowTicket from "./DataBaseShowTicket";
 import Statistics from "./Statistics";
 import { motion } from "framer-motion"
 import {setGetOneClient} from "../features/getOneClient/getOneClientSlice";
+import {setIsComments} from "../features/isComments/isCommentsSlice";
 
 const Database = () => {
   const dispatch = useDispatch();
@@ -54,6 +55,10 @@ const Database = () => {
 
 
   const selectClient = async (id) => {
+    dispatch(setIsComments({
+      body: '',
+      crm: ''
+    }))
     setGetOneClient(null)
    await getOneClient(id, dispatch)
   }
