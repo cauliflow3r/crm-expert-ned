@@ -21,6 +21,9 @@ import {showTicketModalSlice} from "../features/showTicketModal/showTicketModal"
 import {ticketDataSlice} from "../features/ticketData/ticketDataSlice";
 import {statisticsSlice} from "../features/statistics/statisticsSlice";
 import {applicationsCounterSlice} from "../features/applicationsCounter/applicationsCounterSlice";
+import {allFlatsSlice} from "../features/allFlats/allFlatsSlice";
+import {isLoadingSiteAdminSlice} from "../features/isLoadingSiteAdmin/isLoadingSiteAdminSlice";
+import {getOneFlatSlice} from "../features/getOneFlat/getOneFlatSlice";
 
 
 export const store = configureStore({
@@ -47,6 +50,9 @@ export const store = configureStore({
       ticketLoading: ticketLoadingSlice.reducer,
       showTicketModal: showTicketModalSlice.reducer,
       ticketData: ticketDataSlice.reducer,
-      statistics: statisticsSlice.reducer
+      statistics: statisticsSlice.reducer,
+      allFlats: allFlatsSlice.reducer,
+      isLoadingSiteAdmin: isLoadingSiteAdminSlice.reducer,
+      getOneFlat: getOneFlatSlice.reducer,
     }
 })

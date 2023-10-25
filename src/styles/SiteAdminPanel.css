@@ -1,0 +1,17 @@
+.site-admin-panel-wrap {
+    height: calc(100vh - 90px);
+    display: flex;
+}
+
+.site-admin-panel-every-flat {
+    cursor: pointer;
+    margin: 5px 0 0;
+}
+
+.site-admin-panel-list {
+    width: 50%;
+}
+
+.site-admin-panel-every-flat-detailed-info {
+    width: 50%;
+}
