@@ -4,6 +4,7 @@ import {setData} from "../features/data/dataSlice";
 import {setIsLoading} from "../features/isLoading/isLoading";
 import {setButtonLock} from "../features/buttonLock/buttonLockSlice";
 import {setCounter} from "../features/counter/counterSlice";
+import {setApplicationsCounter} from "../features/applicationsCounter/applicationsCounterSlice";
 
 export const getBase = async (dispatch, searchParameters) => {
   dispatch(setButtonLock(true))
@@ -17,6 +18,11 @@ export const getBase = async (dispatch, searchParameters) => {
       return item.type_of_base === 'Заявки'
     })
     dispatch(setCounter(count.length))
+
+    const applicationsCount = data.filter((item) => {
+      return item.type_of_base === 'Встречи'
+    })
+    dispatch(setApplicationsCounter(applicationsCount.length))
 
     let filteredData = data
 

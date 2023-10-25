@@ -26,6 +26,8 @@ const StaffModal = () => {
 
             <h4 className="plan-modal-title">Дирекция</h4>
             <p className="plan-modal-employees">Баялиев Замирбек Бактыбекович - <strong>Директор, 0553 501 040</strong></p>
+            <p className="plan-modal-employees">Бектемиров Бекболот Ажимаматович - <strong>Финансовый директор, 0559 491 919</strong></p>
+            <p className="plan-modal-employees">Куленбеков Аскар Тимурович - <strong>Технический директор, 0755 264 262</strong></p>
 
             <h4 className="plan-modal-title">Отдел продаж</h4>
             <p className="plan-modal-employees">Имашов Алмаз - <strong>Менеджер по работе с клиентами, 0557 510 150</strong></p>
@@ -39,7 +41,6 @@ const StaffModal = () => {
 
             <h4 className="plan-modal-title">IT-отдел</h4>
             <p className="plan-modal-employees">Азамат @cauliflow3r - <strong>Frontend-разработчик</strong></p>
-            <p className="plan-modal-employees">Аскар @oscarquell - <strong>Frontend-разработчик</strong></p>
             <p className="plan-modal-employees">Нурсултан @nurrative - <strong>Backend-разработчик</strong></p>
           </div>
           <div>

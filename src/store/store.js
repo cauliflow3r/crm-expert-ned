@@ -20,6 +20,7 @@ import {ticketLoadingSlice} from "../features/addNewTicket/isLoadingSlice";
 import {showTicketModalSlice} from "../features/showTicketModal/showTicketModal";
 import {ticketDataSlice} from "../features/ticketData/ticketDataSlice";
 import {statisticsSlice} from "../features/statistics/statisticsSlice";
+import {applicationsCounterSlice} from "../features/applicationsCounter/applicationsCounterSlice";
 
 
 export const store = configureStore({
@@ -39,6 +40,7 @@ export const store = configureStore({
       buttonLock: buttonLockSlice.reducer,
       alertMUI: alertMUISlice.reducer,
       counter: counterSlice.reducer,
+      applicationsCounter: applicationsCounterSlice.reducer,
       dialog: dialogSlice.reducer,
       planModal: planModalSlice.reducer,
       addNewTicket: addNewTicketSlice.reducer,

@@ -19,7 +19,6 @@ import {filterByRooms, filterByTypeOfHousing} from "../constants/searchValues";
 import '../styles/HeaderDatabase.css'
 import {setPlanModal} from "../features/planModal/planModal";
 import {setStatisticsActive} from "../features/statistics/statisticsSlice";
-import FilterAltIcon from '@mui/icons-material/FilterAlt';
 
 
 const HeaderDatabase = () => {
@@ -31,6 +30,7 @@ const HeaderDatabase = () => {
   const isButtonActive = useSelector((state) => state.buttonLock)
   const [moreFilters, setMoreFilters] = useState(false)
   const counter = useSelector(state => state.counter)
+  const applicationsCounter = useSelector(state => state.applicationsCounter)
 
   const isSearch = async () => {
     await getBase(dispatch, searchParameters)
@@ -129,11 +129,18 @@ const HeaderDatabase = () => {
               Квалифицирован
             </div>
             <div
-              className={ active === 'Встречи' ? 'header-not-relevant-base header-head-button-active' : "header-not-relevant-base"}
-              onClick={ChangeToMeetingBase}
+                className={ active === 'Встречи' ? 'header-not-relevant-base header-head-button-active' : "header-not-relevant-base"}
+                onClick={ChangeToMeetingBase}
             >
-              Встречи
+              <Badge
+                  badgeContent={applicationsCounter}
+                  color="secondary"
+                  size='small'
+              >
+                <span>Встречи</span>
+              </Badge>
             </div>
+
             <div
               className={ active === 'Результаты встречи' ? 'header-potential-base header-head-button-active' : "header-potential-base"}
               onClick={ChangeToResultOfMeet}
@@ -247,6 +254,8 @@ const HeaderDatabase = () => {
             <div className='header-head-buttons-right'>
 
             <div className="header-head-btns">
+
+
 
               <Badge
                 badgeContent={counter}
