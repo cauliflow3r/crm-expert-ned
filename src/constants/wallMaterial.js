@@ -8,20 +8,12 @@ export const wallMaterial = [
     label: 'Кирпич',
   },
   {
-    value: 'Бетон',
-    label: 'Бетон',
-  },
-  {
     value: 'Саманн',
     label: 'Саманн',
   },
   {
     value: 'Панельный',
     label: 'Панельный',
-  },
-  {
-    value: 'Сиппанель',
-    label: 'Сиппанель',
   },
   {
     value: 'Другой материал стен',

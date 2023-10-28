@@ -17,7 +17,7 @@ export const stateHousing = [
   },
   {
     value: 'Средний ремонт',
-    label: 'СРедний ремонт',
+    label: 'Средний ремонт',
   },
   {
     value: 'Требуется ремонт',

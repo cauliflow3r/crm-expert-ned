@@ -356,14 +356,14 @@ const BaseModalAddSeller = (props) => {
           </div>
         </div>
 
-        {/*Тип предложения и тип базы*/}
-        <div className="base-modal-window-flex">
+        {/*Тип предложения и тип базы NONE*/}
+        <div className="base-modal-window-flex base-modal-display-none">
           <div className="base-modal-window">
 
             <TextField
               name="type_of_sentence"
               select
-              value={modalData.type_of_sentence}
+              value={modalData.type_of_sentence = 'Собственник'}
               onChange={handleInputChange}
               color="success"
               size='small'
@@ -382,7 +382,7 @@ const BaseModalAddSeller = (props) => {
             <TextField
               name="type_of_base"
               select
-              value={modalData.type_of_base}
+              value={modalData.type_of_base = 'Продажа'}
               onChange={handleInputChange}
               color="success"
               size='small'
