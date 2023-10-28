@@ -4,12 +4,15 @@ import {useDispatch, useSelector} from "react-redux";
 import './../styles/SiteAdminPanel.css'
 import {getOneFlat} from "../crm-logic/getOneFlat";
 import SiteAdminPanelDetailedInfo from "./SiteAdminPanelDetailedInfo";
+import SiteAdminPanelAddAnnouncement from "./SiteAdminPanelAddAnnouncement";
+import {setBaseModal} from "../features/baseModal/baseModalSlice";
 
 const SiteAdminPanel = () => {
     const dispatch = useDispatch()
     const allFlats = useSelector(state => state.allFlats.data)
     const isLoading = useSelector(state => state.isLoadingSiteAdmin)
     const selectedFlat = useSelector(state => state.getOneFlat.getOneFlat)
+    const baseModal = useSelector((state) => state.baseModal)
 
     useEffect(() => {
         getFlats(dispatch)
@@ -19,7 +22,7 @@ const SiteAdminPanel = () => {
       <div className='data-base-head'>
           <div className="data-base">
               <div className="site-admin-panel-head-buttons">
-                  <button>Добавить объявление</button>
+                  <button onClick={() => dispatch(setBaseModal(true))}>Добавить объявление</button>
               </div>
               <div className="site-admin-panel-wrap">
                   <div className="site-admin-panel-list">
@@ -41,6 +44,9 @@ const SiteAdminPanel = () => {
                   </div>
                   <div className="site-admin-panel-every-flat-detailed-info">
                       {selectedFlat && <SiteAdminPanelDetailedInfo/>}
+                      {baseModal &&
+                          <SiteAdminPanelAddAnnouncement />
+                      }
                   </div>
               </div>
           </div>

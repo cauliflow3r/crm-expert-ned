@@ -1,11 +1,16 @@
-import React from 'react';
-import {useSelector} from "react-redux";
+import React, {useState} from 'react';
+import {useDispatch, useSelector} from "react-redux";
 import './../styles/SiteAdminPannelDetailedInfo.css'
+import {deleteFlat} from "../crm-logic/deleteFlat";
+import {getOneFlat} from "../crm-logic/getOneFlat";
 
 const SiteAdminPanelDetailedInfo = () => {
 
+    const [deleteConfirm, setDeleteConfirm] = useState(false)
     const selectedFlat = useSelector(state => state.getOneFlat.getOneFlat)
     const isLoading = useSelector(state => state.isLoadingSiteAdminDetailedInfo)
+    const dispatch = useDispatch()
+
 
     return (
         <div>
@@ -13,9 +18,17 @@ const SiteAdminPanelDetailedInfo = () => {
                 <div>Loading...</div>
                 :
                 <div>
-                    <button>Обновить</button>
+                    <button onClick={() => getOneFlat(selectedFlat.id, dispatch)}>Обновить</button>
                     <button>Редактировать</button>
-                    <button>Удалить</button>
+                    <button
+                        onClick={() => setDeleteConfirm(true)}
+                    >Удалить</button>
+                    {deleteConfirm &&
+                        <div>
+                        <span>Вы точно хотите удалить?</span>
+                        <button onClick={() => deleteFlat(selectedFlat.id, dispatch)}>Да</button>
+                        <button onClick={() => setDeleteConfirm(false)}>Нет</button>
+                    </div>}
                     <div>
                         <h2>{selectedFlat.title}</h2>
                         <div>Район: <strong>{selectedFlat.district}</strong></div>
