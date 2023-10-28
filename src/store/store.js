@@ -24,7 +24,9 @@ import {applicationsCounterSlice} from "../features/applicationsCounter/applicat
 import {allFlatsSlice} from "../features/allFlats/allFlatsSlice";
 import {isLoadingSiteAdminSlice} from "../features/isLoadingSiteAdmin/isLoadingSiteAdminSlice";
 import {getOneFlatSlice} from "../features/getOneFlat/getOneFlatSlice";
-
+import {
+    isLoadingSiteAdminDetailedInfoSlice
+} from "../features/isLoadingSiteAdminDetailedInfo/isLoadingSiteAdminDetailedInfoSlice";
 
 export const store = configureStore({
   reducer:
@@ -54,5 +56,6 @@ export const store = configureStore({
       allFlats: allFlatsSlice.reducer,
       isLoadingSiteAdmin: isLoadingSiteAdminSlice.reducer,
       getOneFlat: getOneFlatSlice.reducer,
+      isLoadingSiteAdminDetailedInfo: isLoadingSiteAdminDetailedInfoSlice.reducer
     }
 })

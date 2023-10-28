@@ -1,0 +1,15 @@
+.site-admin-panel-images-wrap {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.site-admin-panel-images {
+    max-width: 200px;
+    height: 200px;
+    margin: 2px;
+}
+
+.site-admin-panel-photo-img {
+    width: 100%;
+    height: 200px;
+}

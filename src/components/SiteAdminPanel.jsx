@@ -3,6 +3,7 @@ import {getFlats} from "../crm-logic/getFlats";
 import {useDispatch, useSelector} from "react-redux";
 import './../styles/SiteAdminPanel.css'
 import {getOneFlat} from "../crm-logic/getOneFlat";
+import SiteAdminPanelDetailedInfo from "./SiteAdminPanelDetailedInfo";
 
 const SiteAdminPanel = () => {
     const dispatch = useDispatch()
@@ -17,6 +18,9 @@ const SiteAdminPanel = () => {
   return (
       <div className='data-base-head'>
           <div className="data-base">
+              <div className="site-admin-panel-head-buttons">
+                  <button>Добавить объявление</button>
+              </div>
               <div className="site-admin-panel-wrap">
                   <div className="site-admin-panel-list">
                       {isLoading ?
@@ -36,7 +40,7 @@ const SiteAdminPanel = () => {
                       }
                   </div>
                   <div className="site-admin-panel-every-flat-detailed-info">
-
+                      {selectedFlat && <SiteAdminPanelDetailedInfo/>}
                   </div>
               </div>
           </div>

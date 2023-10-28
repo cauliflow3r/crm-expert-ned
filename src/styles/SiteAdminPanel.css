@@ -1,5 +1,5 @@
 .site-admin-panel-wrap {
-    height: calc(100vh - 90px);
+    height: calc(100vh - 110px);
     display: flex;
 }
 
@@ -8,10 +8,20 @@
     margin: 5px 0 0;
 }
 
+.site-admin-panel-every-flat:hover {
+    background: #9eb384;
+}
+
 .site-admin-panel-list {
-    width: 50%;
+    width: 35%;
+    border-right: 1px solid black;
 }
 
 .site-admin-panel-every-flat-detailed-info {
-    width: 50%;
+    width: 65%;
+    overflow-y: auto;
+}
+
+.site-admin-panel-head-buttons {
+    border: 1px solid black;
 }
