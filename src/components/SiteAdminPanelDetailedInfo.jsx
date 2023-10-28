@@ -13,6 +13,9 @@ const SiteAdminPanelDetailedInfo = () => {
                 <div>Loading...</div>
                 :
                 <div>
+                    <button>Обновить</button>
+                    <button>Редактировать</button>
+                    <button>Удалить</button>
                     <div>
                         <h2>{selectedFlat.title}</h2>
                         <div>Район: <strong>{selectedFlat.district}</strong></div>
