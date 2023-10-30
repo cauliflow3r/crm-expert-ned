@@ -4,7 +4,7 @@ import {axiosInstance} from "../utils/api";
 export const deleteFlat = async (id, dispatch) => {
     await updateAccessToken();
     try {
-        const response = await axiosInstance.delete(`main/flats/${id}`)
+        const response = await axiosInstance.delete(`main/flats/${id}/`)
         if (response.status === 204) {
             alert('Клиент удален!')
         } else {
