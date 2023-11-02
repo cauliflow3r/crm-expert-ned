@@ -1,4 +1,9 @@
-import {createSlice} from '@reduxjs/toolkit'
+import {createSlice, createAsyncThunk } from '@reduxjs/toolkit'
+
+export const uploadImagesAsync = createAsyncThunk('addFlat/uploadImages', async (files) => {
+    const fileArray = Array.from(files);
+    return fileArray;
+});
 
 const initialState = {
     title: '',
@@ -13,7 +18,8 @@ const initialState = {
     district: '',
     description: '',
     comments: 'Нет комментария',
-    realtor: 0,
+    realtor: '',
+    images: []
 }
 
 export const addFlatSlice = createSlice({
@@ -36,7 +42,7 @@ export const addFlatSlice = createSlice({
             state.number_of_floors = action.payload
         },
         setRooms: (state, action) => {
-            state.rooms = action.payload
+            state.rooms = Number(action.payload)
         },
         setPrice: (state, action) => {
             state.price = action.payload
@@ -59,6 +65,11 @@ export const addFlatSlice = createSlice({
         setRealtor: (state, action) => {
             state.realtor = action.payload
         }
+    },
+    extraReducers: (builder) => {
+        builder.addCase(uploadImagesAsync.fulfilled, (state, action) => {
+            state.images = action.payload;
+        })
     }
 })
 
@@ -74,7 +85,8 @@ export const {
     setTotalArea,
     setDistrict,
     setDescription,
-    setComments,
-    setRealtor} = addFlatSlice.actions
+    setRealtor,
+    setImages
+} = addFlatSlice.actions
 
 export default addFlatSlice.reducer
