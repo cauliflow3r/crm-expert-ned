@@ -89,7 +89,7 @@ const HeaderDatabase = () => {
   }
 
   const ChangeToApplicationsBase = () => {
-    dispatch(setTypeOfBase(`Заявки`))
+     dispatch(setTypeOfBase(`Заявки`))
   }
 
   const openBaseModal = () => {

@@ -94,7 +94,7 @@ const Statistics = () => {
       const responseAzamat = await axiosInstance.get(`crm/?manager=23&created_ad=${formatDate(selectedDate)}`)
       setDataAzamat(responseAzamat.data.results)
 
-      const responseMyrza = await axiosInstance.get(`crm/?manager=22&created_ad=${formatDate(selectedDate)}`)
+      const responseMyrza = await axiosInstance.get(`crm/?manager=24&created_ad=${formatDate(selectedDate)}`)
       setDataMyrza(responseMyrza.data.results)
 
     } catch (e) {

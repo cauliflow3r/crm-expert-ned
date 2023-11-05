@@ -19,7 +19,7 @@ const Login = () => {
   };
 
   return (
-    <body className="login-background">
+    <div className="login-background">
       <div className="login-container">
         <form className="login-form" onSubmit={handleSubmit}>
           <img src={logo} alt="" className="logo" />
@@ -50,7 +50,7 @@ const Login = () => {
           </button>
         </form>
       </div>
-    </body>
+    </div>
   );
 };
 

@@ -65,6 +65,16 @@
   background-color: #8f8f8f;
 }
 
+.currency {
+  margin: 0 20px 0;
+}
+
+.currency span {
+  display: flex;
+  font-size: 2.5vh;
+}
+
+
 
 @media (max-width: 490px) {
   .container {
@@ -74,6 +84,11 @@
 
   .searchInp, .searchBtn {
     display: none;
+  }
+
+  .currency, .currency span {
+    display: none;
+    margin: 0;
   }
 }
 

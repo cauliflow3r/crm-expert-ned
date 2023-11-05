@@ -33,25 +33,11 @@ const Database = () => {
   const showTicket = useSelector(state => state.showTicketModal)
   const statisticsModal = useSelector(state => state.statistics)
 
-
   useEffect(() => {
     (async () => {
       await getBase(dispatch, searchParameters);
     })();
   }, []);
-
-  useEffect(() => {
-    updateAccessToken()
-    const intervalId = setInterval(() => {
-      updateAccessToken();
-    }, 60000);
-
-    // Очистить интервал при размонтировании компонента
-    return () => {
-      clearInterval(intervalId);
-    };
-  }, []); // Пустой массив зависимостей означает, что эффект будет вызываться только при монтировании и размонтировании компонента
-
 
 
   const selectClient = async (id) => {
