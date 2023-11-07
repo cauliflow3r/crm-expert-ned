@@ -71,10 +71,21 @@
 
 .currency span {
   display: flex;
-  font-size: 2.5vh;
+  font-size: 2vh;
 }
 
+.weatherWrap {
+  margin: 0 20px 0;
+  font-size: 2.5vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.weatherWrap span img {
+  width: 40px;
+  height: auto;
+}
 
 @media (max-width: 490px) {
   .container {

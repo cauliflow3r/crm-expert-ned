@@ -10,8 +10,11 @@ const Navbar = () => {
   const firstName = localStorage.getItem("first_name");
   const lastName = localStorage.getItem("last_name");
   const token = 'MG6UhRuFknBe5vgdkOrMlulSxgLQkL9v71TMy5mP5466cc36'
+  const API_KEY = '317147e078c54d6c882102156230710'
   const [isActive, setIsActive] = useState(false)
+  const [isActiveWeather, setIsActiveWeather] = useState(false)
   const [data, setData] = useState({})
+  const [weatherData, setWeatherData] = useState({})
   function getInitials(firstName, lastName) {
     const firstInitial = firstName ? firstName.charAt(0) : "";
     const lastInitial = lastName ? lastName.charAt(0) : "";
@@ -52,8 +55,23 @@ const Navbar = () => {
     }
   }
 
+  const getWeather =  async () => {
+    try {
+      const response =  await axios.get(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=Бишкек>&aqi=no`)
+      if (response.status === 200 ) {
+        setWeatherData(response.data)
+        setIsActiveWeather(true)
+      }
+    } catch (e) {
+      console.log('Ошибка получения погоды!')
+      setIsActiveWeather(false)
+    }
+  }
+
+
   useEffect(() => {
     getCourse()
+    getWeather()
   }, [])
 
   return (
@@ -62,23 +80,32 @@ const Navbar = () => {
         <img style={{ height: "100px" }} src={logo} alt="" />
       </div>
       <div className={styles.right}>
+
+        { isActiveWeather &&
+            <div className={styles.weatherWrap}>
+              <span>{weatherData.current.temp_c} ℃</span>
+              <img src={weatherData.current.condition.icon} alt="weather-icon"/>
+            </div>
+        }
+
         {isActive &&
               <div className={styles.currency}>
-                <span>1 $ = {data.buy_usd} с.</span>
-                <span>1 ₽ = {data.buy_rub} с.</span>
+                <span>$ = {data.buy_usd} с.</span>
+                <span>₽ = {data.buy_rub} с.</span>
               </div>
-
         }
-        <div className={styles.search}>
-          <input
-            className={styles.searchInp}
-            type="text"
-            name=""
-            id=""
-            placeholder="Поиск"
-          />
-          <button className={styles.searchBtn}>Поиск</button>
-        </div>
+
+
+        {/*<div className={styles.search}>*/}
+        {/*  <input*/}
+        {/*    className={styles.searchInp}*/}
+        {/*    type="text"*/}
+        {/*    name=""*/}
+        {/*    id=""*/}
+        {/*    placeholder="Поиск"*/}
+        {/*  />*/}
+        {/*  <button className={styles.searchBtn}>Поиск</button>*/}
+        {/*</div>*/}
         <button className={styles.profile}>{initials}</button>
         <button style={{ marginRight: "10px" }} onClick={logout}>
           Выйти
