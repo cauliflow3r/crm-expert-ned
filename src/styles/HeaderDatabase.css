@@ -93,7 +93,7 @@
 }
 
 #header-sort-by-price {
-  padding: 5px 30px 5px 15px;
+  padding: 5px 25px 5px 7px;
 }
 
 .header-head-btns .MuiBadge-badge {
@@ -101,6 +101,10 @@
   min-width: 10px;
   top: -10%;
   right: 10%;
+}
+
+.more-filters-active .MuiFormControl-root, .header-head-buttons-more-filters .MuiFormControl-root {
+  margin: 0 !important;
 }
 
 @media (max-width: 490px) {
@@ -127,7 +131,7 @@
   }
 
   .more-filters-active {
-    height: 160px;
+    height: 195px;
     flex-direction: column;
     text-align: center;
   }

@@ -384,7 +384,7 @@ const HeaderDatabase = () => {
               />
             </div>
 
-            <div>
+            <div className='header-sort-by-price'>
 
               <TextField
                 id='header-sort-by-price'
