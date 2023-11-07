@@ -5,6 +5,9 @@ import { useUI } from "../provider/UiContextProvider";
 import axios from "axios";
 import RefreshIcon from '@mui/icons-material/Refresh';
 import {Button} from "@mui/material";
+import Skeleton from '@mui/material/Skeleton';
+import Box from "@mui/material/Box";
+import UserAdminPanel from "./UserAdminPanel";
 
 const Navbar = () => {
   const { isOpen } = useUI();
@@ -17,17 +20,9 @@ const Navbar = () => {
   const [isActiveWeather, setIsActiveWeather] = useState(false)
   const [data, setData] = useState({})
   const [weatherData, setWeatherData] = useState({})
-  function getInitials(firstName, lastName) {
-    const firstInitial = firstName ? firstName.charAt(0) : "";
-    const lastInitial = lastName ? lastName.charAt(0) : "";
-
-    return `${firstInitial}${lastInitial}`.toUpperCase();
-  }
-
-  const storedFirstName = localStorage.getItem("first_name") || "";
-  const storedLastName = localStorage.getItem("last_name") || "";
-
-  const initials = getInitials(storedFirstName, storedLastName);
+  const fullName = `${firstName} ${lastName}`
+  const [userModal, setUserModal] = useState(false)
+  const id = localStorage.getItem('id')
 
   const logout = () => {
     localStorage.removeItem("accessToken");
@@ -49,11 +44,11 @@ const Navbar = () => {
       })
      if (response.status === 200) {
        setData(response.data)
-       setIsActive(true)
      }
     } catch (e) {
       console.log(e)
-      setIsActive(false)
+    } finally {
+      setIsActive(true)
     }
   }
 
@@ -62,11 +57,11 @@ const Navbar = () => {
       const response =  await axios.get(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=Бишкек>&aqi=no`)
       if (response.status === 200 ) {
         setWeatherData(response.data)
-        setIsActiveWeather(true)
       }
     } catch (e) {
       console.log('Ошибка получения погоды!')
-      setIsActiveWeather(false)
+    } finally {
+      setIsActiveWeather(true)
     }
   }
 
@@ -83,11 +78,14 @@ const Navbar = () => {
       </div>
       <div className={styles.right}>
 
-        { isActiveWeather &&
+        { isActiveWeather ?
             <div className={styles.weatherWrap}>
-              <span>{weatherData.location.country}, {weatherData.location.name}.</span>
               <span>{weatherData.current.temp_c} ℃</span>
-              <img src={weatherData.current.condition.icon} alt="weather-icon"/>
+              <img
+                  className={styles.weatherWrapImg}
+                  src={weatherData.current.condition.icon}
+                  alt="weather-icon"
+              />
               <div
                   onClick={getWeather}
                   className={styles.refreshIcon}
@@ -97,27 +95,33 @@ const Navbar = () => {
                 />
               </div>
             </div>
+            :
+            <Box sx={{ width: 100, marginRight: '20px' }}>
+              <Skeleton animation="wave"/>
+            </Box>
         }
 
-        {isActive &&
+        {isActive ?
               <div className={styles.currency}>
                 <span>$ = {data.buy_usd} с.</span>
                 <span>₽ = {data.buy_rub} с.</span>
               </div>
+            :
+            <Box sx={{ width: 100, marginRight: '20px' }}>
+              <Skeleton animation="wave"/>
+            </Box>
         }
 
+        <Button
+            onClick={ id === '6' || id === '7' ? () => setUserModal(true) : null}
+            color='success'
+            variant='contained'
+            size='small'
+            sx={{marginRight: '20px'}}
+        >
+          {fullName}
+        </Button>
 
-        {/*<div className={styles.search}>*/}
-        {/*  <input*/}
-        {/*    className={styles.searchInp}*/}
-        {/*    type="text"*/}
-        {/*    name=""*/}
-        {/*    id=""*/}
-        {/*    placeholder="Поиск"*/}
-        {/*  />*/}
-        {/*  <button className={styles.searchBtn}>Поиск</button>*/}
-        {/*</div>*/}
-        <button className={styles.profile}>{initials}</button>
         <Button
             onClick={logout}
             color='success'
@@ -128,6 +132,12 @@ const Navbar = () => {
           Выйти
         </Button>
       </div>
+      {userModal &&
+          <UserAdminPanel
+              userModal={userModal}
+              setUserModal={setUserModal}
+          />
+      }
     </div>
   );
 };

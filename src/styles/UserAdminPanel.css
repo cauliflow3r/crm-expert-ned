@@ -1,0 +1,10 @@
+.user-admin-panel-title {
+    text-align: center;
+}
+
+.user-admin-panel-form-inputs input, .user-admin-panel-form-inputs button {
+    display: block;
+    width: 40%;
+    margin: 5px auto;
+    height: 25px;
+}
