@@ -3,6 +3,8 @@ import styles from "../styles/Navbar.module.css";
 import logo from "../assets/fullblack.png";
 import { useUI } from "../provider/UiContextProvider";
 import axios from "axios";
+import RefreshIcon from '@mui/icons-material/Refresh';
+import {Button} from "@mui/material";
 
 const Navbar = () => {
   const { isOpen } = useUI();
@@ -83,8 +85,17 @@ const Navbar = () => {
 
         { isActiveWeather &&
             <div className={styles.weatherWrap}>
+              <span>{weatherData.location.country}, {weatherData.location.name}.</span>
               <span>{weatherData.current.temp_c} ℃</span>
               <img src={weatherData.current.condition.icon} alt="weather-icon"/>
+              <div
+                  onClick={getWeather}
+                  className={styles.refreshIcon}
+              >
+                <RefreshIcon
+                    size='small'
+                />
+              </div>
             </div>
         }
 
@@ -107,9 +118,15 @@ const Navbar = () => {
         {/*  <button className={styles.searchBtn}>Поиск</button>*/}
         {/*</div>*/}
         <button className={styles.profile}>{initials}</button>
-        <button style={{ marginRight: "10px" }} onClick={logout}>
+        <Button
+            onClick={logout}
+            color='success'
+            variant='contained'
+            size='small'
+            sx={{marginRight: '20px'}}
+        >
           Выйти
-        </button>
+        </Button>
       </div>
     </div>
   );
