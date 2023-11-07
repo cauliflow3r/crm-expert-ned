@@ -49,6 +49,15 @@
   max-width: 60px;
 }
 
+.header-id-field {
+  max-width: 60px;
+}
+
+.header-id-field input {
+  height: 1em;
+}
+
+
 .header-head-buttons-right {
   display: flex;
   justify-content: right;

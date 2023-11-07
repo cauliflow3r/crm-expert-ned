@@ -50,6 +50,12 @@ export const getBase = async (dispatch, searchParameters) => {
       });
     }
 
+    if (searchParameters.id) {
+      filteredData = filteredData.filter(item => {
+        return item.id == searchParameters.id;
+      })
+    }
+
     if (searchParameters.sortByPrice === 'ascending') {
       filteredData = filteredData.slice().sort((a, b) => {  return a.price - b.price; })
     } else if (searchParameters.sortByPrice === 'descending') {

@@ -7,7 +7,7 @@ import {setIsSelect} from "../features/selectModalType/isSelectModalTypeSlice";
 import {
   setByRooms,
   setBySearchField,
-  setByTypeOfHousing,
+  setByTypeOfHousing, setId,
   setMaxPrice,
   setMinPrice,
   setSortByPrice
@@ -42,6 +42,7 @@ const HeaderDatabase = () => {
     await dispatch(setBySearchField(''))
     await dispatch(setMinPrice(0))
     await dispatch(setMaxPrice(0))
+    await dispatch(setId(0))
     await dispatch(setType('success'))
     await dispatch(setTitle('Успешно выполнено!'))
     await dispatch(setValue('Фильтры выставлены по умолчанию!'))
@@ -371,6 +372,18 @@ const HeaderDatabase = () => {
 
               </span>
             </div>
+
+            <div className='header-id-field'>
+              <TextField
+                  id='header-id'
+                  label='ID'
+                  color="success"
+                  value={ searchParameters.id ? searchParameters.id : '' }
+                  size='small'
+                  onChange={(e) => dispatch(setId(e.target.value))}
+              />
+            </div>
+
             <div>
 
               <TextField
