@@ -23,6 +23,7 @@ const SiteAdminPanel = () => {
           <div className="data-base">
               <div className="site-admin-panel-head-buttons">
                   <button onClick={() => dispatch(setBaseModal(true))}>Добавить объявление</button>
+                  <button onClick={() => getFlats(dispatch)}>Обновить</button>
               </div>
               <div className="site-admin-panel-wrap">
                   <div className="site-admin-panel-list">

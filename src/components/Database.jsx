@@ -8,9 +8,7 @@ import DatabaseDetailedInfo from './DatabaseDetailedInfo';
 import BaseModal from './BaseModal';
 import { setSortByPrice } from '../features/searchParametres/searchParametersSlice';
 import CircularIndeterminate from './LoaderMaterialUi';
-import { Alert, AlertTitle } from '@mui/material';
 import { setActive } from '../features/alertMUI/alertMUISlice';
-import {updateAccessToken} from "../services/token";
 import StaffModal from "./PlanModal";
 import DataBaseAddTicket from "./DataBaseAddTicket";
 import DataBaseShowTicket from "./DataBaseShowTicket";
@@ -27,7 +25,6 @@ const Database = () => {
   const selectedClient = useSelector((state) => state.getOneClient.getOneClient)
   const baseModal = useSelector((state) => state.baseModal)
   const searchParameters = useSelector((state) => state.searchParameters)
-  const alertMUI = useSelector((state) => state.alertMUI)
   const planModal = useSelector(state => state.planModal)
   const ticketModal = useSelector((state) => state.ticketLoading )
   const showTicket = useSelector(state => state.showTicketModal)
@@ -57,31 +54,6 @@ const Database = () => {
     } else return
   }
 
-  const alertDefault = {
-    position: 'fixed',
-    left: '40%',
-    top: '120%',
-    transition: '0.6s',
-    zIndex: '999'
-  }
-
-  const alertActive = {
-    position: 'fixed',
-    left: '40%',
-    top: '85%',
-    transition: '0.6s',
-    zIndex: '999'
-  }
-
-
-    useEffect(() => {
-      const timeout = setTimeout(() => {
-        dispatch(setActive(false))
-      }, 3000);
-      return () => {
-        clearTimeout(timeout);
-      };
-    }, [alertMUI]);
 
   return (
     <div className='data-base-head' >
@@ -144,14 +116,6 @@ const Database = () => {
       {showTicket && <DataBaseShowTicket />}
 
       {statisticsModal && <Statistics />}
-
-        <Alert
-          severity={alertMUI.type}
-          sx={ alertMUI.active ? alertActive : alertDefault}
-        >
-          <AlertTitle>{alertMUI.title}</AlertTitle>
-          {alertMUI.value}
-        </Alert>
 
     </div>
   );

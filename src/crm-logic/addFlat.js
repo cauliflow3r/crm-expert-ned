@@ -1,35 +1,36 @@
 import {updateAccessToken} from "../services/token";
 import {axiosInstance} from "../utils/api";
+import {setActive, setTitle, setType, setValue} from "../features/alertMUI/alertMUISlice";
+import {setBaseModal} from "../features/baseModal/baseModalSlice";
 
-export const addFlat = async (data) => {
+export const addFlat = async (addData, dispatch) => {
     await updateAccessToken()
     try {
-        const formData = new FormData();
-        formData.append('title', data.title)
-        formData.append('condition', data.condition)
-        formData.append('series', data.series)
-        formData.append('floor', data.floor)
-        formData.append('number_of_floors', data.number_of_floors)
-        formData.append('rooms', data.rooms)
-        formData.append('price', data.price)
-        formData.append('document', data.document)
-        formData.append('total_area', data.total_area)
-        formData.append('district', data.district)
-        formData.append('description', data.description)
-        formData.append('comments', data.comments)
-        formData.append('realtor', data.realtor)
-        formData.append('images', data.images)
-
-        const response = await axiosInstance.post('main/flats/', formData, {
+        const response = await axiosInstance.post('main/flats/', addData, {
             headers: {
                 'Content-Type': 'multipart/form-data',
             },
         });
 
         if (response.status === 201) {
-            alert('Ok');
+            dispatch(setBaseModal(false))
+            dispatch(setType('success'))
+            dispatch(setTitle('Успешно выполнено!'))
+            dispatch(setValue('Объявление размещено!'))
+            dispatch(setActive(true))
         }
     } catch (e) {
-        console.log(e)
+        if (e.response.status === 400) {
+            dispatch(setType('error'))
+            dispatch(setTitle('Ошибка добавления клиента!'))
+            dispatch(setValue('Заполните все поля!'))
+            dispatch(setActive(true))
+        } else {
+            dispatch(setType('error'))
+            dispatch(setTitle('Ошибка!'))
+            dispatch(setValue('Сервер недоступен'))
+            dispatch(setActive(true))
+        }
+
     }
 }

@@ -15,7 +15,6 @@ export const deleteClient = async (id, dispatch) => {
       dispatch(setGetOneClient(null))
     }
   } catch (e) {
-    console.log(e)
     dispatch(setType('error'))
     dispatch(setTitle('Произошла ошибка!'))
     dispatch(setValue('Ошибка удаления клиента!'))
