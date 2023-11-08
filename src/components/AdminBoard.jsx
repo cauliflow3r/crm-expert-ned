@@ -38,7 +38,7 @@ const AdminBoard = () => {
     updateSubtask,
   } = useTickets();
   const allUsers = JSON.parse(localStorage.getItem("allUsers"));
-  console.log(allUsers);
+
 
   useEffect(() => {
     document.title = "admin panel";

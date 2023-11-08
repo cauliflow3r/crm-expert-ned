@@ -8,6 +8,10 @@
     margin: 5px 0 0;
 }
 
+.site-admin-panel-every-flat-active {
+    background: #9eb384;
+}
+
 .site-admin-panel-every-flat:hover {
     background: #9eb384;
 }

@@ -17,7 +17,7 @@ const AddTicketModal = ({ isOpen, closeModal, modalUser }) => {
     user: modalUser,
     client_id: "",
   });
-  console.log(modalUser);
+
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;

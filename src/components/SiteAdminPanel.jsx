@@ -34,7 +34,7 @@ const SiteAdminPanel = () => {
                               return (
                                   <div
                                       key={idx}
-                                      className='site-admin-panel-every-flat'
+                                      className={`site-admin-panel-every-flat ${selectedFlat && selectedFlat.id === item.id ? 'site-admin-panel-every-flat-active' : ''}`}
                                       onClick={() => getOneFlat(item.id, dispatch)}
                                   >
                                       {item.title}

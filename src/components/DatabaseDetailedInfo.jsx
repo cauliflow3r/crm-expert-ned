@@ -25,9 +25,10 @@ import {showTicket} from "../features/showTicketModal/showTicketModal";
 import {getTickets} from "../crm-logic/getTickets";
 import { motion } from "framer-motion"
 import {managers} from "../constants/managers";
+import {useNavigate} from "react-router-dom";
 
 const DatabaseDetailedInfo = () => {
-
+  const navigate = useNavigate();
   const detailedInfo = useSelector((state) => state.getOneClient.getOneClient)
   const dispatch = useDispatch()
   const comment = useSelector((state) => state.isComments)
@@ -83,6 +84,11 @@ const DatabaseDetailedInfo = () => {
    await getTickets(id, dispatch)
   }
 
+  const goToSiteAdminPanel = async () => {
+    await navigate('/site-admin');
+    await dispatch(setBaseModal(true))
+  };
+
   return (
     <div
       className='detailed-info-border-box'>
@@ -105,6 +111,14 @@ const DatabaseDetailedInfo = () => {
               onClick={isEdit}
             >
               Редактировать
+            </Button>
+            <Button
+                color='success'
+                variant="outlined"
+                size='small'
+                onClick={goToSiteAdminPanel}
+            >
+              Разместить объявление
             </Button>
             {/*<Button*/}
             {/*  color='success'*/}

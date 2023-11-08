@@ -30,21 +30,21 @@ const Sidebar = () => {
             Клиетская база
           </p>
         </button>
-        <button
-          onClick={() => navigate("/tickets")}
-          className={`${isOpen ? styles.centered : ""}`}
-        >
-          <img
-            className={styles.btnLogo}
-            width="30px"
-            height="30px"
-            src="https://img.icons8.com/external-basicons-line-edtgraphics/50/external-Kanban-project-management-basicons-line-edtgraphics.png"
-            alt="external-Kanban-project-management-basicons-line-edtgraphics"
-          />
-          <p className={`${styles.btnLabel} ${isOpen ? "" : styles.hidden}`}>
-            Задачник
-          </p>
-        </button>
+        {/*<button*/}
+        {/*  onClick={() => navigate("/tickets")}*/}
+        {/*  className={`${isOpen ? styles.centered : ""}`}*/}
+        {/*>*/}
+        {/*  <img*/}
+        {/*    className={styles.btnLogo}*/}
+        {/*    width="30px"*/}
+        {/*    height="30px"*/}
+        {/*    src="https://img.icons8.com/external-basicons-line-edtgraphics/50/external-Kanban-project-management-basicons-line-edtgraphics.png"*/}
+        {/*    alt="external-Kanban-project-management-basicons-line-edtgraphics"*/}
+        {/*  />*/}
+        {/*  <p className={`${styles.btnLabel} ${isOpen ? "" : styles.hidden}`}>*/}
+        {/*    Задачник*/}
+        {/*  </p>*/}
+        {/*</button>*/}
         <button
           onClick={() => navigate("/site-admin")}
           className={`${isOpen ? styles.centered : ""}`}
@@ -60,23 +60,23 @@ const Sidebar = () => {
             Сайт
           </p>
         </button>
-        {localStorage.getItem("id") == 6 && (
-          <button
-            onClick={() => navigate("/admin")}
-            className={`${isOpen ? styles.centered : ""}`}
-          >
-            <img
-              className={styles.btnLogo}
-              width="30px"
-              height="30px"
-              src="https://img.icons8.com/3d-fluency/94/manager--v3.png"
-              alt="manager--v3"
-            />
-            <p className={`${styles.btnLabel} ${isOpen ? "" : styles.hidden}`}>
-              Admin
-            </p>
-          </button>
-        )}
+        {/*{localStorage.getItem("id") == 6 && (*/}
+        {/*  <button*/}
+        {/*    onClick={() => navigate("/admin")}*/}
+        {/*    className={`${isOpen ? styles.centered : ""}`}*/}
+        {/*  >*/}
+        {/*    <img*/}
+        {/*      className={styles.btnLogo}*/}
+        {/*      width="30px"*/}
+        {/*      height="30px"*/}
+        {/*      src="https://img.icons8.com/3d-fluency/94/manager--v3.png"*/}
+        {/*      alt="manager--v3"*/}
+        {/*    />*/}
+        {/*    <p className={`${styles.btnLabel} ${isOpen ? "" : styles.hidden}`}>*/}
+        {/*      Admin*/}
+        {/*    </p>*/}
+        {/*  </button>*/}
+        {/*)}*/}
       </div>
     </div>
   );

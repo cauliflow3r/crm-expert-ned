@@ -6,21 +6,24 @@ import {addFlat} from "../crm-logic/addFlat";
 import {realtors} from "../constants/realtorsSite";
 
 const SiteAdminPanelAddAnnouncement = () => {
+
+    const addFromCRM = useSelector((state) => state.getOneClient.getOneClient);
     const [addData, setAddData] = useState({
-        title: "",
-        condition: "",
-        series: "",
-        floor: '',
-        number_of_floors: '',
-        rooms: '',
-        price: '',
-        document: "",
-        total_area: "",
-        district: "",
-        description: "",
+        title: addFromCRM ? `${addFromCRM.type_of_housing}, ${addFromCRM.adress}` : '',
+        condition: addFromCRM ? addFromCRM.repair : '',
+        series: addFromCRM ? addFromCRM.series : '',
+        floor: addFromCRM ? addFromCRM.floor : '',
+        number_of_floors: addFromCRM ? addFromCRM.total_floors : '',
+        rooms: addFromCRM ? addFromCRM.rooms : '',
+        price: addFromCRM ? addFromCRM.price : '',
+        document: addFromCRM ? addFromCRM.document : '',
+        total_area: addFromCRM ? addFromCRM.quadrature : '',
+        district: addFromCRM ? addFromCRM.adress : '',
+        description: addFromCRM ? addFromCRM.description : '',
         comments: "string",
         realtor: 2
     })
+
     const [images, setImages] = useState([])
     const [isLoading, setIsLoading] = useState(false)
     const baseModal = useSelector((state) => state.baseModal)
@@ -62,11 +65,32 @@ const SiteAdminPanelAddAnnouncement = () => {
         }
     }
 
+    const handleClear = () => {
+        setAddData({
+            title: '',
+            condition: '',
+            series: '',
+            floor: '',
+            number_of_floors: '',
+            rooms: '',
+            price: '',
+            document: '',
+            total_area: '',
+            district: '',
+            description: '',
+            comments: "string",
+            realtor: 2
+        })
+    }
+
     return (
         <div onClick={closeBaseModal} className={baseModal ? 'base-modal active' : 'base-modal'}>
             <div onClick={(e) => e.stopPropagation()} className={baseModal ? 'modal__content active' : 'modal__content'}>
                 <div className='site-admin-panel-container'>
-                    <h2 className='site-admin-panel-add-title'>Добавить объявление</h2>
+                    <div style={{display: 'flex', textAlign: 'center'}}>
+                        <h2 className='site-admin-panel-add-title'>Добавить объявление</h2>
+                        <input type="button" value='Очистить' className='site-admin-panel-clear-input'  onClick={handleClear}/>
+                    </div>
 
                     <input
                         type="text"
