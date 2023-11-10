@@ -158,7 +158,7 @@ const DatabaseDetailedInfo = () => {
             <div
               className="detailed-info-our-information">
               <div>
-                ID клиента: {detailedInfo.id}
+                ID : {detailedInfo.id}
               </div>
               <div>
                 Создан: {formatAndAdd4Hours(detailedInfo.created_ad)}
@@ -217,10 +217,11 @@ const DatabaseDetailedInfo = () => {
 
             </div>
             <div className="detailed-info-our-information">
-              <div>
-                Красная цена: {detailedInfo.owner_price} $
-              </div>
-
+              { detailedInfo.owner_price !== '9999' &&
+                <div>
+                  Красная цена: {detailedInfo.owner_price} $
+                </div>
+              }
               {managerEdit ?
                   <div>
                     <select
@@ -359,16 +360,18 @@ const DatabaseDetailedInfo = () => {
               </div>
             }
 
-            { detailedInfo.plot !== 'Неважно' &&
+
               <div className="detailed-info-public-description">
+                { detailedInfo.plot !== 'Неважно' &&
+                    <div>
+                      Участок: {detailedInfo.plot}
+                    </div>
+                }
                 <div>
-                  Участок: {detailedInfo.plot}
-                </div>
-                <div>
-                  Тип предложения: {detailedInfo.type_of_sentence}
+                  <strong>ID объявления:</strong> {detailedInfo.id}-exNed
                 </div>
               </div>
-            }
+
 
 
             <div className="detailed-info-public-final-description">
