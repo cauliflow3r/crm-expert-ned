@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {getFlats} from "../crm-logic/getFlats";
 import {useDispatch, useSelector} from "react-redux";
 import './../styles/SiteAdminPanel.css'
@@ -13,17 +13,18 @@ const SiteAdminPanel = () => {
     const isLoading = useSelector(state => state.isLoadingSiteAdmin)
     const selectedFlat = useSelector(state => state.getOneFlat.getOneFlat)
     const baseModal = useSelector((state) => state.baseModal)
+    const [page, setPage] = useState(1)
 
     useEffect(() => {
-        getFlats(dispatch)
-    }, [])
+        getFlats(dispatch, page)
+    }, [page])
 
   return (
       <div className='data-base-head'>
           <div className="data-base">
               <div className="site-admin-panel-head-buttons">
                   <button onClick={() => dispatch(setBaseModal(true))}>Добавить объявление</button>
-                  <button onClick={() => getFlats(dispatch)}>Обновить</button>
+                  <button onClick={() => getFlats(dispatch, page)}>Обновить</button>
               </div>
               <div className="site-admin-panel-wrap">
                   <div className="site-admin-panel-list">
@@ -50,6 +51,19 @@ const SiteAdminPanel = () => {
                       }
                   </div>
               </div>
+              <div>
+                  <input
+                      type="button"
+                      value='Назад'
+                      onClick={() => setPage(prevState => prevState - 1)}
+                  />
+                  <input
+                      type="button"
+                      value='Дальше'
+                      onClick={() => setPage(prevState => prevState + 1)}
+                  />
+              </div>
+
           </div>
       </div>
   );
