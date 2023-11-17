@@ -8,7 +8,6 @@ import DatabaseDetailedInfo from './DatabaseDetailedInfo';
 import BaseModal from './BaseModal';
 import { setSortByPrice } from '../features/searchParametres/searchParametersSlice';
 import CircularIndeterminate from './LoaderMaterialUi';
-import { setActive } from '../features/alertMUI/alertMUISlice';
 import StaffModal from "./PlanModal";
 import DataBaseAddTicket from "./DataBaseAddTicket";
 import DataBaseShowTicket from "./DataBaseShowTicket";
@@ -77,24 +76,24 @@ const Database = () => {
               data.map((item, idx) => {
                 if (typeOfBase === 'Полная база' || item.type_of_base === typeOfBase) {
                   return (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      transition={{ duration: 0.2 }}
-                      key={idx}
-                      onClick={() => selectClient(item.id)}
-                      className={`data-base-every-client ${selectedClient && selectedClient.id === item.id ? 'data-base-selected' : ''}`}
-                    >
-                      <div className='data-base-every-client-name'> {item.name}</div>
-                      <div className='data-base-every-client-address'> {item.adress}</div>
-                      <div>
-                        { (item.price !== 1 ) && (item.price !== 9999 ) ?
-                          item.price
-                          :
-                          'неизв.'
-                        }
-                      </div>
-                    </motion.div>
+                      <motion.div
+                          initial={{ opacity: 0, scale: 0.5 }}
+                          animate={{ opacity: 1, scale: 1 }}
+                          transition={{ duration: 0.2 }}
+                          key={idx}
+                          onClick={() => selectClient(item.id)}
+                          className={`data-base-every-client ${selectedClient && selectedClient.id === item.id ? 'data-base-selected' : ''}`}
+                      >
+                        <div className='data-base-every-client-name'> {item.name}</div>
+                        <div className='data-base-every-client-address'> {item.adress}</div>
+                        <div>
+                          { (item.price !== 1 ) && (item.price !== 9999 ) ?
+                              item.price
+                              :
+                              'неизв.'
+                          }
+                        </div>
+                      </motion.div>
                   );
                 }
                 return null;

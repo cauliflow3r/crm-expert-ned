@@ -37,7 +37,7 @@ const SiteAdminPanelAddAnnouncement = () => {
         setImages([...e.target.files])
     };
 
-    const handleSubmit = async () => {
+    const prepareFormDataToSend = () => {
         const formData = new FormData();
         formData.append('title', addData.title);
         formData.append('condition', addData.condition);
@@ -55,6 +55,11 @@ const SiteAdminPanelAddAnnouncement = () => {
             formData.append('images', images[i]);
         }
         formData.append('realtor', addData.realtor)
+        return formData
+    }
+
+    const handleSubmit = async () => {
+        const formData = prepareFormDataToSend()
         setIsLoading(true)
         try {
             await addFlat(formData, dispatch);

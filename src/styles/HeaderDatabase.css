@@ -10,7 +10,7 @@
 
 }
 
-.header-sales-base, .header-purchases-base, .header-all-base, .header-potential-base, .header-not-relevant-base, .header-not-relevant-base span  {
+.header-head-button, .header-head-button span  {
   font-family: 'Oswald', sans-serif;
   font-size: 14px;
   cursor: pointer;
@@ -19,7 +19,7 @@
   border-bottom: 3px solid #faf1e4;
 }
 
-.header-sales-base:hover, .header-purchases-base:hover, .header-all-base:hover, .header-potential-base:hover, .header-not-relevant-base:hover {
+.header-head-button-active:hover {
   border-bottom: 3px solid #435334;
   color: #435334;
 }
@@ -27,7 +27,6 @@
 .header-head-button-active {
   border-bottom: 3px solid #435334;
   color: #435334;
-  width: max-content;
 }
 
 

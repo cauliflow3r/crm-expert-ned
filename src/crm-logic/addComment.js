@@ -3,7 +3,7 @@ import {setIsComments} from "../features/isComments/isCommentsSlice";
 import {getOneClient} from "./getOneClient";
 import {updateAccessToken} from "../services/token";
 import {setButtonLock} from "../features/buttonLock/buttonLockSlice";
-import {setActive, setTitle, setType, setValue} from "../features/alertMUI/alertMUISlice";
+import {showError, showSuccess} from "../utils/alert";
 
 export const addComment = async (dispatch, comment, detailedInfo) => {
   dispatch(setButtonLock(true))
@@ -15,23 +15,14 @@ export const addComment = async (dispatch, comment, detailedInfo) => {
         body: '',
         crm: ''
       }))
-      dispatch(setType('success'))
-      dispatch(setTitle('Успешно выполнено!'))
-      dispatch(setValue('Комментарий опубликован!'))
-      dispatch(setActive(true))
+      showSuccess('Успешно выполнено!', 'Комментарий добавлен!')
       await getOneClient(detailedInfo, dispatch)
     }
   } catch (e) {
     if (e.response.status === 400) {
-      dispatch(setType('error'))
-      dispatch(setTitle('Ошибка: 400'))
-      dispatch(setValue('Комментарий не должен быть пустым!'))
-      dispatch(setActive(true))
+      showError('Код ошибки: 400', 'Комментарий не может быть пустым!')
     } else {
-      dispatch(setType('error'))
-      dispatch(setTitle('Ошибка комментирования!'))
-      dispatch(setValue('Произошла непредвиденная ошибка!'))
-      dispatch(setActive(true))
+      showError('Ошибка выполнения', 'Произошла ошибка, обратитесь к администратору!')
     }
   } finally {
     dispatch(setButtonLock(false))

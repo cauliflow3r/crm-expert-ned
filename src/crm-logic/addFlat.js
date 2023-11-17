@@ -1,7 +1,7 @@
 import {updateAccessToken} from "../services/token";
 import {axiosInstance} from "../utils/api";
-import {setActive, setTitle, setType, setValue} from "../features/alertMUI/alertMUISlice";
 import {setBaseModal} from "../features/baseModal/baseModalSlice";
+import {showError, showSuccess} from "../utils/alert";
 
 export const addFlat = async (addData, dispatch) => {
     await updateAccessToken()
@@ -14,22 +14,13 @@ export const addFlat = async (addData, dispatch) => {
 
         if (response.status === 201) {
             dispatch(setBaseModal(false))
-            dispatch(setType('success'))
-            dispatch(setTitle('Успешно выполнено!'))
-            dispatch(setValue('Объявление размещено!'))
-            dispatch(setActive(true))
+            showSuccess('Успешно выполнено!', 'Объявление размещено!')
         }
     } catch (e) {
         if (e.response.status === 400) {
-            dispatch(setType('error'))
-            dispatch(setTitle('Ошибка добавления клиента!'))
-            dispatch(setValue('Заполните все поля!'))
-            dispatch(setActive(true))
+            showError('Ошибка добавления!', 'Заполните все поля!')
         } else {
-            dispatch(setType('error'))
-            dispatch(setTitle('Ошибка!'))
-            dispatch(setValue('Сервер недоступен'))
-            dispatch(setActive(true))
+            showError('Ошибка!', 'Сервер недоступен')
         }
 
     }

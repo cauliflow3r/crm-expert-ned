@@ -12,14 +12,57 @@ import {
   setMinPrice,
   setSortByPrice
 } from "../features/searchParametres/searchParametersSlice";
-import {setActive, setTitle, setType, setValue} from "../features/alertMUI/alertMUISlice";
 import {Badge, Button, MenuItem, TextField} from "@mui/material";
 import Box from "@mui/material/Box";
 import {filterByRooms, filterByTypeOfHousing} from "../constants/searchValues";
 import '../styles/HeaderDatabase.css'
 import {setPlanModal} from "../features/planModal/planModal";
 import {setStatisticsActive} from "../features/statistics/statisticsSlice";
+import {showSuccess} from "../utils/alert";
 
+const DATA = [
+  {
+    id: 0,
+    value: 'Продажа',
+    title: 'Собственники'
+  },
+  {
+    id: 1,
+    value: 'Потенциальные',
+    title: 'Потенциальные'
+  },
+  {
+    id: 2,
+    value: 'Покупка',
+    title: 'Квалифицирован'
+  },
+  {
+    id: 3,
+    value: 'Встречи',
+    title: 'Встречи'
+  },
+  {
+    id: 4,
+    value: 'Результаты встречи',
+    title: 'Результаты встречи'
+  },
+  {
+    id: 5,
+    value: 'Заключение сделки',
+    title: 'Заключение'
+  },
+  {
+    id: 6,
+    value: 'Неактуальные',
+    title: 'Неактуальные'
+  },
+  {
+    id: 7,
+    value: 'Полная база',
+    title: 'Полная база'
+  },
+
+]
 
 const HeaderDatabase = () => {
 
@@ -43,54 +86,12 @@ const HeaderDatabase = () => {
     await dispatch(setMinPrice(0))
     await dispatch(setMaxPrice(0))
     await dispatch(setId(0))
-    await dispatch(setType('success'))
-    await dispatch(setTitle('Успешно выполнено!'))
-    await dispatch(setValue('Фильтры выставлены по умолчанию!'))
-    await dispatch(setActive(true))
+    showSuccess('Успешно выполнено!', 'Все фильтры выставлены по умолчанию!')
+
   }
 
-  const ChangeToSalesBase = () => {
-    dispatch(setTypeOfBase('Продажа'))
-  }
-
-  const ChangeToPurchasesBase = () => {
-    dispatch(setTypeOfBase('Покупка'))
-  }
-
-  const ChangeToAllBase = () => {
-    dispatch(setTypeOfBase(`Полная база`))
-  }
-
-  const ChangeToNotRelevantBase = () => {
-    dispatch(setTypeOfBase(`Неактуальные`))
-  }
-
-  const ChangeToPotentialBase = () => {
-    dispatch(setTypeOfBase(`Потенциальные`))
-  }
-
-  const ChangeToDeleteBase = () => {
-    dispatch(setTypeOfBase(`На удаление`))
-  }
-
-  const ChangeToMeetingBase = () => {
-    dispatch(setTypeOfBase(`Встречи`))
-  }
-
-  const ChangeToResultOfMeet = () => {
-    dispatch(setTypeOfBase(`Результаты встречи`))
-  }
-
-  const ChangeToMakeDeal = () => {
-    dispatch(setTypeOfBase(`Заключение сделки`))
-  }
-
-  const ChangeToClosedBase = () => {
-    dispatch(setTypeOfBase(`Закрытые сделки`))
-  }
-
-  const ChangeToApplicationsBase = () => {
-     dispatch(setTypeOfBase(`Заявки`))
+  const handleHeaderClick = (val) => () => {
+    dispatch(setTypeOfBase(val))
   }
 
   const openBaseModal = () => {
@@ -111,62 +112,25 @@ const HeaderDatabase = () => {
   return (
     <div>
           <div className="header-bases-wrap ">
-            <div
-              className={ active === 'Продажа' ? 'header-sales-base header-head-button-active' : "header-sales-base"}
-              onClick={ChangeToSalesBase}
-            >
-              Собственники
-            </div>
-            <div
-              className={ active === 'Потенциальные' ? 'header-potential-base header-head-button-active' : " header-potential-base"}
-              onClick={ChangeToPotentialBase}
-            >
-              Потенциальные
-            </div>
-            <div
-              className={ active === 'Покупка' ? 'header-purchases-base header-head-button-active' : "  header-purchases-base"}
-              onClick={ChangeToPurchasesBase}
-            >
-              Квалифицирован
-            </div>
-            <div
-                className={ active === 'Встречи' ? 'header-not-relevant-base header-head-button-active' : "header-not-relevant-base"}
-                onClick={ChangeToMeetingBase}
-            >
-              <Badge
-                  badgeContent={applicationsCounter}
-                  color="secondary"
-                  size='small'
-              >
-                <span>Встречи</span>
-              </Badge>
-            </div>
-
-            <div
-              className={ active === 'Результаты встречи' ? 'header-potential-base header-head-button-active' : "header-potential-base"}
-              onClick={ChangeToResultOfMeet}
-            >
-              Результат
-            </div>
-            <div
-              className={ active === 'Заключение сделки' ? 'header-potential-base header-head-button-active' : "header-potential-base"}
-              onClick={ChangeToMakeDeal}
-            >
-              Заключение
-            </div>
-            <div
-              className={ active === 'Неактуальные' ? 'header-potential-base header-head-button-active' : "header-potential-base"}
-              onClick={ChangeToNotRelevantBase}
-            >
-              Неактуальные
-            </div>
-            <div
-              className={ active === 'Полная база' ? 'header-sales-base header-head-button-active' : "header-sales-base"}
-              onClick={ChangeToAllBase}
-            >
-              Полная база
-            </div>
-
+            {DATA.map((item, idx) => {
+              return (
+                  <div
+                      className={`header-head-button ${active === item.value ? 'header-head-button-active' : ''}`}
+                      onClick={handleHeaderClick(item.value)}
+                      key={idx}
+                  >
+                    {item.value === 'Встречи' ? (
+                        <Badge
+                            badgeContent={applicationsCounter}
+                            color="secondary"
+                            size='small'
+                        >
+                          <span>Встречи</span>
+                        </Badge>
+                    ) : item.title}
+                  </div>
+              )
+            })}
           </div>
           <div className='header-head-buttons-flex-box'>
 
@@ -267,7 +231,7 @@ const HeaderDatabase = () => {
                   variant={ active === 'Заявки' ?  "contained" : "outlined"}
                   size='small'
                   color='success'
-                  onClick={ChangeToApplicationsBase}
+                  onClick={handleHeaderClick('Заявки')}
                 >
                   Заявки
                 </Button>
@@ -283,7 +247,7 @@ const HeaderDatabase = () => {
                       variant={ active === 'Закрытые сделки' ?  "contained" : "outlined"}
                     color="success"
                     size='small'
-                    onClick={ChangeToClosedBase}
+                    onClick={handleHeaderClick('Закрытые сделки')}
                     >
                     Закрытые сделки
                     </Button>
@@ -292,7 +256,7 @@ const HeaderDatabase = () => {
                     variant={ active === 'На удаление' ?  "contained" : "outlined"}
                     color="success"
                     size='small'
-                    onClick={ChangeToDeleteBase}
+                    onClick={handleHeaderClick('На удаление')}
                   >
                     Корзина
                   </Button>

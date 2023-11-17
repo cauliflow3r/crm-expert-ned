@@ -11,7 +11,6 @@ import {baseModalSlice} from "../features/baseModal/baseModalSlice";
 import {isSelectModalTypeSlice} from "../features/selectModalType/isSelectModalTypeSlice";
 import {searchParametersSlice} from "../features/searchParametres/searchParametersSlice";
 import {buttonLockSlice} from "../features/buttonLock/buttonLockSlice";
-import {alertMUISlice} from "../features/alertMUI/alertMUISlice";
 import {counterSlice} from "../features/counter/counterSlice";
 import {dialogSlice} from "../features/dialogModal/dialogSlice";
 import {planModalSlice} from "../features/planModal/planModal";
@@ -44,7 +43,6 @@ export const store = configureStore({
       isSelectModalType: isSelectModalTypeSlice.reducer,
       searchParameters: searchParametersSlice.reducer,
       buttonLock: buttonLockSlice.reducer,
-      alertMUI: alertMUISlice.reducer,
       counter: counterSlice.reducer,
       applicationsCounter: applicationsCounterSlice.reducer,
       dialog: dialogSlice.reducer,
