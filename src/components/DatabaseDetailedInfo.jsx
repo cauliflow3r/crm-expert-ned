@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useRef, useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import { format } from "date-fns";
 import {addComment} from "../crm-logic/addComment";
@@ -26,6 +26,8 @@ import {getTickets} from "../crm-logic/getTickets";
 import { motion } from "framer-motion"
 import {managers} from "../constants/managers";
 import {useNavigate} from "react-router-dom";
+import copy from 'clipboard-copy';
+import {showError, showSuccess} from "../utils/alert";
 
 const DatabaseDetailedInfo = () => {
   const navigate = useNavigate();
@@ -38,6 +40,7 @@ const DatabaseDetailedInfo = () => {
   const [baseEdit, setBaseEdit] = useState(false)
   const [managerEdit, setManagerEdit] =useState(false)
   const searchParameters = useSelector((state) => state.searchParameters)
+  const detailedInfoContainerRef = useRef(null);
 
   const handleChangeComment = (e) => {
     e.preventDefault()
@@ -89,6 +92,21 @@ const DatabaseDetailedInfo = () => {
     await dispatch(setBaseModal(true))
   };
 
+  const handleCopyClick = () => {
+    if (detailedInfoContainerRef.current) {
+      const textToCopy = detailedInfoContainerRef.current.innerText;
+      copy(textToCopy)
+          .then(() => {
+            showSuccess('Успешно выполнено!', 'Данные скопированы в буфер обмена!')
+          })
+          .catch(() => {
+            showError('Ошибка копирования!', 'Попробуйте скопировать вручную!')
+          });
+    } else {
+      showError('Ошибка копирования!', 'Не удалось найти данные для копирования!')
+    }
+  };
+
   return (
     <div
       className='detailed-info-border-box'>
@@ -119,6 +137,15 @@ const DatabaseDetailedInfo = () => {
                 onClick={goToSiteAdminPanel}
             >
               Разместить объявление
+            </Button>
+
+            <Button
+                color='success'
+                variant="outlined"
+                size='small'
+                onClick={handleCopyClick}
+            >
+             Копировать информацию
             </Button>
           </div>
 
@@ -252,97 +279,99 @@ const DatabaseDetailedInfo = () => {
 
             <div style={{borderTop: '1px solid black', margin: '20px 20px 0 20px'}} />
 
-            <div className="detailed-info-public-description">
+            <div ref={detailedInfoContainerRef}>
+              <div className="detailed-info-public-description">
 
-              {detailedInfo.adress !== 'Неважно' &&
-                <div className='detailed-info-public-description-elements'>Адрес: {detailedInfo.adress}</div>
-              }
 
-              {detailedInfo.rooms !== 9999 &&
-                <div className='detailed-info-public-description-elements'>Комнаты: {detailedInfo.rooms}</div>
-              }
+                {detailedInfo.adress !== 'Неважно' &&
+                    <div className='detailed-info-public-description-elements'>Адрес: {detailedInfo.adress}</div>
+                }
 
-              {detailedInfo.floor !== 9999 &&
-                  <div
-                      className='detailed-info-public-description-elements'
-                  >
-                    Этаж: {detailedInfo.floor}  {detailedInfo.total_floors !== 'Неважно' && <>/ {detailedInfo.total_floors}</>}
+                {detailedInfo.rooms !== 9999 &&
+                    <div className='detailed-info-public-description-elements'>Комнаты: {detailedInfo.rooms}</div>
+                }
 
-                  </div>
-              }
+                {detailedInfo.floor !== 9999 &&
+                    <div
+                        className='detailed-info-public-description-elements'
+                    >
+                      Этаж: {detailedInfo.floor}  {(detailedInfo.total_floors !== 'Неважно' && detailedInfo.total_floors !== '9999') && <>/ {detailedInfo.total_floors}</>}
 
-              { ( detailedInfo.quadrature !== 9999 && detailedInfo.quadrature !== 1 ) &&
+                    </div>
+                }
+
+                { ( detailedInfo.quadrature !== 9999 && detailedInfo.quadrature !== 1 ) &&
+                    <div className="detailed-info-public-description-elements">
+                      Квадратура: {detailedInfo.quadrature} м2
+                    </div>
+                }
+
+                {(detailedInfo.price !== 1 && detailedInfo.price !== 9999) &&
+                    <div className="detailed-info-public-description-elements">
+                      Цена: {detailedInfo.price} $
+                    </div>
+                }
+
+                {detailedInfo.repair !== 'Неважно' &&
+                    <div className="detailed-info-public-description-elements">
+                      Состояние: {detailedInfo.repair}
+                    </div>
+                }
+
+                {detailedInfo.series !== 'Неважно' &&
+                    <div className="detailed-info-public-description-elements">
+                      Серия: {detailedInfo.series}
+                    </div>
+                }
+
+                {detailedInfo.document !== 'Неважно' &&
+                    <div className="detailed-info-public-description-elements">
+                      Документы: {detailedInfo.document}
+                    </div>
+                }
+
+                {detailedInfo.year_of_construction !== 'Неважно' &&
+                    <div className="detailed-info-public-description-elements">
+                      Год строительства: {detailedInfo.year_of_construction}
+                    </div>
+                }
+
+                {detailedInfo.heating !== 'Неважно' &&
+                    <div className="detailed-info-public-description-elements">
+                      Отопление: {detailedInfo.heating}
+                    </div>
+                }
+
+                {detailedInfo.communications !== 'Неважно' &&
+                    <div className="detailed-info-public-description-elements">
+                      Коммуникации: {detailedInfo.communications}
+                    </div>
+                }
+
+                {detailedInfo.furniture !== 'Неважно' &&
+                    <div className="detailed-info-public-description-elements">
+                      Мебель: {detailedInfo.furniture}
+                    </div>
+                }
+
+                {detailedInfo.wall_material !== 'Неважно' &&
+                    <div className="detailed-info-public-description-elements">
+                      Стены: {detailedInfo.wall_material}
+                    </div>
+                }
+
+                {detailedInfo.plot !== 'Неважно' &&
+                    <div className="detailed-info-public-description-elements">
+                      Участок: {detailedInfo.plot}
+                    </div>
+                }
+
                 <div className="detailed-info-public-description-elements">
-                  Квадратура: {detailedInfo.quadrature} м2
+                  <strong>ID объявления: {detailedInfo.id}-exNed</strong>
                 </div>
-              }
 
-              {(detailedInfo.price !== 1 && detailedInfo.price !== 9999) &&
-                <div className="detailed-info-public-description-elements">
-                  Цена: {detailedInfo.price} $
-                </div>
-              }
-
-              {detailedInfo.repair !== 'Неважно' &&
-                <div className="detailed-info-public-description-elements">
-                  Состояние: {detailedInfo.repair}
-                </div>
-              }
-
-              {detailedInfo.series !== 'Неважно' &&
-                <div className="detailed-info-public-description-elements">
-                  Серия: {detailedInfo.series}
-                </div>
-              }
-
-              {detailedInfo.document !== 'Неважно' &&
-                <div className="detailed-info-public-description-elements">
-                  Документы: {detailedInfo.document}
-                </div>
-              }
-
-              {detailedInfo.year_of_construction !== 'Неважно' &&
-                <div className="detailed-info-public-description-elements">
-                  Год строительства: {detailedInfo.year_of_construction}
-                </div>
-              }
-
-              {detailedInfo.heating !== 'Неважно' &&
-                <div className="detailed-info-public-description-elements">
-                  Отопление: {detailedInfo.heating}
-                </div>
-              }
-
-              {detailedInfo.communications !== 'Неважно' &&
-                <div className="detailed-info-public-description-elements">
-                  Коммуникации: {detailedInfo.communications}
-                </div>
-              }
-
-              {detailedInfo.furniture !== 'Неважно' &&
-                <div className="detailed-info-public-description-elements">
-                  Мебель: {detailedInfo.furniture}
-                </div>
-              }
-
-              {detailedInfo.wall_material !== 'Неважно' &&
-                <div className="detailed-info-public-description-elements">
-                  Стены: {detailedInfo.wall_material}
-                </div>
-              }
-
-              {detailedInfo.plot !== 'Неважно' &&
-                <div className="detailed-info-public-description-elements">
-                  Участок: {detailedInfo.plot}
-                </div>
-              }
-
-              <div className="detailed-info-public-description-elements">
-                <strong>ID объявления: {detailedInfo.id}-exNed</strong>
               </div>
-
             </div>
-
 
             <div className="detailed-info-public-comments">
               <h2 className='detailed-info-comment-head'>
