@@ -37,7 +37,7 @@
 
 .detailed-info-public-description {
   display: grid;
-  align-items: start;
+  align-items: center;
   grid-template-columns: 1fr 1fr;
 }
 

@@ -136,7 +136,7 @@ const DatabaseDetailedInfo = () => {
                 size='small'
                 onClick={goToSiteAdminPanel}
             >
-              Разместить объявление
+              Разместить
             </Button>
 
             <Button
@@ -145,7 +145,7 @@ const DatabaseDetailedInfo = () => {
                 size='small'
                 onClick={handleCopyClick}
             >
-             Копировать информацию
+             Копировать
             </Button>
           </div>
 
@@ -242,6 +242,7 @@ const DatabaseDetailedInfo = () => {
 
               {managerEdit ?
                   <div className='detailed-info-public-description-elements'>
+                    Менеджер:
                     <select
                         name="comments"
                         value={detailedInfo.comments}
@@ -275,6 +276,11 @@ const DatabaseDetailedInfo = () => {
                   </div>
               }
 
+              {(detailedInfo.link !== 'Неважно' && detailedInfo.link !== '.') &&
+                <div className="detailed-info-public-description-elements">
+                  <a target='_blank' href={detailedInfo.link}>Ссылка на объявление</a>
+                </div>
+              }
             </div>
 
             <div style={{borderTop: '1px solid black', margin: '20px 20px 0 20px'}} />
@@ -371,6 +377,17 @@ const DatabaseDetailedInfo = () => {
                 </div>
 
               </div>
+            </div>
+
+            <div className="detailed-info-public-final-description">
+              {detailedInfo.description !== 'Неважно' &&
+                <>
+                  <h3>
+                    Доп.информация:
+                  </h3>
+                  {detailedInfo.description}
+                </>
+              }
             </div>
 
             <div className="detailed-info-public-comments">
