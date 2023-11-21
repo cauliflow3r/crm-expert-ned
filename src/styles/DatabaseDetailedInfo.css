@@ -10,9 +10,8 @@
 
 .detailed-info-our-information {
   display: grid;
-  align-items: start;
+  align-items: center;
   grid-template-columns: 1fr 1fr;
-  margin: 10px 0 0 20px;
   font-size: 14px;
 }
 
@@ -37,10 +36,13 @@
 
 
 .detailed-info-public-description {
-  margin: 10px 0 0 20px;
   display: grid;
   align-items: start;
   grid-template-columns: 1fr 1fr;
+}
+
+.detailed-info-public-description-elements {
+  margin: 10px 0 0 20px;
 }
 
 .detailed-info-public-final-description {

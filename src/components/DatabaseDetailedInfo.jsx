@@ -120,14 +120,6 @@ const DatabaseDetailedInfo = () => {
             >
               Разместить объявление
             </Button>
-            {/*<Button*/}
-            {/*  color='success'*/}
-            {/*  variant="outlined"*/}
-            {/*  size='small'*/}
-            {/*  onClick={() => dispatch(setActive(true))}*/}
-            {/*>*/}
-            {/*  Добавить задачу*/}
-            {/*</Button>*/}
           </div>
 
           { (id === '7' || id === '6' || id === '13' || id === '18') &&
@@ -155,75 +147,70 @@ const DatabaseDetailedInfo = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.2 }}
           >
-            <div
-              className="detailed-info-our-information">
-              <div>
+            <div className="detailed-info-our-information">
+
+              <div className='detailed-info-public-description-elements'>
                 ID : {detailedInfo.id}
               </div>
-              <div>
+
+              <div className='detailed-info-public-description-elements'>
                 Создан: {formatAndAdd4Hours(detailedInfo.created_ad)}
               </div>
-            </div>
-            <div className="detailed-info-our-information">
-              <div>
+
+              <div className="detailed-info-public-description-elements">
                 Имя: {detailedInfo.name}
               </div>
-              <div>
+
+              <div className="detailed-info-public-description-elements">
                 Телефон: {detailedInfo.phone}
               </div>
-            </div>
-            <div className="detailed-info-our-information">
-              <div>
-                Адресс: {detailedInfo.adress}
-              </div>
+
+              {(detailedInfo.owner_price !== '9999' && detailedInfo.owner_price !== '1') &&
+                  <div className="detailed-info-public-description-elements">
+                    Красная цена: {detailedInfo.owner_price} $
+                  </div>
+              }
 
               { baseEdit ?
-                <div>Тип базы:
-                  <select
-                    name="type_of_base"
-                    value={detailedInfo.type_of_base}
-                    onChange={handleInputChange}
-                  >
-                    <option value="Продажа">Продажа</option>
-                    <option value="Потенциальные">Потенциальные</option>
-                    <option value="Покупка">Квалифицирован</option>
-                    <option value="Встречи">Встречи</option>
-                    <option value="Результаты встречи">Результаты встречи</option>
-                    <option value="Заключение сделки">Заключение сделки</option>
-                    <option value="Неактуальные">Неактуальные</option>
-                    <option value="На удаление">На удаление</option>
-                  </select>
-                  <CheckIcon
-                    fontSize='small'
-                    onClick={editBase}
-                    sx={{cursor: 'pointer', marginLeft: '1.5vh'}}
-                  />
-                  <DoNotDisturbAltIcon
-                    fontSize='small'
-                    onClick={() => setBaseEdit(false)}
-                    sx={{cursor: 'pointer', marginLeft: '1.5vh'}}
-                  />
-                </div>
-                :
-                <div>
-                  Тип базы: {detailedInfo.type_of_base}
-                  <EditIcon
-                    fontSize='small'
-                    onClick={() => setBaseEdit(true)}
-                    sx={{cursor: 'pointer'}}
-                  />
-                </div>
+                  <div className='detailed-info-public-description-elements'>Тип базы:
+                    <select
+                        name="type_of_base"
+                        value={detailedInfo.type_of_base}
+                        onChange={handleInputChange}
+                    >
+                      <option value="Продажа">Продажа</option>
+                      <option value="Потенциальные">Потенциальные</option>
+                      <option value="Покупка">Квалифицирован</option>
+                      <option value="Встречи">Встречи</option>
+                      <option value="Результаты встречи">Результаты встречи</option>
+                      <option value="Заключение сделки">Заключение сделки</option>
+                      <option value="Неактуальные">Неактуальные</option>
+                      <option value="На удаление">На удаление</option>
+                    </select>
+                    <CheckIcon
+                        fontSize='small'
+                        onClick={editBase}
+                        sx={{cursor: 'pointer', marginLeft: '1.5vh'}}
+                    />
+                    <DoNotDisturbAltIcon
+                        fontSize='small'
+                        onClick={() => setBaseEdit(false)}
+                        sx={{cursor: 'pointer', marginLeft: '1.5vh'}}
+                    />
+                  </div>
+                  :
+                  <div className='detailed-info-public-description-elements'>
+                    Тип базы: {detailedInfo.type_of_base}
+                    <EditIcon
+                        fontSize='small'
+                        onClick={() => setBaseEdit(true)}
+                        sx={{cursor: 'pointer'}}
+                    />
+                  </div>
               }
 
-            </div>
-            <div className="detailed-info-our-information">
-              { detailedInfo.owner_price !== '9999' &&
-                <div>
-                  Красная цена: {detailedInfo.owner_price} $
-                </div>
-              }
               {managerEdit ?
-                  <div>
+                  <div className='detailed-info-public-description-elements'>
                     <select
                         name="comments"
                         value={detailedInfo.comments}
@@ -247,7 +234,7 @@ const DatabaseDetailedInfo = () => {
                     />
                   </div>
                   :
-                  <div>
+                  <div className='detailed-info-public-description-elements'>
                     Менеджер: {detailedInfo.comments}
                     <EditIcon
                         fontSize='small'
@@ -257,146 +244,100 @@ const DatabaseDetailedInfo = () => {
                   </div>
               }
 
-
             </div>
-            { detailedInfo.link !== 'Неважно' &&
-              <div className='detailed-info-our-information-link'>
-                Ссылка : <a href={detailedInfo.link} target="_blank">{detailedInfo.link}</a>
-              </div>
-            }
-            <div style={{marginTop: '20px', borderTop: '1px solid black'}}/>
+
+            <div style={{borderTop: '1px solid black', margin: '20px 20px 0 20px'}} />
+
             <div className="detailed-info-public-description">
-              { detailedInfo.type_of_housing !== 'Неважно' &&
-                <div>
-                  Тип: {detailedInfo.type_of_housing}
-                </div>
+
+              {detailedInfo.adress !== 'Неважно' &&
+                <div className='detailed-info-public-description-elements'>Адрес: {detailedInfo.adress}</div>
               }
-              { detailedInfo.rooms !== 9999 &&
-                <div>
-                  Комнаты: {detailedInfo.rooms}
-                </div>
+
+              {detailedInfo.rooms !== 9999 &&
+                <div className='detailed-info-public-description-elements'>Комнаты: {detailedInfo.rooms}</div>
               }
-            </div>
-              <div className="detailed-info-public-description">
-                  <div>
 
-                    { detailedInfo.floor === 9999 ?
-
-                      <div>
-                        { (detailedInfo.total_floors !== '9999') && (detailedInfo.total_floors !== 'Неважно')
-                          &&
-                         <span> Всего этажей: { detailedInfo.total_floors}</span> }
-
-                      </div>
-                      :
-                      <div>
-                        Этаж: {detailedInfo.floor} / { detailedInfo.total_floors}
-                      </div>
-                    }
+              {detailedInfo.floor !== 9999 &&
+                  <div
+                      className='detailed-info-public-description-elements'
+                  >
+                    Этаж: {detailedInfo.floor}  {detailedInfo.total_floors !== 'Неважно' && <>/ {detailedInfo.total_floors}</>}
 
                   </div>
-                { (detailedInfo.quadrature !== 9999) && (detailedInfo.quadrature !== 1)  &&
-                  <div>
-                    Квадратура: {detailedInfo.quadrature} м2
-                  </div>
-                }
-              </div>
+              }
 
+              { ( detailedInfo.quadrature !== 9999 && detailedInfo.quadrature !== 1 ) &&
+                <div className="detailed-info-public-description-elements">
+                  Квадратура: {detailedInfo.quadrature} м2
+                </div>
+              }
 
-            { (detailedInfo.price !== 1) && (detailedInfo.price !== 9999) &&
-              <div className="detailed-info-public-description">
-                <div>
+              {(detailedInfo.price !== 1 && detailedInfo.price !== 9999) &&
+                <div className="detailed-info-public-description-elements">
                   Цена: {detailedInfo.price} $
                 </div>
-                <div>
-                  Цена за квадрат: {(detailedInfo.price / detailedInfo.quadrature).toFixed(1)} $
-                </div>
-              </div>
-            }
+              }
 
-            <div className="detailed-info-public-description">
-              { detailedInfo.repair !== 'Неважно' &&
-                <div>
+              {detailedInfo.repair !== 'Неважно' &&
+                <div className="detailed-info-public-description-elements">
                   Состояние: {detailedInfo.repair}
                 </div>
               }
-              { detailedInfo.series !== 'Неважно' &&
-                <div>
+
+              {detailedInfo.series !== 'Неважно' &&
+                <div className="detailed-info-public-description-elements">
                   Серия: {detailedInfo.series}
                 </div>
               }
-            </div>
-            <div className="detailed-info-public-description">
-              { detailedInfo.document !== "Неважно" &&
-                <div>
+
+              {detailedInfo.document !== 'Неважно' &&
+                <div className="detailed-info-public-description-elements">
                   Документы: {detailedInfo.document}
                 </div>
               }
-              { detailedInfo.year_of_construction !== 'Неважно' &&
-                <div>
-                Год строительства: {detailedInfo.year_of_construction}
-                </div>}
-            </div>
-            <div className="detailed-info-public-description">
-              { detailedInfo.heating !== 'Неважно' &&
-                <div>
+
+              {detailedInfo.year_of_construction !== 'Неважно' &&
+                <div className="detailed-info-public-description-elements">
+                  Год строительства: {detailedInfo.year_of_construction}
+                </div>
+              }
+
+              {detailedInfo.heating !== 'Неважно' &&
+                <div className="detailed-info-public-description-elements">
                   Отопление: {detailedInfo.heating}
                 </div>
               }
-              { detailedInfo.communications !== 'Неважно' &&
-                <div>
+
+              {detailedInfo.communications !== 'Неважно' &&
+                <div className="detailed-info-public-description-elements">
                   Коммуникации: {detailedInfo.communications}
                 </div>
               }
-            </div>
-            { detailedInfo.furniture !== 'Неважно' &&
-              <div className="detailed-info-public-description">
-                <div>
+
+              {detailedInfo.furniture !== 'Неважно' &&
+                <div className="detailed-info-public-description-elements">
                   Мебель: {detailedInfo.furniture}
                 </div>
-                <div>
+              }
+
+              {detailedInfo.wall_material !== 'Неважно' &&
+                <div className="detailed-info-public-description-elements">
                   Стены: {detailedInfo.wall_material}
                 </div>
-              </div>
-            }
+              }
 
-
-              <div className="detailed-info-public-description">
-                { detailedInfo.plot !== 'Неважно' &&
-                    <div>
-                      Участок: {detailedInfo.plot}
-                    </div>
-                }
-                <div>
-                  <strong>ID объявления:</strong> {detailedInfo.id}-exNed
+              {detailedInfo.plot !== 'Неважно' &&
+                <div className="detailed-info-public-description-elements">
+                  Участок: {detailedInfo.plot}
                 </div>
+              }
+
+              <div className="detailed-info-public-description-elements">
+                <strong>ID объявления: {detailedInfo.id}-exNed</strong>
               </div>
 
-
-
-            <div className="detailed-info-public-final-description">
-              <h3>
-                Доп.информация:
-              </h3>
-              {detailedInfo.description}
             </div>
-
-            {/*<div className="detailed-info-tickets">*/}
-            {/*  <h2 className='detailed-info-ticket-head'>*/}
-            {/*    Задачи*/}
-            {/*  </h2>*/}
-            {/*  {detailedInfo.tickets.map((item, idx) => {*/}
-            {/*    return (*/}
-            {/*      <div key={idx}>*/}
-            {/*        <div*/}
-            {/*          className='detailed-info-ticket'*/}
-            {/*          onClick={() => handleShowTicket(item.id)}>*/}
-            {/*          {item.title}*/}
-            {/*        </div>*/}
-            {/*      </div>*/}
-            {/*    )*/}
-            {/*  })}*/}
-            {/*</div>*/}
 
 
             <div className="detailed-info-public-comments">
