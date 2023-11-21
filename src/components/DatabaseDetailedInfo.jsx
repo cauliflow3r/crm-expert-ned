@@ -171,6 +171,10 @@ const DatabaseDetailedInfo = () => {
                   </div>
               }
 
+              <div className="detailed-info-public-description-elements">
+                Тип недвижимости: {detailedInfo.type_of_housing}
+              </div>
+
               { baseEdit ?
                   <div className='detailed-info-public-description-elements'>Тип базы:
                     <select
