@@ -6,7 +6,7 @@ import logo from "../assets/fullblack.png";
 
 const Login = () => {
   const [formData, setFormData] = useState({ username: "", password: "" });
-  const { handleLogin, setCurrentUser } = useAuth();
+  const { handleLogin, loading} = useAuth();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -15,7 +15,7 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await handleLogin(formData);
+      await handleLogin(formData);
   };
 
   return (
@@ -31,7 +31,7 @@ const Login = () => {
               value={formData.username}
               type="text"
               name="username"
-              placeholder="Username"
+              placeholder="Логин"
             />
           </div>
           <div className="input-container">
@@ -42,12 +42,18 @@ const Login = () => {
               value={formData.password}
               type="password"
               name="password"
-              placeholder="Password"
+              placeholder="Пароль"
             />
           </div>
-          <button className="login-button" type="submit">
-            Login
+
+          <button
+              className={loading ? 'login-button login-disabled' : 'login-button'}
+              type="submit"
+              disabled={loading}
+          >
+            Войти
           </button>
+
         </form>
       </div>
     </div>

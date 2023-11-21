@@ -3,6 +3,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { setRefreshToken } from "../features/token/tokenSlice";
+import {showError, showSuccess} from "../utils/alert";
 
 export const authContext = createContext();
 export const useAuth = () => useContext(authContext);
@@ -10,7 +11,7 @@ export const API = "https://realty-ggcv.onrender.com";
 
 export const AuthContextProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
-  const [errorMessage, setErrorMessage] = useState(null);
+  const [errorMessage, setErrorMessage] = useState('');
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
@@ -26,7 +27,6 @@ export const AuthContextProvider = ({ children }) => {
       const allUsers = await axios.get(`${API}/user/profile/`);
       localStorage.setItem("allUsers", JSON.stringify(allUsers.data.results));
 
-      // setting currentuser info
       for (const user of allUsers.data.results) {
         if (user.username === formData.username) {
           localStorage.setItem("id", user.id);
@@ -37,8 +37,10 @@ export const AuthContextProvider = ({ children }) => {
       }
 
       navigate("/");
+      showSuccess('Добро пожаловать,', `${localStorage.getItem('first_name')} ${localStorage.getItem('last_name')}`)
     } catch (error) {
-      setErrorMessage("Login failed. Please check your credentials.");
+      setErrorMessage("Неверный логин или пароль");
+      showError('Ошибка авторизации', 'Неверный логин или пароль')
     } finally {
       setLoading(false);
     }
