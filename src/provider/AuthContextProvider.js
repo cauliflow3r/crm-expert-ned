@@ -45,6 +45,7 @@ export const AuthContextProvider = ({ children }) => {
       setLoading(false);
     }
   };
+
   const getToken = (type = "accessToken") => {
     const token = localStorage.getItem(type);
     return token || "";
