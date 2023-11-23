@@ -2,7 +2,6 @@ import React, { createContext, useContext, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { setRefreshToken } from "../features/token/tokenSlice";
 import {showError, showSuccess} from "../utils/alert";
 
 export const authContext = createContext();

@@ -75,7 +75,6 @@ export const getBase = async (dispatch, searchParameters) => {
       })
     }
 
-
     dispatch(setData(filteredData))
   } catch (error) {
     console.log(error, 'error');

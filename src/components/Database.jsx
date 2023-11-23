@@ -90,6 +90,8 @@ const Database = () => {
                               : '' } 
                            `}
                       >
+
+
                         <div className='data-base-every-client-name'> {item.name}</div>
                         <div className='data-base-every-client-address'> {item.adress}</div>
                         <div>

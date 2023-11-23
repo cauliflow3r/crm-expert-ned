@@ -1,7 +1,5 @@
 import {configureStore} from "@reduxjs/toolkit";
-import {userSlice} from "../features/users/userSlice";
 import {dataSlice} from "../features/data/dataSlice";
-import {tokenSlice} from "../features/token/tokenSlice";
 import {isLoadingSlice} from "../features/isLoading/isLoading";
 import {typeOfBaseSlice} from "../features/typeOfBase/typeOfBaseSlice";
 import {getOneClientSlice} from "../features/getOneClient/getOneClientSlice";
@@ -27,13 +25,12 @@ import {
     isLoadingSiteAdminDetailedInfoSlice
 } from "../features/isLoadingSiteAdminDetailedInfo/isLoadingSiteAdminDetailedInfoSlice";
 import {addFlatSlice} from "../features/addFlat/addFlatSlice";
+import {commentDatesSlice} from "../features/commentDate/commentDateSlice";
 
 export const store = configureStore({
   reducer:
     {
-      user:userSlice.reducer,
       data: dataSlice.reducer,
-      token: tokenSlice.reducer,
       isLoading: isLoadingSlice.reducer,
       isLoadingDetailedInfo: isLoadingDetailedInfoSlice.reducer,
       typeOfBase: typeOfBaseSlice.reducer,
@@ -56,6 +53,7 @@ export const store = configureStore({
       isLoadingSiteAdmin: isLoadingSiteAdminSlice.reducer,
       getOneFlat: getOneFlatSlice.reducer,
       isLoadingSiteAdminDetailedInfo: isLoadingSiteAdminDetailedInfoSlice.reducer,
-      addFlat: addFlatSlice.reducer
+      addFlat: addFlatSlice.reducer,
+      commentDates: commentDatesSlice.reducer,
     }
 })
