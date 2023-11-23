@@ -28,6 +28,7 @@ const Database = () => {
   const ticketModal = useSelector((state) => state.ticketLoading )
   const showTicket = useSelector(state => state.showTicketModal)
   const statisticsModal = useSelector(state => state.statistics)
+  const id = localStorage.getItem('id')
 
   useEffect(() => {
     (async () => {
@@ -82,7 +83,12 @@ const Database = () => {
                           transition={{ duration: 0.2 }}
                           key={idx}
                           onClick={() => selectClient(item.id)}
-                          className={`data-base-every-client ${selectedClient && selectedClient.id === item.id ? 'data-base-selected' : ''}`}
+                          className={`data-base-every-client 
+                          ${selectedClient && selectedClient.id === item.id ? 'data-base-selected' : ''} 
+                          ${ (id == 6 || id == 7) ?
+                              (  (!item.comments || item.comments === 'Неважно') && 'data-base-every-client-red' )
+                              : '' } 
+                           `}
                       >
                         <div className='data-base-every-client-name'> {item.name}</div>
                         <div className='data-base-every-client-address'> {item.adress}</div>

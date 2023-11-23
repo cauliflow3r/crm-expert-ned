@@ -37,6 +37,24 @@
   cursor: pointer;
 }
 
+@keyframes pulse {
+  0% {
+    background-color: red;
+  }
+  50% {
+    background-color: #faf1e4;
+  }
+  100% {
+    background-color: red;
+  }
+}
+
+.data-base-every-client-red {
+  font-weight: bold;
+  animation: pulse 5s infinite;
+}
+
+
 .data-base-every-client-type-of-base {
   font-size: 20px;
 }
