@@ -85,9 +85,7 @@ const Database = () => {
                           onClick={() => selectClient(item.id)}
                           className={`data-base-every-client 
                           ${selectedClient && selectedClient.id === item.id ? 'data-base-selected' : ''} 
-                          ${ (id == 6 || id == 7) ?
-                              (  (!item.comments || item.comments === 'Неважно') && 'data-base-every-client-red' )
-                              : '' } 
+                          ${(  (!item.comments || item.comments === 'Неважно') && 'data-base-every-client-red' )} 
                            `}
                       >
 
