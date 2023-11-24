@@ -32,10 +32,8 @@ const StaffModal = () => {
             <h4 className="plan-modal-title">Отдел продаж</h4>
             <p className="plan-modal-employees">Имашов Алмаз - <strong>Менеджер по работе с клиентами, 0557 510 150</strong></p>
             <p className="plan-modal-employees">Казыбеков Калыбек - <strong>Менеджер по работе с клиентами, 0556 510 150</strong></p>
-            <p className="plan-modal-employees">Манасбек уулу Семетей - <strong>Менеджер по работе с клиентами, 0704 373 044</strong></p>
             <p className="plan-modal-employees">Самсалиев Арген - <strong>Менеджер по работе с клиентами, 0706 332 125</strong></p>
             <p className="plan-modal-employees">Турдаалиев Азирет - <strong>Менеджер по работе с клиентами, 0702 260 098</strong></p>
-            <p className="plan-modal-employees">Жуманалиев Азамат - <strong>Менеджер по работе с клиентами, 0509 660 860</strong></p>
             <p className="plan-modal-employees">Эсенжанов Мырзалы - <strong>Менеджер по работе с клиентами, 0707 340 216</strong></p>
 
             <h4 className="plan-modal-title">Отдел маркетинга</h4>
@@ -66,11 +64,9 @@ const StaffModal = () => {
               <p className="plan-modal-employees">Стажер - Логин: <strong>stazher</strong> , пароль: <strong>en2023</strong></p>
               <p className="plan-modal-employees">Алмаз Имашов - Логин: <strong>aimashov</strong> , пароль: <strong>NAZI9407</strong></p>
               <p className="plan-modal-employees">Калыбек Казыбеков - Логин: <strong>kkazybekov</strong> , пароль: <strong>Gostoper1996</strong></p>
-              <p className="plan-modal-employees">Семетей Манасбек уулу - Логин: <strong>smanasbek</strong> , пароль: <strong>Twentyoneguns21</strong></p>
               <p className="plan-modal-employees">Арген Самсалиев - Логин: <strong>asamsaliev</strong> , пароль: <strong>0555239318</strong></p>
               <p className="plan-modal-employees">Азирет Турдаалиев - Логин: <strong>aturdaaliev</strong> , пароль: <strong>260098a</strong></p>
               <p className="plan-modal-employees">Азамат Жуманалиев - Логин: <strong>adhzumanaliev </strong> , пароль: <strong>greenwood</strong></p>
-              <p className="plan-modal-employees">Мырзалы Эсенжанов - Логин: <strong>mesenzhanov</strong> , пароль: <strong>rusty312</strong></p>
             </div>
           }
         </div>

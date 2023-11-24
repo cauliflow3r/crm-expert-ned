@@ -17,9 +17,7 @@ const Statistics = () => {
   const [dataSite, setDataSite] = useState([])
   const [dataAlmaz, setDataAlmaz] = useState([])
   const [dataKalybek, setDataKalybek] = useState([])
-  const [dataSemetei, setDataSemetei] = useState([])
   const [dataAziret, setDataAziret] = useState([])
-  const [dataAzamat, setDataAzamat] = useState([])
   const [dataMyrza, setDataMyrza] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const date = new Date();
@@ -52,12 +50,6 @@ const Statistics = () => {
       const responseAziret = await axiosInstance.get(`crm/?manager=17&created_ad=${formattedDate}`)
       setDataAziret(responseAziret.data.results)
 
-      const responseSemetei = await axiosInstance.get(`crm/?manager=22&created_ad=${formattedDate}`)
-      setDataSemetei(responseSemetei.data.results)
-
-      const responseAzamat = await axiosInstance.get(`crm/?manager=23&created_ad=${formattedDate}`)
-      setDataAzamat(responseAzamat.data.results)
-
       const responseMyrza = await axiosInstance.get(`crm/?manager=24&created_ad=${formattedDate}`)
       setDataMyrza(responseMyrza.data.results)
 
@@ -87,12 +79,6 @@ const Statistics = () => {
 
       const responseAziret = await axiosInstance.get(`crm/?manager=17&created_ad=${formatDate(selectedDate)}`)
       setDataAziret(responseAziret.data.results)
-
-      const responseSemetei = await axiosInstance.get(`crm/?manager=22&created_ad=${formatDate(selectedDate)}`)
-      setDataSemetei(responseSemetei.data.results)
-
-      const responseAzamat = await axiosInstance.get(`crm/?manager=23&created_ad=${formatDate(selectedDate)}`)
-      setDataAzamat(responseAzamat.data.results)
 
       const responseMyrza = await axiosInstance.get(`crm/?manager=24&created_ad=${formatDate(selectedDate)}`)
       setDataMyrza(responseMyrza.data.results)
@@ -296,40 +282,6 @@ const Statistics = () => {
             </div>
 
             <div className="statistics-wrap-managers">
-              <strong>Семетей Манасбек уулу</strong> - {dataSemetei.length} добавленных
-              {dataSemetei.length !== 0 &&
-                <>
-                  <div className="statistics-wrap">
-                    <div className="statistics-name statistics-name-wrap">Имя</div>
-                    <div className="statistics-phone statistics-name-wrap">Номер</div>
-                    <div className="statistics-date">Создан</div>
-                    <div className="statistics-date">ID</div>
-                    <div className="statistics-manager statistics-name-wrap">Тип базы</div>
-                  </div>
-                  {dataSemetei.map((item, idx) => {
-                    return (
-                      <div
-                        className='statistics-head-block'
-                        key={idx}
-                      >
-                        <div className="statistics-name">{item.name}</div>
-
-                        <div className="statistics-phone">{item.phone}</div>
-
-                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                        <div className="statistics-date">{item.id}</div>
-
-                        <div className="statistics-date">{item.type_of_base}</div>
-
-                      </div>
-                    )
-                  })}
-                </>
-              }
-            </div>
-
-            <div className="statistics-wrap-managers">
               <strong>Азирет Турдаалиев</strong> - {dataAziret.length} добавленных
               {dataAziret.length !== 0 &&
                 <>
@@ -360,41 +312,6 @@ const Statistics = () => {
                     )
                   })}
                 </>
-              }
-
-            </div>
-
-            <div className="statistics-wrap-managers">
-              <strong>Азамат Жуманалиев</strong> - {dataAzamat.length} добавленных
-              {dataAzamat.length !== 0 &&
-                  <>
-                    <div className="statistics-wrap">
-                      <div className="statistics-name statistics-name-wrap">Имя</div>
-                      <div className="statistics-phone statistics-name-wrap">Номер</div>
-                      <div className="statistics-date">Создан</div>
-                      <div className="statistics-date">ID</div>
-                      <div className="statistics-manager statistics-name-wrap">Тип базы</div>
-                    </div>
-                    {dataAzamat.map((item, idx) => {
-                      return (
-                          <div
-                              className='statistics-head-block'
-                              key={idx}
-                          >
-                            <div className="statistics-name">{item.name}</div>
-
-                            <div className="statistics-phone">{item.phone}</div>
-
-                            <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                            <div className="statistics-date">{item.id}</div>
-
-                            <div className="statistics-date">{item.type_of_base}</div>
-
-                          </div>
-                      )
-                    })}
-                  </>
               }
 
             </div>
