@@ -11,7 +11,7 @@
 
 .data-base-wrap {
   display: flex;
-  height: calc(100vh - 139px);
+  height: calc(100vh - 148px);
 }
 
 .data-base-all-client-list {
