@@ -103,8 +103,7 @@ const Navbar = () => {
 
         {isActive ?
               <div className={styles.currency}>
-                <span>$ = {data.buy_usd} с.</span>
-                <span>₽ = {data.buy_rub} с.</span>
+                <span>1 USD ≈ {data.buy_usd} с.</span>
               </div>
             :
             <Box sx={{ width: 100, marginRight: '20px' }}>
