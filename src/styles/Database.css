@@ -1,17 +1,19 @@
 .data-base-head {
   background: #435334;
   padding: 20px;
+  transition: 0.5s ease-in-out;
 }
 
 .data-base {
   background-color: #faf1e4;
   border-radius: 5px;
   font-size: 14px;
+  transition: 0.5s ease-in-out;
 }
 
 .data-base-wrap {
   display: flex;
-  height: calc(100vh - 148px);
+  height: calc(100vh - 140px);
 }
 
 .data-base-all-client-list {
@@ -27,6 +29,7 @@
   border-bottom: 1px solid black;
   border-top: 1px solid black;
   background: #9eb384;
+  transition: 0.5s ease-in-out;
 }
 
 
@@ -61,10 +64,11 @@
 
 .data-base-selected {
   background: #9eb384;
+  transition: 0.5s ease-in-out;
 }
 
 .data-base-every-client:hover {
-  background: #435334;
+  background: #9eb384;
 }
 
 .data-base-every-client-name {
@@ -163,4 +167,14 @@
     display: block;
   }
 
+}
+
+.data-base-dark-theme {
+  background: #1C3334 !important;
+  transition: 0.5s ease-in-out;
+}
+
+.data-base-dark-theme-cold {
+  background: #2F4454;
+  transition: 0.5s ease-in-out;
 }

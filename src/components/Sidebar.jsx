@@ -3,21 +3,23 @@ import styles from "../styles/Sidebar.module.css";
 import { Squash as Hamburger } from "hamburger-react";
 import { useNavigate } from "react-router-dom";
 import { useUI } from "../provider/UiContextProvider";
+import {useSelector} from "react-redux";
 
 const Sidebar = () => {
   const { toggleSidebar, isOpen } = useUI();
+  const theme = useSelector((state) => state.darkTheme)
 
   const navigate = useNavigate();
 
   return (
-    <div className={`${styles.container} ${isOpen ? styles.open : ""}`}>
-      <div className={styles.imageContainer}>
+    <div className={`${styles.container} ${isOpen ? styles.open : "" } ${theme ? styles.darkThemeCold : ''} `}>
+      <div className={`${styles.imageContainer} ${theme ? styles.darkTheme : ''}`}>
         <Hamburger toggled={isOpen} toggle={toggleSidebar} color="white" />
       </div>
       <div className={styles.navigation}>
         <button
           onClick={() => navigate("/")}
-          className={`${isOpen ? styles.centered : ""}`}
+          className={` ${ theme ? styles.darkTheme : ''}  ${isOpen ? styles.centered : ""}`}
         >
           <img
             className={styles.btnLogo}
@@ -47,7 +49,7 @@ const Sidebar = () => {
         {/*</button>*/}
         <button
           onClick={() => navigate("/site-admin")}
-          className={`${isOpen ? styles.centered : ""}`}
+          className={` ${ theme ? styles.darkTheme : ''}  ${isOpen ? styles.centered : ""}`}
         >
           <img
             className={styles.btnLogo}

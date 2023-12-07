@@ -74,6 +74,7 @@ const HeaderDatabase = () => {
   const [moreFilters, setMoreFilters] = useState(false)
   const counter = useSelector(state => state.counter)
   const applicationsCounter = useSelector(state => state.applicationsCounter)
+  const theme = useSelector((state) => state.darkTheme)
 
   const isSearch = async () => {
     await getBase(dispatch, searchParameters)
@@ -115,7 +116,7 @@ const HeaderDatabase = () => {
             {DATA.map((item, idx) => {
               return (
                   <div
-                      className={`header-head-button ${active === item.value ? 'header-head-button-active' : ''}`}
+                      className={`header-head-button ${active === item.value ? `${theme ? 'header-head-button-active ' : 'header-head-button-active'}` : ''}`}
                       onClick={handleHeaderClick(item.value)}
                       key={idx}
                   >

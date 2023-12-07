@@ -19,8 +19,10 @@ const BaseModal = () => {
   const baseModal = useSelector((state) => state.baseModal)
   const userId = localStorage.getItem('id')
   const isModalType = useSelector((state) => state.isSelectModalType)
+  const theme = useSelector((state) => state.darkTheme)
 
-  const [modalData, setModalData] = useState({
+
+    const [modalData, setModalData] = useState({
       name: '',
       phone: '',
       adress: '',
@@ -95,9 +97,9 @@ const BaseModal = () => {
 
   return (
     <div onClick={closeBaseModal} className={baseModal ? 'base-modal active' : 'base-modal'}>
-      <div onClick={(e) => e.stopPropagation()} className={baseModal ? 'modal__content active' : 'modal__content'}>
+      <div onClick={(e) => e.stopPropagation()} className={` ${baseModal ? `modal__content active` : `modal__content`} ${theme ? 'data-base-dark-theme' : ''}`}>
 
-        { isModalType.isSelect &&
+          { isModalType.isSelect &&
           <div
             className='base-modal-logo'
           />

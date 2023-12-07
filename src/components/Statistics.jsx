@@ -26,6 +26,7 @@ const Statistics = () => {
   const day = date.getDate().toString().padStart(2, '0');
   const formattedDate = `${year}-${month}-${day}`;
   const [selectedDate, setSelectedDate] = useState(null);
+  const theme = useSelector((state) => state.darkTheme)
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
@@ -108,7 +109,7 @@ const Statistics = () => {
 
   return (
     <div onClick={() =>  dispatch(setStatisticsActive(false))} className={statisticsModal ? 'base-modal active' : 'base-modal'}>
-      <div onClick={(e) => e.stopPropagation()} className={statisticsModal ? 'modal__content active' : 'modal__content'}>
+      <div onClick={(e) => e.stopPropagation()} className={` ${statisticsModal ? `modal__content active` : `modal__content`} ${theme ? 'data-base-dark-theme' : ''}`}>
 
 
         { isLoading ?

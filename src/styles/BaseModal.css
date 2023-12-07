@@ -107,3 +107,13 @@
     box-shadow: none;
   }
 }
+
+.data-base-dark-theme {
+  background: #1C3334;
+  transition: 0.5s ease-in-out;
+}
+
+.data-base-dark-theme-cold {
+  background: #2F4454;
+  transition: 0.5s ease-in-out;
+}

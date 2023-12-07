@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, {useEffect, useState} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBase } from '../crm-logic/getBase';
 import HeaderDatabase from './HeaderDatabase';
@@ -29,6 +29,7 @@ const Database = () => {
   const showTicket = useSelector(state => state.showTicketModal)
   const statisticsModal = useSelector(state => state.statistics)
   const id = localStorage.getItem('id')
+  const theme = useSelector((state) => state.darkTheme)
 
   useEffect(() => {
     (async () => {
@@ -56,14 +57,16 @@ const Database = () => {
 
 
   return (
-    <div className='data-base-head' >
-      <div className='data-base'>
+    <div
+        className={`data-base-head ${theme ? 'data-base-dark-theme' : ''}`}
+    >
+      <div className={`data-base ${ theme ? 'data-base-dark-theme-cold' : ''}`}>
         <HeaderDatabase />
         <div className='data-base-wrap'>
           <div
             className={selectedClient ? 'data-base-all-client-list data-base-all-client-list-active' : 'data-base-all-client-list'}
           >
-            <div className="data-base-all-client-menu">
+            <div className={`data-base-all-client-menu ${theme ? 'data-base-dark-theme' : ''}`}>
               <div className='data-base-every-client-name'>Имя</div>
               <div className='data-base-every-client-address'>Адрес</div>
               <div
@@ -77,14 +80,11 @@ const Database = () => {
               data.map((item, idx) => {
                 if (typeOfBase === 'Полная база' || item.type_of_base === typeOfBase) {
                   return (
-                      <motion.div
-                          initial={{ opacity: 0, scale: 0.5 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          transition={{ duration: 0.2 }}
+                      <div
                           key={idx}
                           onClick={() => selectClient(item.id)}
                           className={`data-base-every-client 
-                          ${selectedClient && selectedClient.id === item.id ? 'data-base-selected' : ''} 
+                          ${selectedClient && selectedClient.id === item.id ? `data-base-selected ${ theme ? 'data-base-dark-theme' : ''}` : ''} 
                           ${(  (!item.comments || item.comments === 'Неважно') && 'data-base-every-client-red' )} 
                            `}
                       >
@@ -99,7 +99,7 @@ const Database = () => {
                               'неизв.'
                           }
                         </div>
-                      </motion.div>
+                      </div>
                   );
                 }
                 return null;

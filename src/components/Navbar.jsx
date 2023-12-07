@@ -4,10 +4,13 @@ import logo from "../assets/fullblack.png";
 import { useUI } from "../provider/UiContextProvider";
 import axios from "axios";
 import RefreshIcon from '@mui/icons-material/Refresh';
-import {Button} from "@mui/material";
+import {Button, FormControlLabel, Switch} from "@mui/material";
 import Skeleton from '@mui/material/Skeleton';
 import Box from "@mui/material/Box";
 import UserAdminPanel from "./UserAdminPanel";
+import {useDispatch, useSelector} from "react-redux";
+import {setDarkTheme} from "../features/darkTheme/darkTheme";
+import {MaterialUISwitch} from "./SwitchTheme";
 
 const Navbar = () => {
   const { isOpen } = useUI();
@@ -23,6 +26,8 @@ const Navbar = () => {
   const fullName = `${firstName} ${lastName}`
   const [userModal, setUserModal] = useState(false)
   const id = localStorage.getItem('id')
+  const dispatch = useDispatch()
+  const theme = useSelector((state) => state.darkTheme)
 
   const logout = () => {
     localStorage.removeItem("accessToken");
@@ -72,7 +77,7 @@ const Navbar = () => {
   }, [])
 
   return (
-    <div className={`${styles.container} ${isOpen ? styles.minimized : ""}`}>
+    <div className={`${styles.container} ${isOpen ? styles.minimized : ""} ${theme ? styles.darkThemeCold : ''} `}>
       <div className={styles.left}>
         <img style={{ height: "100px" }} src={logo} alt="" />
       </div>
@@ -111,12 +116,16 @@ const Navbar = () => {
             </Box>
         }
 
+        <MaterialUISwitch
+            checked={theme}
+            onChange={() => dispatch(setDarkTheme(!theme))}
+        />
+
         <Button
             onClick={ id === '6' || id === '7' ? () => setUserModal(true) : null}
-            color='success'
             variant='contained'
             size='small'
-            sx={{marginRight: '20px'}}
+            sx={{marginRight: '20px', color: 'wheat', background: '#1C3334'}}
         >
           {fullName}
         </Button>
@@ -126,7 +135,7 @@ const Navbar = () => {
             color='success'
             variant='contained'
             size='small'
-            sx={{marginRight: '20px'}}
+            sx={{marginRight: '20px', color: 'wheat', background: '#1C3334'}}
         >
           Выйти
         </Button>

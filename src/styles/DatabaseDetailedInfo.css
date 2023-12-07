@@ -96,8 +96,6 @@
 .detailed-info-comment {
   margin: 10px 5px;
   text-align: start;
-  /*font-weight: 500;*/
-  /* font-size: 18px;*/
 }
 
 .detailed-info-comment-admin {
@@ -108,8 +106,6 @@
   text-align: center;
 }
 
-
-
 /* тело полосы скролла*/
 ::-webkit-scrollbar {
   width: 8px; /* Ширина полосы прокрутки */
@@ -117,13 +113,13 @@
 
 /* само тело скролла */
 ::-webkit-scrollbar-thumb {
-  background-color: #9eb384; /* Цвет "бегунка" */
+  background-color: #1C3334; /* Цвет "бегунка" */
   border-radius: 25px; /* Закругление углов "бегунка" */
 }
 
 /*Фон скролла*/
 ::-webkit-scrollbar-track {
-  background-color: #f1f1f1;
+  background-color: wheat;
   border-radius: 25px;
 }
 

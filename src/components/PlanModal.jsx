@@ -9,6 +9,7 @@ const StaffModal = () => {
   const planModal = useSelector(state => state.planModal)
   const dispatch = useDispatch()
   const id = localStorage.getItem('id')
+  const theme = useSelector((state) => state.darkTheme)
 
   const closeBaseModal = () => {
     dispatch(setPlanModal(false))
@@ -16,7 +17,7 @@ const StaffModal = () => {
 
   return (
     <div onClick={closeBaseModal} className={planModal ? 'base-modal active' : 'base-modal'}>
-      <div onClick={(e) => e.stopPropagation()} className={planModal ? 'modal__content active' : 'modal__content'}>
+      <div onClick={(e) => e.stopPropagation()} className={` ${planModal ? `modal__content active` : `modal__content`} ${theme ? 'data-base-dark-theme' : ''}`}>
         <div>
           <div>
             <h3 className="plan-modal-title">ИП "Баялиев Замирбек Бактыбекович"</h3>

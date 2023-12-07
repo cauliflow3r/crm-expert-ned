@@ -26,6 +26,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  transition: 0.5s ease-in-out;
 }
 .imageContainer > img {
   height: 50px;
@@ -47,6 +48,7 @@
   font-size: 1rem;
   display: flex;
   align-items: center;
+  transition: 0.5s ease-in-out;
 }
 .navigation > button:hover {
   box-shadow: rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset,
@@ -79,7 +81,7 @@
   display: none;
 }
 .navigation > button > p {
-  color: rgb(95, 95, 95);
+  color: wheat;
 }
 
 
@@ -88,4 +90,14 @@
     display: none;
     z-index: 0;
   }
+}
+
+.darkTheme {
+  background: #1C3334 !important;
+  transition: 0.5s ease-in-out;
+}
+
+.darkThemeCold {
+  background: #2F4454 !important;
+  transition: 0.5s ease-in-out;
 }
