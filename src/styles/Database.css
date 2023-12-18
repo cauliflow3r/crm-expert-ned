@@ -40,21 +40,12 @@
   cursor: pointer;
 }
 
-@keyframes pulse {
-  0% {
-    background-color: red;
-  }
-  50% {
-    background-color: #faf1e4;
-  }
-  100% {
-    background-color: red;
-  }
+.data-base-every-client-priority {
+  color: red;
 }
 
 .data-base-every-client-red {
-  font-weight: bold;
-  animation: pulse 5s infinite;
+  background: #2F4454;
 }
 
 

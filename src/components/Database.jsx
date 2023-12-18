@@ -86,6 +86,7 @@ const Database = () => {
                           className={`data-base-every-client 
                           ${selectedClient && selectedClient.id === item.id ? `data-base-selected ${ theme ? 'data-base-dark-theme' : ''}` : ''} 
                           ${(  (!item.comments || item.comments === 'Неважно') && 'data-base-every-client-red' )} 
+                          ${ item.priority && 'data-base-every-client-priority' }
                            `}
                       >
 

@@ -39,6 +39,7 @@ const DatabaseDetailedInfo = () => {
   const id = localStorage.getItem('id')
   const [baseEdit, setBaseEdit] = useState(false)
   const [managerEdit, setManagerEdit] =useState(false)
+  const [priorityEdit, setPriorityEdit] =useState(false)
   const searchParameters = useSelector((state) => state.searchParameters)
   const detailedInfoContainerRef = useRef(null);
 
@@ -79,6 +80,11 @@ const DatabaseDetailedInfo = () => {
 
   const editBase = async () => {
     setBaseEdit(false)
+    await editClient(detailedInfo, dispatch, searchParameters)
+  }
+
+  const editPriority = async () => {
+    setPriorityEdit(false)
     await editClient(detailedInfo, dispatch, searchParameters)
   }
 
@@ -281,6 +287,40 @@ const DatabaseDetailedInfo = () => {
                   <a target='_blank' href={detailedInfo.link}>Ссылка на объявление</a>
                 </div>
               }
+
+              {priorityEdit ?
+                  <div className='detailed-info-public-description-elements'>
+                    Приоритет:
+                    <select
+                        name="priority"
+                        value={detailedInfo.priority}
+                        onChange={handleInputChange}
+                    >
+                      <option value='true' >В приоритете</option>
+                      <option value='false'>Обычный</option>
+                    </select>
+                    <CheckIcon
+                        fontSize='small'
+                        onClick={editPriority}
+                        sx={{cursor: 'pointer', marginLeft: '1.5vh'}}
+                    />
+                    <DoNotDisturbAltIcon
+                        fontSize='small'
+                        onClick={() => setPriorityEdit(false)}
+                        sx={{cursor: 'pointer', marginLeft: '1.5vh'}}
+                    />
+                  </div>
+                  :
+                  <div className='detailed-info-public-description-elements'>
+                    Приоритет: {detailedInfo.priority ? 'В приоритете' : 'Обычный'}
+                    <EditIcon
+                        fontSize='small'
+                        onClick={() => setPriorityEdit(true)}
+                        sx={{cursor: 'pointer'}}
+                    />
+                  </div>
+              }
+
             </div>
 
             <div style={{borderTop: '1px solid black', margin: '20px 20px 0 20px'}} />
