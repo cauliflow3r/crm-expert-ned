@@ -33,9 +33,9 @@ const StaffModal = () => {
             <h4 className="plan-modal-title">Отдел продаж</h4>
             <p className="plan-modal-employees">Имашов Алмаз - <strong>Менеджер по работе с клиентами, 0557 510 150</strong></p>
             <p className="plan-modal-employees">Казыбеков Калыбек - <strong>Менеджер по работе с клиентами, 0556 510 150</strong></p>
-            <p className="plan-modal-employees">Самсалиев Арген - <strong>Менеджер по работе с клиентами, 0706 332 125</strong></p>
             <p className="plan-modal-employees">Турдаалиев Азирет - <strong>Менеджер по работе с клиентами, 0702 260 098</strong></p>
             <p className="plan-modal-employees">Эсенжанов Мырзалы - <strong>Менеджер по работе с клиентами, 0707 340 216</strong></p>
+            <p className="plan-modal-employees">Алтынай Орозакунова - <strong>Менеджер по работе с клиентами, 0700 995 103</strong></p>
 
             <h4 className="plan-modal-title">Отдел маркетинга</h4>
             <p className="plan-modal-employees">Кутманалиева Айгерим - <strong>СММ-специалист, 0703 551 506</strong></p>
@@ -67,7 +67,7 @@ const StaffModal = () => {
               <p className="plan-modal-employees">Калыбек Казыбеков - Логин: <strong>kkazybekov</strong> , пароль: <strong>Gostoper1996</strong></p>
               <p className="plan-modal-employees">Арген Самсалиев - Логин: <strong>asamsaliev</strong> , пароль: <strong>0555239318</strong></p>
               <p className="plan-modal-employees">Азирет Турдаалиев - Логин: <strong>aturdaaliev</strong> , пароль: <strong>260098a</strong></p>
-              <p className="plan-modal-employees">Азамат Жуманалиев - Логин: <strong>adhzumanaliev </strong> , пароль: <strong>greenwood</strong></p>
+              <p className="plan-modal-employees">Алтынай Орозакунова - Логин: <strong>aorozakunova</strong> , пароль: <strong>Altynai99</strong></p>
             </div>
           }
         </div>

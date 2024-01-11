@@ -19,6 +19,7 @@ const Statistics = () => {
   const [dataKalybek, setDataKalybek] = useState([])
   const [dataAziret, setDataAziret] = useState([])
   const [dataMyrza, setDataMyrza] = useState([])
+  const [dataAltynay, setDataAltynai] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const date = new Date();
   const year = date.getFullYear();
@@ -53,6 +54,9 @@ const Statistics = () => {
 
       const responseMyrza = await axiosInstance.get(`crm/?manager=24&created_ad=${formattedDate}`)
       setDataMyrza(responseMyrza.data.results)
+
+      const responseAltynai = await axiosInstance.get(`crm/?manager=24&created_ad=${formattedDate}`)
+      setDataAltynai(responseMyrza.data.results)
 
     } catch (e) {
       console.log(e)
@@ -329,6 +333,41 @@ const Statistics = () => {
                       <div className="statistics-manager statistics-name-wrap">Тип базы</div>
                     </div>
                     {dataMyrza.map((item, idx) => {
+                      return (
+                          <div
+                              className='statistics-head-block'
+                              key={idx}
+                          >
+                            <div className="statistics-name">{item.name}</div>
+
+                            <div className="statistics-phone">{item.phone}</div>
+
+                            <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                            <div className="statistics-date">{item.id}</div>
+
+                            <div className="statistics-date">{item.type_of_base}</div>
+
+                          </div>
+                      )
+                    })}
+                  </>
+              }
+
+            </div>
+
+            <div className="statistics-wrap-managers">
+              <strong>Алтынай Орозакунова</strong> - {dataAltynay.length} добавленных
+              {dataAltynay.length !== 0 &&
+                  <>
+                    <div className="statistics-wrap">
+                      <div className="statistics-name statistics-name-wrap">Имя</div>
+                      <div className="statistics-phone statistics-name-wrap">Номер</div>
+                      <div className="statistics-date">Создан</div>
+                      <div className="statistics-date">ID</div>
+                      <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                    </div>
+                    {dataAltynay.map((item, idx) => {
                       return (
                           <div
                               className='statistics-head-block'
