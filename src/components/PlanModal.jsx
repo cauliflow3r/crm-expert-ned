@@ -31,12 +31,14 @@ const StaffModal = () => {
             <p className="plan-modal-employees">Куленбеков Аскар Тимурович - <strong>Технический директор, 0755 264 262</strong></p>
 
             <h4 className="plan-modal-title">Отдел продаж</h4>
+            <p className="plan-modal-employees">Казыбеков Калыбек - <strong>Старший менеджер, 0556 510 150</strong></p>
             <p className="plan-modal-employees">Имашов Алмаз - <strong>Менеджер по работе с клиентами, 0557 510 150</strong></p>
-            <p className="plan-modal-employees">Казыбеков Калыбек - <strong>Менеджер по работе с клиентами, 0556 510 150</strong></p>
             <p className="plan-modal-employees">Турдаалиев Азирет - <strong>Менеджер по работе с клиентами, 0702 260 098</strong></p>
             <p className="plan-modal-employees">Эсенжанов Мырзалы - <strong>Менеджер по работе с клиентами, 0707 340 216</strong></p>
             <p className="plan-modal-employees">Алтынай Орозакунова - <strong>Менеджер по работе с клиентами, 0700 995 103</strong></p>
             <p className="plan-modal-employees">Бакытбек Кудайбергенов - <strong>Менеджер по работе с клиентами, номер телефона</strong></p>
+            <p className="plan-modal-employees">Адахан Жээнбеков - <strong>Менеджер по работе с клиентами, номер телефона</strong></p>
+
 
 
             <h4 className="plan-modal-title">Отдел маркетинга</h4>
@@ -70,7 +72,9 @@ const StaffModal = () => {
               <p className="plan-modal-employees">Арген Самсалиев - Логин: <strong>asamsaliev</strong> , пароль: <strong>0555239318</strong></p>
               <p className="plan-modal-employees">Азирет Турдаалиев - Логин: <strong>aturdaaliev</strong> , пароль: <strong>260098a</strong></p>
               <p className="plan-modal-employees">Алтынай Орозакунова - Логин: <strong>aorozakunova</strong> , пароль: <strong>Altynai99</strong></p>
-              <p className="plan-modal-employees">Алтынай Орозакунова - Логин: <strong>Bkudaibergenov</strong> , пароль: <strong>6969</strong></p>
+              <p className="plan-modal-employees">Бакыт Кудайбергенов - Логин: <strong>Bkudaibergenov</strong> , пароль: <strong>6969</strong></p>
+              <p className="plan-modal-employees">Адахан Жээнбеков - Логин: <strong>azheenbekov</strong> , пароль: <strong>5515Adahan</strong></p>
+
             </div>
           }
         </div>

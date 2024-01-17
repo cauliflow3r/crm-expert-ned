@@ -21,6 +21,7 @@ const Statistics = () => {
   const [dataMyrza, setDataMyrza] = useState([])
   const [dataAltynay, setDataAltynai] = useState([])
   const [dataBakyt, setDataBakyt] = useState([])
+  const [dataAdahan, setDataAdahan] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const date = new Date();
   const year = date.getFullYear();
@@ -62,6 +63,9 @@ const Statistics = () => {
       const responseBakyt = await axiosInstance.get(`crm/?manager=32&created_ad=${formattedDate}`)
       setDataBakyt(responseBakyt.data.results)
 
+      const responseAdahan = await axiosInstance.get(`crm/?manager=33&created_ad=${formattedDate}`)
+      setDataAdahan(responseAdahan.data.results)
+
     } catch (e) {
       console.log(e)
     } finally {
@@ -97,6 +101,9 @@ const Statistics = () => {
 
       const responseBakyt = await axiosInstance.get(`crm/?manager=32&created_ad=${formatDate(selectedDate)}`)
       setDataBakyt(responseBakyt.data.results)
+
+      const responseAdahan = await axiosInstance.get(`crm/?manager=33&created_ad=${formatDate(selectedDate)}`)
+      setDataAdahan(responseAdahan.data.results)
 
     } catch (e) {
       console.log(e)
@@ -435,6 +442,42 @@ const Statistics = () => {
               }
 
             </div>
+
+            <div className="statistics-wrap-managers">
+              <strong>Адахан Жээнбеков</strong> - {dataAdahan.length} добавленных
+              {dataAdahan.length !== 0 &&
+                  <>
+                    <div className="statistics-wrap">
+                      <div className="statistics-name statistics-name-wrap">Имя</div>
+                      <div className="statistics-phone statistics-name-wrap">Номер</div>
+                      <div className="statistics-date">Создан</div>
+                      <div className="statistics-date">ID</div>
+                      <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                    </div>
+                    {dataAdahan.map((item, idx) => {
+                      return (
+                          <div
+                              className='statistics-head-block'
+                              key={idx}
+                          >
+                            <div className="statistics-name">{item.name}</div>
+
+                            <div className="statistics-phone">{item.phone}</div>
+
+                            <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                            <div className="statistics-date">{item.id}</div>
+
+                            <div className="statistics-date">{item.type_of_base}</div>
+
+                          </div>
+                      )
+                    })}
+                  </>
+              }
+
+            </div>
+
 
 
           </>
