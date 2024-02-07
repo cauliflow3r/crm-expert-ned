@@ -35,18 +35,15 @@ const StaffModal = () => {
             <p className="plan-modal-employees">Имашов Алмаз - <strong>Менеджер по работе с клиентами, 0557 510 150</strong></p>
             <p className="plan-modal-employees">Турдаалиев Азирет - <strong>Менеджер по работе с клиентами, 0702 260 098</strong></p>
             <p className="plan-modal-employees">Эсенжанов Мырзалы - <strong>Менеджер по работе с клиентами, 0707 340 216</strong></p>
-            <p className="plan-modal-employees">Алтынай Орозакунова - <strong>Менеджер по работе с клиентами, 0700 995 103</strong></p>
             <p className="plan-modal-employees">Бакытбек Кудайбергенов - <strong>Менеджер по работе с клиентами, номер телефона</strong></p>
             <p className="plan-modal-employees">Адахан Жээнбеков - <strong>Менеджер по работе с клиентами, номер телефона</strong></p>
-
+            <p className="plan-modal-employees">Аблималик кызы Роза - <strong>Менеджер по работе с клиентами, 0505 454 224</strong></p>
 
 
             <h4 className="plan-modal-title">Отдел маркетинга</h4>
             <p className="plan-modal-employees">Кутманалиева Айгерим - <strong>СММ-специалист, 0703 551 506</strong></p>
 
-            <h4 className="plan-modal-title">IT-отдел</h4>
-            <p className="plan-modal-employees">Азамат @cauliflow3r - <strong>Frontend-разработчик</strong></p>
-            <p className="plan-modal-employees">Нурсултан @nurrative - <strong>Backend-разработчик</strong></p>
+
           </div>
           <div>
             <h4 className="plan-modal-title plan-modal-second-section">Конфиденциальность информации</h4>
