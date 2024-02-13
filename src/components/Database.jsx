@@ -30,11 +30,13 @@ const Database = () => {
   const statisticsModal = useSelector(state => state.statistics)
   const id = localStorage.getItem('id')
   const theme = useSelector((state) => state.darkTheme)
+  console.log(data, 'data')
 
   useEffect(() => {
+    {!data &&
     (async () => {
       await getBase(dispatch, searchParameters);
-    })();
+    })();}
   }, []);
 
 

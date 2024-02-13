@@ -4,6 +4,7 @@ import './../styles/SiteAdminPannelDetailedInfo.css'
 import {deleteFlat} from "../crm-logic/deleteFlat";
 import {getOneFlat} from "../crm-logic/getOneFlat";
 import {setGetOneFlat} from "../features/getOneFlat/getOneFlatSlice";
+import {setEditAnnouncement} from "../features/editAnnouncement/editAnnouncementSlice";
 
 const SiteAdminPanelDetailedInfo = () => {
 
@@ -24,7 +25,7 @@ const SiteAdminPanelDetailedInfo = () => {
                 :
                 <div>
                     <button onClick={() => getOneFlat(selectedFlat.id, dispatch)}>Обновить</button>
-                    <button>Редактировать</button>
+                    <button onClick={() => dispatch(setEditAnnouncement(true))}>Редактировать</button>
                     <button
                         onClick={() => setDeleteConfirm(true)}
                     >Удалить</button>

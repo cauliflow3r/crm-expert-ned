@@ -27,6 +27,7 @@ import {
 import {addFlatSlice} from "../features/addFlat/addFlatSlice";
 import {commentDatesSlice} from "../features/commentDate/commentDateSlice";
 import {darkThemeSlice} from "../features/darkTheme/darkTheme";
+import {editAnnouncementSlice} from "../features/editAnnouncement/editAnnouncementSlice";
 
 export const store = configureStore({
   reducer:
@@ -56,6 +57,7 @@ export const store = configureStore({
       isLoadingSiteAdminDetailedInfo: isLoadingSiteAdminDetailedInfoSlice.reducer,
       addFlat: addFlatSlice.reducer,
       commentDates: commentDatesSlice.reducer,
-      darkTheme: darkThemeSlice.reducer
+      darkTheme: darkThemeSlice.reducer,
+      editAnnouncement: editAnnouncementSlice.reducer
     }
 })

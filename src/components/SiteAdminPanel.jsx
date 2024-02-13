@@ -6,13 +6,16 @@ import {getOneFlat} from "../crm-logic/getOneFlat";
 import SiteAdminPanelDetailedInfo from "./SiteAdminPanelDetailedInfo";
 import SiteAdminPanelAddAnnouncement from "./SiteAdminPanelAddAnnouncement";
 import {setBaseModal} from "../features/baseModal/baseModalSlice";
+import SiteAdminPanelEdit from "./SiteAdminPanelEdit";
 
 const SiteAdminPanel = () => {
+
     const dispatch = useDispatch()
     const allFlats = useSelector(state => state.allFlats.data)
     const isLoading = useSelector(state => state.isLoadingSiteAdmin)
     const selectedFlat = useSelector(state => state.getOneFlat.getOneFlat)
     const baseModal = useSelector((state) => state.baseModal)
+    const editAnnouncement = useSelector(state => state.editAnnouncement)
     const [page, setPage] = useState(1)
 
     useEffect(() => {
@@ -46,9 +49,8 @@ const SiteAdminPanel = () => {
                   </div>
                   <div className="site-admin-panel-every-flat-detailed-info">
                       {selectedFlat && <SiteAdminPanelDetailedInfo/>}
-                      {baseModal &&
-                          <SiteAdminPanelAddAnnouncement />
-                      }
+                      {baseModal && <SiteAdminPanelAddAnnouncement />}
+                      {editAnnouncement && <SiteAdminPanelEdit />}
                   </div>
               </div>
               <div>

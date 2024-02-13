@@ -19,9 +19,10 @@ const Statistics = () => {
   const [dataKalybek, setDataKalybek] = useState([])
   const [dataAziret, setDataAziret] = useState([])
   const [dataMyrza, setDataMyrza] = useState([])
-  const [dataAltynay, setDataAltynai] = useState([])
+  const [dataRoza, setDataRoza] = useState([])
   const [dataBakyt, setDataBakyt] = useState([])
   const [dataAdahan, setDataAdahan] = useState([])
+  const [dataAikyz, setDataAikyz] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const date = new Date();
   const year = date.getFullYear();
@@ -57,14 +58,17 @@ const Statistics = () => {
       const responseMyrza = await axiosInstance.get(`crm/?manager=24&created_ad=${formattedDate}`)
       setDataMyrza(responseMyrza.data.results)
 
-      const responseAltynai = await axiosInstance.get(`crm/?manager=31&created_ad=${formattedDate}`)
-      setDataAltynai(responseAltynai.data.results)
+      const responseRoza = await axiosInstance.get(`crm/?manager=34&created_ad=${formattedDate}`)
+      setDataRoza(responseRoza.data.results)
 
       const responseBakyt = await axiosInstance.get(`crm/?manager=32&created_ad=${formattedDate}`)
       setDataBakyt(responseBakyt.data.results)
 
       const responseAdahan = await axiosInstance.get(`crm/?manager=33&created_ad=${formattedDate}`)
       setDataAdahan(responseAdahan.data.results)
+
+      const responseAikyz = await axiosInstance.get(`crm/?manager=35&created_ad=${formattedDate}`)
+      setDataAikyz(responseAikyz.data.results)
 
     } catch (e) {
       console.log(e)
@@ -96,14 +100,17 @@ const Statistics = () => {
       const responseMyrza = await axiosInstance.get(`crm/?manager=24&created_ad=${formatDate(selectedDate)}`)
       setDataMyrza(responseMyrza.data.results)
 
-      const responseAltynai = await axiosInstance.get(`crm/?manager=31&created_ad=${formatDate(selectedDate)}`)
-      setDataAltynai(responseAltynai.data.results)
+      const responseRoza = await axiosInstance.get(`crm/?manager=34&created_ad=${formatDate(selectedDate)}`)
+      setDataRoza(responseRoza.data.results)
 
       const responseBakyt = await axiosInstance.get(`crm/?manager=32&created_ad=${formatDate(selectedDate)}`)
       setDataBakyt(responseBakyt.data.results)
 
       const responseAdahan = await axiosInstance.get(`crm/?manager=33&created_ad=${formatDate(selectedDate)}`)
       setDataAdahan(responseAdahan.data.results)
+
+      const responseAikyz = await axiosInstance.get(`crm/?manager=35&created_ad=${formatDate(selectedDate)}`)
+      setDataAikyz(responseAikyz.data.results)
 
     } catch (e) {
       console.log(e)
@@ -129,362 +136,396 @@ const Statistics = () => {
   };
 
   return (
-    <div onClick={() =>  dispatch(setStatisticsActive(false))} className={statisticsModal ? 'base-modal active' : 'base-modal'}>
-      <div onClick={(e) => e.stopPropagation()} className={` ${statisticsModal ? `modal__content active` : `modal__content`} ${theme ? 'data-base-dark-theme' : ''}`}>
+      <div onClick={() =>  dispatch(setStatisticsActive(false))} className={statisticsModal ? 'base-modal active' : 'base-modal'}>
+        <div onClick={(e) => e.stopPropagation()} className={` ${statisticsModal ? `modal__content active` : `modal__content`} ${theme ? 'data-base-dark-theme' : ''}`}>
 
 
-        { isLoading ?
-          <CircularIndeterminate />
-          :
-          <>
-            <div className='statistics-date-field' >
-              <DatePicker
-                selected={selectedDate}
-                onChange={handleDateChange}
-                dateFormat="yyyy-MM-dd"
-                placeholderText='Выберите дату'
-                todayButton="Сегодня"
-              />
-              <SearchIcon
-                fontSize='large'
-                onClick={getStatisticsSelectedDay}
-              />
-            </div>
-
-            <h2 className='statistics-title'>Статистика заявок Instagram</h2>
-            <div className='statistics-title'>
-              Общее количество заявок: <strong>{data.length}</strong>
-            </div>
-
-            {data.length !== 0 &&
+          { isLoading ?
+              <CircularIndeterminate />
+              :
               <>
-                <div className="statistics-wrap">
-                  <div className="statistics-name statistics-name-wrap">Имя</div>
-                  <div className="statistics-phone statistics-name-wrap">Номер</div>
-                  <div className="statistics-date">Создан</div>
-                  <div className="statistics-date">Реакция</div>
-                  <div className="statistics-manager statistics-name-wrap">Менеджер</div>
+                <div className='statistics-date-field' >
+                  <DatePicker
+                      selected={selectedDate}
+                      onChange={handleDateChange}
+                      dateFormat="yyyy-MM-dd"
+                      placeholderText='Выберите дату'
+                      todayButton="Сегодня"
+                  />
+                  <SearchIcon
+                      fontSize='large'
+                      onClick={getStatisticsSelectedDay}
+                  />
                 </div>
-                <div>
-                  {data.map((item, idx) => {
-                    return (
-                      <div
-                        className='statistics-head-block'
-                        key={idx}
-                      >
-                        <div className="statistics-name">{item.name}</div>
 
-                        <div className="statistics-phone">{item.phone}</div>
+                <h2 className='statistics-title'>Статистика заявок Instagram</h2>
+                <div className='statistics-title'>
+                  Общее количество заявок: <strong>{data.length}</strong>
+                </div>
 
-                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                        <div className="statistics-date">{timeAdd(item.updated_ad)}</div>
-
-                        <div className="statistics-manager">{item.comments === 'Неважно' ? <strong>Не распределен</strong> : <strong> {item.comments}</strong>}</div>
-
+                {data.length !== 0 &&
+                    <>
+                      <div className="statistics-wrap">
+                        <div className="statistics-name statistics-name-wrap">Имя</div>
+                        <div className="statistics-phone statistics-name-wrap">Номер</div>
+                        <div className="statistics-date">Создан</div>
+                        <div className="statistics-date">Реакция</div>
+                        <div className="statistics-manager statistics-name-wrap">Менеджер</div>
                       </div>
-                    )
-                  })}
+                      <div>
+                        {data.map((item, idx) => {
+                          return (
+                              <div
+                                  className='statistics-head-block'
+                                  key={idx}
+                              >
+                                <div className="statistics-name">{item.name}</div>
+
+                                <div className="statistics-phone">{item.phone}</div>
+
+                                <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                                <div className="statistics-date">{timeAdd(item.updated_ad)}</div>
+
+                                <div className="statistics-manager">{item.comments === 'Неважно' ? <strong>Не распределен</strong> : <strong> {item.comments}</strong>}</div>
+
+                              </div>
+                          )
+                        })}
+                      </div>
+                    </>
+                }
+
+
+                <h2 className='statistics-title statistics-second-title'>Статистика заявок с сайта</h2>
+                <div className='statistics-title'>
+                  Общее количество заявок: <strong>{dataSite.length}</strong>
                 </div>
+
+                {dataSite.length !== 0 &&
+                    <>
+                      <div className="statistics-wrap">
+                        <div className="statistics-name statistics-name-wrap">Имя</div>
+                        <div className="statistics-phone statistics-name-wrap">Номер</div>
+                        <div className="statistics-date">Создан</div>
+                        <div className="statistics-date">Реакция</div>
+                        <div className="statistics-manager statistics-name-wrap">Менеджер</div>
+                      </div>
+                      <div>
+                        {dataSite.map((item, idx) => {
+                          return (
+                              <div
+                                  className='statistics-head-block'
+                                  key={idx}
+                              >
+                                <div className="statistics-name">{item.name}</div>
+
+                                <div className="statistics-phone">{item.phone}</div>
+
+                                <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                                <div className="statistics-date">{timeAdd(item.updated_ad)}</div>
+
+                                <div className="statistics-manager">{item.comments === 'Неважно' ? <strong>Не распределен</strong> : <strong> {item.comments}</strong>}</div>
+
+                              </div>
+                          )
+                        })}
+                      </div>
+                    </>
+                }
+
+
+
+                <h2 className='statistics-title statistics-second-title'>Статистика менеджеров</h2>
+
+                <div className="statistics-wrap-managers">
+                  <strong>Алмаз Имашов</strong> - {dataAlmaz.length} добавленных
+
+                  {dataAlmaz.length !== 0 &&
+                      <>
+                        <div className="statistics-wrap">
+                          <div className="statistics-name statistics-name-wrap">Имя</div>
+                          <div className="statistics-phone statistics-name-wrap">Номер</div>
+                          <div className="statistics-date">Создан</div>
+                          <div className="statistics-date">ID</div>
+                          <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                        </div>
+                        {dataAlmaz.map((item, idx) => {
+                          return (
+                              <div
+                                  className='statistics-head-block'
+                                  key={idx}
+                              >
+                                <div className="statistics-name">{item.name}</div>
+
+                                <div className="statistics-phone">{item.phone}</div>
+
+                                <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                                <div className="statistics-date">{item.id}</div>
+
+                                <div className="statistics-date">{item.type_of_base}</div>
+
+                              </div>
+                          )
+                        })}
+                      </>
+                  }
+
+
+                </div>
+
+                <div className="statistics-wrap-managers">
+                  <strong>Калыбек Казыбеков</strong> - {dataKalybek.length} добавленных
+                  {dataKalybek.length !== 0 &&
+                      <>
+                        <div className="statistics-wrap">
+                          <div className="statistics-name statistics-name-wrap">Имя</div>
+                          <div className="statistics-phone statistics-name-wrap">Номер</div>
+                          <div className="statistics-date">Создан</div>
+                          <div className="statistics-date">ID</div>
+                          <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                        </div>
+                        {dataKalybek.map((item, idx) => {
+                          return (
+                              <div
+                                  className='statistics-head-block'
+                                  key={idx}
+                              >
+                                <div className="statistics-name">{item.name}</div>
+
+                                <div className="statistics-phone">{item.phone}</div>
+
+                                <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                                <div className="statistics-date">{item.id}</div>
+
+                                <div className="statistics-date">{item.type_of_base}</div>
+
+                              </div>
+                          )
+                        })}
+                      </>
+                  }
+                </div>
+
+                <div className="statistics-wrap-managers">
+                  <strong>Азирет Турдаалиев</strong> - {dataAziret.length} добавленных
+                  {dataAziret.length !== 0 &&
+                      <>
+                        <div className="statistics-wrap">
+                          <div className="statistics-name statistics-name-wrap">Имя</div>
+                          <div className="statistics-phone statistics-name-wrap">Номер</div>
+                          <div className="statistics-date">Создан</div>
+                          <div className="statistics-date">ID</div>
+                          <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                        </div>
+                        {dataAziret.map((item, idx) => {
+                          return (
+                              <div
+                                  className='statistics-head-block'
+                                  key={idx}
+                              >
+                                <div className="statistics-name">{item.name}</div>
+
+                                <div className="statistics-phone">{item.phone}</div>
+
+                                <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                                <div className="statistics-date">{item.id}</div>
+
+                                <div className="statistics-date">{item.type_of_base}</div>
+
+                              </div>
+                          )
+                        })}
+                      </>
+                  }
+
+                </div>
+
+                <div className="statistics-wrap-managers">
+                  <strong>Мырзалы Эсенжанов</strong> - {dataMyrza.length} добавленных
+                  {dataMyrza.length !== 0 &&
+                      <>
+                        <div className="statistics-wrap">
+                          <div className="statistics-name statistics-name-wrap">Имя</div>
+                          <div className="statistics-phone statistics-name-wrap">Номер</div>
+                          <div className="statistics-date">Создан</div>
+                          <div className="statistics-date">ID</div>
+                          <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                        </div>
+                        {dataMyrza.map((item, idx) => {
+                          return (
+                              <div
+                                  className='statistics-head-block'
+                                  key={idx}
+                              >
+                                <div className="statistics-name">{item.name}</div>
+
+                                <div className="statistics-phone">{item.phone}</div>
+
+                                <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                                <div className="statistics-date">{item.id}</div>
+
+                                <div className="statistics-date">{item.type_of_base}</div>
+
+                              </div>
+                          )
+                        })}
+                      </>
+                  }
+
+                </div>
+
+                <div className="statistics-wrap-managers">
+                  <strong>Роза  Аблималик кызы</strong> - {dataRoza.length} добавленных
+                  {dataRoza.length !== 0 &&
+                      <>
+                        <div className="statistics-wrap">
+                          <div className="statistics-name statistics-name-wrap">Имя</div>
+                          <div className="statistics-phone statistics-name-wrap">Номер</div>
+                          <div className="statistics-date">Создан</div>
+                          <div className="statistics-date">ID</div>
+                          <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                        </div>
+                        {dataRoza.map((item, idx) => {
+                          return (
+                              <div
+                                  className='statistics-head-block'
+                                  key={idx}
+                              >
+                                <div className="statistics-name">{item.name}</div>
+
+                                <div className="statistics-phone">{item.phone}</div>
+
+                                <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                                <div className="statistics-date">{item.id}</div>
+
+                                <div className="statistics-date">{item.type_of_base}</div>
+
+                              </div>
+                          )
+                        })}
+                      </>
+                  }
+
+                </div>
+
+                <div className="statistics-wrap-managers">
+                  <strong>Бакытбек Кудайбергенов</strong> - {dataBakyt.length} добавленных
+                  {dataBakyt.length !== 0 &&
+                      <>
+                        <div className="statistics-wrap">
+                          <div className="statistics-name statistics-name-wrap">Имя</div>
+                          <div className="statistics-phone statistics-name-wrap">Номер</div>
+                          <div className="statistics-date">Создан</div>
+                          <div className="statistics-date">ID</div>
+                          <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                        </div>
+                        {dataBakyt.map((item, idx) => {
+                          return (
+                              <div
+                                  className='statistics-head-block'
+                                  key={idx}
+                              >
+                                <div className="statistics-name">{item.name}</div>
+
+                                <div className="statistics-phone">{item.phone}</div>
+
+                                <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                                <div className="statistics-date">{item.id}</div>
+
+                                <div className="statistics-date">{item.type_of_base}</div>
+
+                              </div>
+                          )
+                        })}
+                      </>
+                  }
+
+                </div>
+
+                <div className="statistics-wrap-managers">
+                  <strong>Адахан Жээнбеков</strong> - {dataAdahan.length} добавленных
+                  {dataAdahan.length !== 0 &&
+                      <>
+                        <div className="statistics-wrap">
+                          <div className="statistics-name statistics-name-wrap">Имя</div>
+                          <div className="statistics-phone statistics-name-wrap">Номер</div>
+                          <div className="statistics-date">Создан</div>
+                          <div className="statistics-date">ID</div>
+                          <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                        </div>
+                        {dataAdahan.map((item, idx) => {
+                          return (
+                              <div
+                                  className='statistics-head-block'
+                                  key={idx}
+                              >
+                                <div className="statistics-name">{item.name}</div>
+
+                                <div className="statistics-phone">{item.phone}</div>
+
+                                <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                                <div className="statistics-date">{item.id}</div>
+
+                                <div className="statistics-date">{item.type_of_base}</div>
+
+                              </div>
+                          )
+                        })}
+                      </>
+                  }
+
+                </div>
+
+                <div className="statistics-wrap-managers">
+                  <strong>Айкыз Саматова</strong> - {dataAikyz.length} добавленных
+                  {dataAikyz.length !== 0 &&
+                      <>
+                        <div className="statistics-wrap">
+                          <div className="statistics-name statistics-name-wrap">Имя</div>
+                          <div className="statistics-phone statistics-name-wrap">Номер</div>
+                          <div className="statistics-date">Создан</div>
+                          <div className="statistics-date">ID</div>
+                          <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                        </div>
+                        {dataAikyz.map((item, idx) => {
+                          return (
+                              <div
+                                  className='statistics-head-block'
+                                  key={idx}
+                              >
+                                <div className="statistics-name">{item.name}</div>
+
+                                <div className="statistics-phone">{item.phone}</div>
+
+                                <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                                <div className="statistics-date">{item.id}</div>
+
+                                <div className="statistics-date">{item.type_of_base}</div>
+
+                              </div>
+                          )
+                        })}
+                      </>
+                  }
+
+                </div>
+
+
               </>
-            }
+          }
 
-
-            <h2 className='statistics-title statistics-second-title'>Статистика заявок с сайта</h2>
-            <div className='statistics-title'>
-              Общее количество заявок: <strong>{dataSite.length}</strong>
-            </div>
-
-            {dataSite.length !== 0 &&
-              <>
-                <div className="statistics-wrap">
-                  <div className="statistics-name statistics-name-wrap">Имя</div>
-                  <div className="statistics-phone statistics-name-wrap">Номер</div>
-                  <div className="statistics-date">Создан</div>
-                  <div className="statistics-date">Реакция</div>
-                  <div className="statistics-manager statistics-name-wrap">Менеджер</div>
-                </div>
-                <div>
-                  {dataSite.map((item, idx) => {
-                    return (
-                      <div
-                        className='statistics-head-block'
-                        key={idx}
-                      >
-                        <div className="statistics-name">{item.name}</div>
-
-                        <div className="statistics-phone">{item.phone}</div>
-
-                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                        <div className="statistics-date">{timeAdd(item.updated_ad)}</div>
-
-                        <div className="statistics-manager">{item.comments === 'Неважно' ? <strong>Не распределен</strong> : <strong> {item.comments}</strong>}</div>
-
-                      </div>
-                    )
-                  })}
-                </div>
-              </>
-            }
-
-
-
-            <h2 className='statistics-title statistics-second-title'>Статистика менеджеров</h2>
-
-            <div className="statistics-wrap-managers">
-              <strong>Алмаз Имашов</strong> - {dataAlmaz.length} добавленных
-
-              {dataAlmaz.length !== 0 &&
-                <>
-                  <div className="statistics-wrap">
-                    <div className="statistics-name statistics-name-wrap">Имя</div>
-                    <div className="statistics-phone statistics-name-wrap">Номер</div>
-                    <div className="statistics-date">Создан</div>
-                    <div className="statistics-date">ID</div>
-                    <div className="statistics-manager statistics-name-wrap">Тип базы</div>
-                  </div>
-                  {dataAlmaz.map((item, idx) => {
-                    return (
-                      <div
-                        className='statistics-head-block'
-                        key={idx}
-                      >
-                        <div className="statistics-name">{item.name}</div>
-
-                        <div className="statistics-phone">{item.phone}</div>
-
-                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                        <div className="statistics-date">{item.id}</div>
-
-                        <div className="statistics-date">{item.type_of_base}</div>
-
-                      </div>
-                    )
-                  })}
-                </>
-              }
-
-
-            </div>
-
-            <div className="statistics-wrap-managers">
-              <strong>Калыбек Казыбеков</strong> - {dataKalybek.length} добавленных
-              {dataKalybek.length !== 0 &&
-                <>
-                  <div className="statistics-wrap">
-                    <div className="statistics-name statistics-name-wrap">Имя</div>
-                    <div className="statistics-phone statistics-name-wrap">Номер</div>
-                    <div className="statistics-date">Создан</div>
-                    <div className="statistics-date">ID</div>
-                    <div className="statistics-manager statistics-name-wrap">Тип базы</div>
-                  </div>
-                  {dataKalybek.map((item, idx) => {
-                    return (
-                      <div
-                        className='statistics-head-block'
-                        key={idx}
-                      >
-                        <div className="statistics-name">{item.name}</div>
-
-                        <div className="statistics-phone">{item.phone}</div>
-
-                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                        <div className="statistics-date">{item.id}</div>
-
-                        <div className="statistics-date">{item.type_of_base}</div>
-
-                      </div>
-                    )
-                  })}
-                </>
-              }
-            </div>
-
-            <div className="statistics-wrap-managers">
-              <strong>Азирет Турдаалиев</strong> - {dataAziret.length} добавленных
-              {dataAziret.length !== 0 &&
-                <>
-                  <div className="statistics-wrap">
-                    <div className="statistics-name statistics-name-wrap">Имя</div>
-                    <div className="statistics-phone statistics-name-wrap">Номер</div>
-                    <div className="statistics-date">Создан</div>
-                    <div className="statistics-date">ID</div>
-                    <div className="statistics-manager statistics-name-wrap">Тип базы</div>
-                  </div>
-                  {dataAziret.map((item, idx) => {
-                    return (
-                      <div
-                        className='statistics-head-block'
-                        key={idx}
-                      >
-                        <div className="statistics-name">{item.name}</div>
-
-                        <div className="statistics-phone">{item.phone}</div>
-
-                        <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                        <div className="statistics-date">{item.id}</div>
-
-                        <div className="statistics-date">{item.type_of_base}</div>
-
-                      </div>
-                    )
-                  })}
-                </>
-              }
-
-            </div>
-
-            <div className="statistics-wrap-managers">
-              <strong>Мырзалы Эсенжанов</strong> - {dataMyrza.length} добавленных
-              {dataMyrza.length !== 0 &&
-                  <>
-                    <div className="statistics-wrap">
-                      <div className="statistics-name statistics-name-wrap">Имя</div>
-                      <div className="statistics-phone statistics-name-wrap">Номер</div>
-                      <div className="statistics-date">Создан</div>
-                      <div className="statistics-date">ID</div>
-                      <div className="statistics-manager statistics-name-wrap">Тип базы</div>
-                    </div>
-                    {dataMyrza.map((item, idx) => {
-                      return (
-                          <div
-                              className='statistics-head-block'
-                              key={idx}
-                          >
-                            <div className="statistics-name">{item.name}</div>
-
-                            <div className="statistics-phone">{item.phone}</div>
-
-                            <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                            <div className="statistics-date">{item.id}</div>
-
-                            <div className="statistics-date">{item.type_of_base}</div>
-
-                          </div>
-                      )
-                    })}
-                  </>
-              }
-
-            </div>
-
-            <div className="statistics-wrap-managers">
-              <strong>Алтынай Орозакунова</strong> - {dataAltynay.length} добавленных
-              {dataAltynay.length !== 0 &&
-                  <>
-                    <div className="statistics-wrap">
-                      <div className="statistics-name statistics-name-wrap">Имя</div>
-                      <div className="statistics-phone statistics-name-wrap">Номер</div>
-                      <div className="statistics-date">Создан</div>
-                      <div className="statistics-date">ID</div>
-                      <div className="statistics-manager statistics-name-wrap">Тип базы</div>
-                    </div>
-                    {dataAltynay.map((item, idx) => {
-                      return (
-                          <div
-                              className='statistics-head-block'
-                              key={idx}
-                          >
-                            <div className="statistics-name">{item.name}</div>
-
-                            <div className="statistics-phone">{item.phone}</div>
-
-                            <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                            <div className="statistics-date">{item.id}</div>
-
-                            <div className="statistics-date">{item.type_of_base}</div>
-
-                          </div>
-                      )
-                    })}
-                  </>
-              }
-
-            </div>
-
-            <div className="statistics-wrap-managers">
-              <strong>Бакытбек Кудайбергенов</strong> - {dataBakyt.length} добавленных
-              {dataBakyt.length !== 0 &&
-                  <>
-                    <div className="statistics-wrap">
-                      <div className="statistics-name statistics-name-wrap">Имя</div>
-                      <div className="statistics-phone statistics-name-wrap">Номер</div>
-                      <div className="statistics-date">Создан</div>
-                      <div className="statistics-date">ID</div>
-                      <div className="statistics-manager statistics-name-wrap">Тип базы</div>
-                    </div>
-                    {dataBakyt.map((item, idx) => {
-                      return (
-                          <div
-                              className='statistics-head-block'
-                              key={idx}
-                          >
-                            <div className="statistics-name">{item.name}</div>
-
-                            <div className="statistics-phone">{item.phone}</div>
-
-                            <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                            <div className="statistics-date">{item.id}</div>
-
-                            <div className="statistics-date">{item.type_of_base}</div>
-
-                          </div>
-                      )
-                    })}
-                  </>
-              }
-
-            </div>
-
-            <div className="statistics-wrap-managers">
-              <strong>Адахан Жээнбеков</strong> - {dataAdahan.length} добавленных
-              {dataAdahan.length !== 0 &&
-                  <>
-                    <div className="statistics-wrap">
-                      <div className="statistics-name statistics-name-wrap">Имя</div>
-                      <div className="statistics-phone statistics-name-wrap">Номер</div>
-                      <div className="statistics-date">Создан</div>
-                      <div className="statistics-date">ID</div>
-                      <div className="statistics-manager statistics-name-wrap">Тип базы</div>
-                    </div>
-                    {dataAdahan.map((item, idx) => {
-                      return (
-                          <div
-                              className='statistics-head-block'
-                              key={idx}
-                          >
-                            <div className="statistics-name">{item.name}</div>
-
-                            <div className="statistics-phone">{item.phone}</div>
-
-                            <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                            <div className="statistics-date">{item.id}</div>
-
-                            <div className="statistics-date">{item.type_of_base}</div>
-
-                          </div>
-                      )
-                    })}
-                  </>
-              }
-
-            </div>
-
-
-
-          </>
-        }
-
+        </div>
       </div>
-    </div>
   );
 };
 
