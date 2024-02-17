@@ -23,6 +23,7 @@ const Statistics = () => {
   const [dataBakyt, setDataBakyt] = useState([])
   const [dataAdahan, setDataAdahan] = useState([])
   const [dataAikyz, setDataAikyz] = useState([])
+  const [dataEduard, setDataEduard] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const date = new Date();
   const year = date.getFullYear();
@@ -70,6 +71,9 @@ const Statistics = () => {
       const responseAikyz = await axiosInstance.get(`crm/?manager=35&created_ad=${formattedDate}`)
       setDataAikyz(responseAikyz.data.results)
 
+      const responseEduard = await axiosInstance.get(`crm/?manager=36&created_ad=${formattedDate}`)
+      setDataEduard(responseEduard.data.results)
+
     } catch (e) {
       console.log(e)
     } finally {
@@ -111,6 +115,9 @@ const Statistics = () => {
 
       const responseAikyz = await axiosInstance.get(`crm/?manager=35&created_ad=${formatDate(selectedDate)}`)
       setDataAikyz(responseAikyz.data.results)
+
+      const responseEduard = await axiosInstance.get(`crm/?manager=36&created_ad=${formatDate(selectedDate)}`)
+      setDataEduard(responseEduard.data.results)
 
     } catch (e) {
       console.log(e)
@@ -497,6 +504,41 @@ const Statistics = () => {
                           <div className="statistics-manager statistics-name-wrap">Тип базы</div>
                         </div>
                         {dataAikyz.map((item, idx) => {
+                          return (
+                              <div
+                                  className='statistics-head-block'
+                                  key={idx}
+                              >
+                                <div className="statistics-name">{item.name}</div>
+
+                                <div className="statistics-phone">{item.phone}</div>
+
+                                <div className="statistics-date">{timeAdd(item.created_ad)}</div>
+
+                                <div className="statistics-date">{item.id}</div>
+
+                                <div className="statistics-date">{item.type_of_base}</div>
+
+                              </div>
+                          )
+                        })}
+                      </>
+                  }
+
+                </div>
+
+                <div className="statistics-wrap-managers">
+                  <strong>Эдуард Марков</strong> - {dataEduard.length} добавленных
+                  {dataEduard.length !== 0 &&
+                      <>
+                        <div className="statistics-wrap">
+                          <div className="statistics-name statistics-name-wrap">Имя</div>
+                          <div className="statistics-phone statistics-name-wrap">Номер</div>
+                          <div className="statistics-date">Создан</div>
+                          <div className="statistics-date">ID</div>
+                          <div className="statistics-manager statistics-name-wrap">Тип базы</div>
+                        </div>
+                        {dataEduard.map((item, idx) => {
                           return (
                               <div
                                   className='statistics-head-block'

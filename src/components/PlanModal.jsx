@@ -39,6 +39,7 @@ const StaffModal = () => {
             <p className="plan-modal-employees">Адахан Жээнбеков - <strong>Менеджер по работе с клиентами, номер телефона</strong></p>
             <p className="plan-modal-employees">Аблималик кызы Роза - <strong>Менеджер по работе с клиентами, 0505 454 224</strong></p>
             <p className="plan-modal-employees">Айкыз Саматова - <strong>Менеджер по работе с клиентами, 0708 648 769</strong></p>
+            <p className="plan-modal-employees">Эдуард Марков - <strong>Менеджер по работе с клиентами, 0550 681 844</strong></p>
 
 
             <h4 className="plan-modal-title">Отдел маркетинга</h4>
