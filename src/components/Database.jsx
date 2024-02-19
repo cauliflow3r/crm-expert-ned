@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBase } from '../crm-logic/getBase';
 import HeaderDatabase from './HeaderDatabase';
@@ -12,7 +12,6 @@ import StaffModal from "./PlanModal";
 import DataBaseAddTicket from "./DataBaseAddTicket";
 import DataBaseShowTicket from "./DataBaseShowTicket";
 import Statistics from "./Statistics";
-import { motion } from "framer-motion"
 import {setGetOneClient} from "../features/getOneClient/getOneClientSlice";
 import {setIsComments} from "../features/isComments/isCommentsSlice";
 

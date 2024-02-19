@@ -23,7 +23,7 @@ const Statistics = () => {
   const [dataBakyt, setDataBakyt] = useState([])
   const [dataAdahan, setDataAdahan] = useState([])
   const [dataAikyz, setDataAikyz] = useState([])
-  const [dataEduard, setDataEduard] = useState([])
+  const [dataZhanbolot, setDataZhanbolot] = useState([])
   const [isLoading, setIsLoading] = useState(false)
   const date = new Date();
   const year = date.getFullYear();
@@ -71,8 +71,8 @@ const Statistics = () => {
       const responseAikyz = await axiosInstance.get(`crm/?manager=35&created_ad=${formattedDate}`)
       setDataAikyz(responseAikyz.data.results)
 
-      const responseEduard = await axiosInstance.get(`crm/?manager=36&created_ad=${formattedDate}`)
-      setDataEduard(responseEduard.data.results)
+      const responseZhanbolot = await axiosInstance.get(`crm/?manager=37&created_ad=${formattedDate}`)
+      setDataZhanbolot(responseZhanbolot.data.results)
 
     } catch (e) {
       console.log(e)
@@ -116,8 +116,8 @@ const Statistics = () => {
       const responseAikyz = await axiosInstance.get(`crm/?manager=35&created_ad=${formatDate(selectedDate)}`)
       setDataAikyz(responseAikyz.data.results)
 
-      const responseEduard = await axiosInstance.get(`crm/?manager=36&created_ad=${formatDate(selectedDate)}`)
-      setDataEduard(responseEduard.data.results)
+      const responseZhanbolot = await axiosInstance.get(`crm/?manager=37&created_ad=${formatDate(selectedDate)}`)
+      setDataZhanbolot(responseZhanbolot.data.results)
 
     } catch (e) {
       console.log(e)
@@ -528,8 +528,8 @@ const Statistics = () => {
                 </div>
 
                 <div className="statistics-wrap-managers">
-                  <strong>Эдуард Марков</strong> - {dataEduard.length} добавленных
-                  {dataEduard.length !== 0 &&
+                  <strong>Жанболот Келдибеков</strong> - {dataZhanbolot.length} добавленных
+                  {dataZhanbolot.length !== 0 &&
                       <>
                         <div className="statistics-wrap">
                           <div className="statistics-name statistics-name-wrap">Имя</div>
@@ -538,7 +538,7 @@ const Statistics = () => {
                           <div className="statistics-date">ID</div>
                           <div className="statistics-manager statistics-name-wrap">Тип базы</div>
                         </div>
-                        {dataEduard.map((item, idx) => {
+                        {dataZhanbolot.map((item, idx) => {
                           return (
                               <div
                                   className='statistics-head-block'
