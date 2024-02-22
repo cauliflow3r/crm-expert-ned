@@ -18,7 +18,6 @@ const Statistics = () => {
   const [dataAlmaz, setDataAlmaz] = useState([])
   const [dataKalybek, setDataKalybek] = useState([])
   const [dataAziret, setDataAziret] = useState([])
-  const [dataMyrza, setDataMyrza] = useState([])
   const [dataRoza, setDataRoza] = useState([])
   const [dataBakyt, setDataBakyt] = useState([])
   const [dataAdahan, setDataAdahan] = useState([])
@@ -55,9 +54,6 @@ const Statistics = () => {
 
       const responseAziret = await axiosInstance.get(`crm/?manager=17&created_ad=${formattedDate}`)
       setDataAziret(responseAziret.data.results)
-
-      const responseMyrza = await axiosInstance.get(`crm/?manager=24&created_ad=${formattedDate}`)
-      setDataMyrza(responseMyrza.data.results)
 
       const responseRoza = await axiosInstance.get(`crm/?manager=34&created_ad=${formattedDate}`)
       setDataRoza(responseRoza.data.results)
@@ -100,9 +96,6 @@ const Statistics = () => {
 
       const responseAziret = await axiosInstance.get(`crm/?manager=17&created_ad=${formatDate(selectedDate)}`)
       setDataAziret(responseAziret.data.results)
-
-      const responseMyrza = await axiosInstance.get(`crm/?manager=24&created_ad=${formatDate(selectedDate)}`)
-      setDataMyrza(responseMyrza.data.results)
 
       const responseRoza = await axiosInstance.get(`crm/?manager=34&created_ad=${formatDate(selectedDate)}`)
       setDataRoza(responseRoza.data.results)
@@ -329,41 +322,6 @@ const Statistics = () => {
                           <div className="statistics-manager statistics-name-wrap">Тип базы</div>
                         </div>
                         {dataAziret.map((item, idx) => {
-                          return (
-                              <div
-                                  className='statistics-head-block'
-                                  key={idx}
-                              >
-                                <div className="statistics-name">{item.name}</div>
-
-                                <div className="statistics-phone">{item.phone}</div>
-
-                                <div className="statistics-date">{timeAdd(item.created_ad)}</div>
-
-                                <div className="statistics-date">{item.id}</div>
-
-                                <div className="statistics-date">{item.type_of_base}</div>
-
-                              </div>
-                          )
-                        })}
-                      </>
-                  }
-
-                </div>
-
-                <div className="statistics-wrap-managers">
-                  <strong>Мырзалы Эсенжанов</strong> - {dataMyrza.length} добавленных
-                  {dataMyrza.length !== 0 &&
-                      <>
-                        <div className="statistics-wrap">
-                          <div className="statistics-name statistics-name-wrap">Имя</div>
-                          <div className="statistics-phone statistics-name-wrap">Номер</div>
-                          <div className="statistics-date">Создан</div>
-                          <div className="statistics-date">ID</div>
-                          <div className="statistics-manager statistics-name-wrap">Тип базы</div>
-                        </div>
-                        {dataMyrza.map((item, idx) => {
                           return (
                               <div
                                   className='statistics-head-block'
