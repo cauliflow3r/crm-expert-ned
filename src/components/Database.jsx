@@ -2,7 +2,6 @@ import React, {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getBase } from '../crm-logic/getBase';
 import HeaderDatabase from './HeaderDatabase';
-import './../styles/Database.css';
 import { getOneClient } from '../crm-logic/getOneClient';
 import DatabaseDetailedInfo from './DatabaseDetailedInfo';
 import BaseModal from './BaseModal';
@@ -14,8 +13,10 @@ import DataBaseShowTicket from "./DataBaseShowTicket";
 import Statistics from "./Statistics";
 import {setGetOneClient} from "../features/getOneClient/getOneClientSlice";
 import {setIsComments} from "../features/isComments/isCommentsSlice";
+import './../styles/Database.css';
 
 const Database = () => {
+
   const dispatch = useDispatch();
   const isLoading = useSelector((state) => state.isLoading);
   const data = useSelector((state) => state.data.data);
@@ -27,15 +28,13 @@ const Database = () => {
   const ticketModal = useSelector((state) => state.ticketLoading )
   const showTicket = useSelector(state => state.showTicketModal)
   const statisticsModal = useSelector(state => state.statistics)
-  const id = localStorage.getItem('id')
   const theme = useSelector((state) => state.darkTheme)
-  console.log(data, 'data')
 
   useEffect(() => {
-    {!data &&
+    !data &&
     (async () => {
       await getBase(dispatch, searchParameters);
-    })();}
+    })();
   }, []);
 
 

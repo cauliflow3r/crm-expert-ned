@@ -30,4 +30,4 @@ axiosInstance.interceptors.response.use((response) => {
   return Promise.reject(error);
 });
 
-export {axiosInstance}
+export {axiosInstance}  
